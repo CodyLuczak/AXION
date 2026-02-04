@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- FontAwesome for icons -->
+  <!-- FontAwesome Icons -->
   <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
 
   <style>
@@ -34,24 +34,31 @@
 
     h1, h2, h3 {
       color: #007bff;
+      margin: 0 0 20px 0;
     }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 100px 20px 60px 20px;
+      padding: 120px 20px 80px 20px;
       background: linear-gradient(135deg, #007bff, #0056b3);
       color: #fff;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.2s;
     }
 
     .hero p {
       font-size: 1.3rem;
       margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.5s;
     }
 
     .btn-hero {
@@ -60,23 +67,40 @@
       padding: 18px 40px;
       font-size: 1.2rem;
       font-weight: bold;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.8s;
     }
 
     .btn-hero:hover {
       transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Sections */
     section {
-      padding: 60px 0;
+      padding: 80px 0;
     }
 
     h2.section-title {
       text-align: center;
-      margin-bottom: 50px;
       font-size: 2rem;
+      margin-bottom: 50px;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.2s;
     }
 
     /* How It Works */
@@ -90,16 +114,24 @@
 
     .step {
       background-color: #fff;
-      padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 40px 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       flex: 1 1 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
     }
 
     .step i {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 15px;
       color: #007bff;
+    }
+
+    .step:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
     /* Testimonials */
@@ -112,11 +144,14 @@
 
     .testimonial {
       background-color: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       flex: 1 1 250px;
       font-style: italic;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
     }
 
     .testimonial strong {
@@ -126,12 +161,18 @@
       font-style: normal;
     }
 
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
     /* Pricing */
     .pricing {
       text-align: center;
       background-color: #e9f2ff;
       padding: 50px 20px;
-      border-radius: 12px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     }
 
     .pricing p {
@@ -158,16 +199,19 @@
     /* Terms */
     .terms {
       background-color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
       margin-top: 50px;
+      line-height: 1.6;
+      text-align: left;
+      font-size: 0.95rem;
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       background-color: #007bff;
       color: #fff;
       margin-top: 50px;
@@ -187,8 +231,10 @@
   <!-- Hero Section -->
   <div class="hero">
     <h1>Second Opinion Careers</h1>
-    <p>Your AI-powered career assistant. Get personalized resumes & job recommendations instantly.</p>
-    <a class="btn-hero" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank">Get Your Second Opinion</a>
+    <p>Your AI-powered career assistant. Get professional resumes & job recommendations instantly.</p>
+    <a class="btn-hero" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank" rel="noopener noreferrer">
+      Get Your Second Opinion
+    </a>
   </div>
 
   <!-- How It Works Section -->
@@ -196,20 +242,20 @@
     <div class="container">
       <h2 class="section-title">How It Works</h2>
       <div class="steps">
-        <div class="step">
+        <div class="step" style="animation-delay: 0.2s;">
           <i class="fas fa-user-edit"></i>
           <h3>Step 1: Share Your Interests</h3>
-          <p>Tell us about your skills, experience, and preferences in your city or town.</p>
+          <p>Submit your skills, experience, and preferences. Our AI will use this to craft personalized recommendations.</p>
         </div>
-        <div class="step">
+        <div class="step" style="animation-delay: 0.4s;">
           <i class="fas fa-file-alt"></i>
           <h3>Step 2: AI Resume & Recommendations</h3>
-          <p>Our AI generates a professional resume and a list of jobs suited to you.</p>
+          <p>Receive a professionally formatted resume and a list of job opportunities tailored to you.</p>
         </div>
-        <div class="step">
+        <div class="step" style="animation-delay: 0.6s;">
           <i class="fas fa-briefcase"></i>
           <h3>Step 3: Apply & Succeed</h3>
-          <p>Use your AI-generated resume to apply confidently and boost your career.</p>
+          <p>Use your AI-generated resume to apply for jobs confidently and accelerate your career.</p>
         </div>
       </div>
     </div>
@@ -220,15 +266,15 @@
     <div class="container">
       <h2 class="section-title">What Users Say</h2>
       <div class="testimonials">
-        <div class="testimonial">
+        <div class="testimonial" style="animation-delay: 0.2s;">
           “I got personalized job suggestions in my city in minutes! The resume looked amazing.” 
           <strong>- Alex P.</strong>
         </div>
-        <div class="testimonial">
+        <div class="testimonial" style="animation-delay: 0.4s;">
           “This service saved me hours of writing resumes and searching jobs. Highly recommend!” 
           <strong>- Priya S.</strong>
         </div>
-        <div class="testimonial">
+        <div class="testimonial" style="animation-delay: 0.6s;">
           “A one-time payment for unlimited use is incredible value. My career has jumped ahead!” 
           <strong>- Liam W.</strong>
         </div>
@@ -238,7 +284,57 @@
 
   <!-- Pricing Section -->
   <section>
-    <div cl
+    <div class="container pricing">
+      <h2 class="section-title">Access & Pricing</h2>
+      <p>Pay a one-time fee of $6 to get unlimited access to our AI-powered resume and job recommendation service.</p>
+      <a class="btn-hero" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section>
+    <div class="container faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <h3>Is this service free?</h3>
+      <p>No, access requires a one-time payment of $6 for unlimited use.</p>
+      <h3>Does it guarantee job placement?</h3>
+      <p>No, it provides AI-generated resumes and job recommendations, but job placement depends on the user.</p>
+      <h3>Is my personal data safe?</h3>
+      <p>Yes, all data is handled according to our privacy policy. We never share your personal information without consent.</p>
+      <h3>Can I use this multiple times?</h3>
+      <p>Yes, once you pay the one-time fee, you have unlimited access to submit as many interests as you like.</p>
+    </div>
+  </section>
+
+  <!-- Terms & Conditions -->
+  <section>
+    <div class="container terms">
+      <h2>Terms & Conditions</h2>
+      <p>By using Second Opinion Careers, you agree to provide accurate and honest information regarding your skills, experience, education, and preferences. The AI-generated resumes and job recommendations are provided for informational purposes only. We do not guarantee employment, interview offers, or specific job outcomes. Users are responsible for verifying job opportunities and submitting applications. The service requires a one-time payment of $6, after which users may access the platform unlimited times. We are not responsible for technical failures, delays, or inaccuracies caused by third-party systems or your internet connection. Personal information submitted through the platform will be handled in accordance with our privacy policy. By using this service, you agree not to submit fraudulent, misleading, or offensive content. All intellectual property, including AI-generated content, remains the property of Second Opinion Careers. Legal disputes will be governed by the laws of the user’s country of residence. By using this platform, you acknowledge understanding and acceptance of these terms.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Second Opinion Careers. All Rights Reserved.
+  </footer>
+
+  <!-- JS to remove any duplicate "Get a Second Opinion" text -->
+  <script>
+    document.querySelectorAll('span, p').forEach(el => {
+      if (el.textContent.trim() === "Get a Second Opinion") {
+        el.remove();
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
 
 
 
