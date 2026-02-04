@@ -8,129 +8,240 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+
   <style>
-    /* General Styles */
+    /* Global Styles */
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #f4f6f8;
       margin: 0;
       padding: 0;
       color: #333;
+      background-color: #f4f6f8;
+      scroll-behavior: smooth;
     }
 
-    /* Container */
+    a {
+      text-decoration: none;
+    }
+
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 50px 20px;
-      text-align: center;
+      padding: 0 20px;
     }
 
-    /* Header */
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+    h1, h2, h3 {
       color: #007bff;
     }
 
-    /* Description */
-    p.description {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-      line-height: 1.6;
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px 20px;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: #fff;
     }
 
-    /* Button */
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #007bff;
-      color: #fff;
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+    }
+
+    .btn-hero {
+      background-color: #fff;
+      color: #007bff;
+      padding: 18px 40px;
       font-size: 1.2rem;
       font-weight: bold;
-      text-decoration: none;
       border-radius: 10px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-bottom: 50px;
+      transition: transform 0.3s ease;
     }
 
-    .btn:hover {
-      background-color: #0056b3;
+    .btn-hero:hover {
       transform: scale(1.05);
     }
 
-    /* Terms & Conditions */
-    .terms {
-      text-align: left;
-      font-size: 0.9rem;
-      color: #555;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      margin-bottom: 50px;
+    /* Sections */
+    section {
+      padding: 60px 0;
     }
 
-    .terms h2 {
-      font-size: 1.3rem;
-      color: #007bff;
+    h2.section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2rem;
+    }
+
+    /* How It Works */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .step {
+      background-color: #fff;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      flex: 1 1 250px;
+    }
+
+    .step i {
+      font-size: 2.5rem;
       margin-bottom: 15px;
+      color: #007bff;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+    }
+
+    .testimonial {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      flex: 1 1 250px;
+      font-style: italic;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 15px;
+      color: #007bff;
+      font-style: normal;
+    }
+
+    /* Pricing */
+    .pricing {
+      text-align: center;
+      background-color: #e9f2ff;
+      padding: 50px 20px;
+      border-radius: 12px;
+    }
+
+    .pricing p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .faq h3 {
+      margin-bottom: 15px;
+      color: #0056b3;
+    }
+
+    .faq p {
+      margin-bottom: 25px;
+    }
+
+    /* Terms */
+    .terms {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-top: 50px;
     }
 
     /* Footer */
     footer {
       text-align: center;
-      font-size: 0.8rem;
-      color: #888;
-      padding: 20px 0;
+      padding: 20px;
+      background-color: #007bff;
+      color: #fff;
+      margin-top: 50px;
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .steps, .testimonials {
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- Brand Header -->
+  <!-- Hero Section -->
+  <div class="hero">
     <h1>Second Opinion Careers</h1>
-
-    <!-- Brand Description -->
-    <p class="description">
-      Second Opinion Careers is your personal AI-powered career assistant. Submit your interests and experience, 
-      and our system generates a professional resume and personalized job recommendations in your city or town. 
-      Access is a one-time fee, giving you unlimited use of the service.
-    </p>
-
-    <!-- Google Form Button -->
-    <a class="btn" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank" rel="noopener noreferrer">
-      Get Your Second Opinion
-    </a>
-
-    <!-- Terms & Conditions -->
-    <div class="terms">
-      <h2>Terms & Conditions</h2>
-      <p>
-        By using Second Opinion Careers, you agree to provide accurate and honest information about your skills and experience. 
-        The service is for informational purposes only and does not guarantee job placement. 
-        Access is granted after a one-time payment, and users can utilize the platform as much as they like thereafter. 
-        Personal data will be handled in accordance with our privacy policy.
-      </p>
-    </div>
+    <p>Your AI-powered career assistant. Get personalized resumes & job recommendations instantly.</p>
+    <a class="btn-hero" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank">Get Your Second Opinion</a>
   </div>
 
-  <footer>
-    &copy; 2026 Second Opinion Careers. All Rights Reserved.
-  </footer>
+  <!-- How It Works Section -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <i class="fas fa-user-edit"></i>
+          <h3>Step 1: Share Your Interests</h3>
+          <p>Tell us about your skills, experience, and preferences in your city or town.</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-file-alt"></i>
+          <h3>Step 2: AI Resume & Recommendations</h3>
+          <p>Our AI generates a professional resume and a list of jobs suited to you.</p>
+        </div>
+        <div class="step">
+          <i class="fas fa-briefcase"></i>
+          <h3>Step 3: Apply & Succeed</h3>
+          <p>Use your AI-generated resume to apply confidently and boost your career.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- JS to remove any duplicate "Get a Second Opinion" text -->
-  <script>
-    document.querySelectorAll('span, p').forEach(el => {
-      if (el.textContent.trim() === "Get a Second Opinion") {
-        el.remove();
-      }
-    });
-  </script>
+  <!-- Testimonials Section -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">What Users Say</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          “I got personalized job suggestions in my city in minutes! The resume looked amazing.” 
+          <strong>- Alex P.</strong>
+        </div>
+        <div class="testimonial">
+          “This service saved me hours of writing resumes and searching jobs. Highly recommend!” 
+          <strong>- Priya S.</strong>
+        </div>
+        <div class="testimonial">
+          “A one-time payment for unlimited use is incredible value. My career has jumped ahead!” 
+          <strong>- Liam W.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</body>
-</html>
+  <!-- Pricing Section -->
+  <section>
+    <div cl
+
+
+
 
 
 
