@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Second Opinion Careers</title>
+<title>CareerOrbit</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -22,25 +22,25 @@
 
 <style>
 /* ===== Global Styles ===== */
-body { font-family: 'Roboto', sans-serif; margin:0; padding:0; scroll-behavior:smooth; background:#f4f6f8; color:#333; overflow-x:hidden; }
+body { font-family: 'Roboto', sans-serif; margin:0; padding:0; scroll-behavior:smooth; background:#eef2f6; color:#333; overflow-x:hidden; }
 a { text-decoration:none; }
 
 /* ===== Navbar ===== */
-nav { position:sticky; top:0; background:#007bff; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.3);}
-nav .logo { font-weight:bold; font-size:1.5rem; }
+nav { position:sticky; top:0; background:#2C3E50; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.2);}
+nav .logo { font-weight:bold; font-size:1.5rem; color:#00BFFF; }
 nav ul { display:flex; gap:20px; list-style:none; align-items:center; }
 nav ul li { position:relative; }
 nav ul li a { color:#fff; padding:8px 12px; display:block; transition:0.3s; }
 nav ul li a:hover { text-decoration:underline; background: rgba(255,255,255,0.1); border-radius:5px; }
-nav ul li ul { position:absolute; top:40px; left:0; background:#007bff; list-style:none; padding:10px 0; display:none; border-radius:8px; min-width:150px; }
+nav ul li ul { position:absolute; top:40px; left:0; background:#2C3E50; list-style:none; padding:10px 0; display:none; border-radius:8px; min-width:150px; }
 nav ul li ul li a { padding:8px 15px; display:block; }
 nav ul li:hover ul { display:block; }
 
 /* ===== Hero Section ===== */
-.hero { text-align:center; padding:160px 20px 120px 20px; position:relative; overflow:hidden; background: linear-gradient(135deg,#007bff,#0056b3); color:#fff; }
+.hero { text-align:center; padding:160px 20px 120px 20px; position:relative; overflow:hidden; background: linear-gradient(135deg,#1F3A93,#2980B9); color:#fff; }
 .hero h1 { font-size:3rem; margin-bottom:20px; animation: fadeInUp 1s ease forwards; opacity:0; }
 .hero p { font-size:1.3rem; margin-bottom:40px; animation: fadeInUp 1.3s ease forwards; opacity:0; max-width:800px; margin-left:auto; margin-right:auto;}
-.btn-hero { background:#fff; color:#007bff; padding:18px 40px; font-size:1.2rem; font-weight:bold; border-radius:12px; transition: transform 0.3s ease, box-shadow 0.3s ease; margin:0 10px; animation: fadeInUp 1.6s ease forwards; opacity:0; }
+.btn-hero { background:#00BFFF; color:#fff; padding:18px 40px; font-size:1.2rem; font-weight:bold; border-radius:12px; transition: transform 0.3s ease, box-shadow 0.3s ease; margin:0 10px; animation: fadeInUp 1.6s ease forwards; opacity:0; }
 .btn-hero:hover { transform: scale(1.05); box-shadow:0 10px 25px rgba(0,0,0,0.2); animation:pulse 1.5s infinite; }
 
 /* Floating shapes in hero */
@@ -66,58 +66,49 @@ h2.section-title { text-align:center; margin-bottom:50px; font-size:2rem; }
 
 /* ===== Steps ===== */
 .steps { display:flex; flex-wrap:wrap; justify-content:space-around; gap:30px; text-align:center; }
-.step { background:#fff; padding:40px 20px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1); flex:1 1 280px; transition:transform 0.3s ease, box-shadow 0.3s ease; transform-style: preserve-3d; }
-.step i { font-size:3rem; margin-bottom:15px; color:#007bff; }
+.step { background:#f0f4f8; padding:40px 20px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.05); flex:1 1 280px; transition:transform 0.3s ease, box-shadow 0.3s ease; transform-style: preserve-3d; }
+.step i { font-size:3rem; margin-bottom:15px; color:#00BFFF; }
 .step h3 { margin-bottom:10px; }
-.step p { font-size:1rem; line-height:1.5; }
-.step:hover { transform:rotateY(10deg) translateY(-10px); box-shadow:0 15px 30px rgba(0,0,0,0.15); }
+.step p { font-size:1rem; line-height:1.6; }
+.step:hover { transform:rotateY(10deg) translateY(-10px); box-shadow:0 15px 30px rgba(0,0,0,0.1); }
 
 /* ===== Features ===== */
 .features { display:flex; flex-wrap:wrap; gap:30px; justify-content:space-around; }
-.feature-card { flex:1 1 280px; background:#fff; border-radius:15px; padding:30px; box-shadow:0 5px 20px rgba(0,0,0,0.1); text-align:center; transition:transform 0.3s ease; transform-style: preserve-3d; }
-.feature-card i { font-size:2.5rem; color:#007bff; margin-bottom:15px; }
+.feature-card { flex:1 1 280px; background:#f0f4f8; border-radius:15px; padding:30px; box-shadow:0 5px 20px rgba(0,0,0,0.05); text-align:center; transition:transform 0.3s ease; transform-style: preserve-3d; }
+.feature-card i { font-size:2.5rem; color:#00BFFF; margin-bottom:15px; }
 .feature-card h3 { margin-bottom:10px; }
 .feature-card p, .feature-card ul { font-size:0.95rem; line-height:1.5; text-align:left; margin-left:20px; }
 .feature-card:hover { transform:rotateY(-10deg) translateY(-10px); }
 
 /* ===== Map ===== */
-#world-map { height:500px; border-radius:15px; margin-top:40px; box-shadow:0 5px 20px rgba(0,0,0,0.15); }
+#world-map { height:500px; border-radius:15px; margin-top:40px; box-shadow:0 5px 20px rgba(0,0,0,0.1); }
 
 /* ===== Counters ===== */
 .counters { display:flex; justify-content:space-around; flex-wrap:wrap; gap:30px; text-align:center; margin-top:40px; }
-.counter { background:#fff; padding:30px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1); font-size:2rem; font-weight:bold; color:#007bff; transition:transform 0.3s; }
+.counter { background:#f0f4f8; padding:30px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.05); font-size:2rem; font-weight:bold; color:#00BFFF; transition:transform 0.3s; }
 .counter-description { font-size:1rem; font-weight:normal; color:#333; margin-top:10px; display:block; }
 .counter:hover { transform:translateY(-10px); }
 
 /* ===== Pricing ===== */
-.pricing { text-align:center; background-color:#e9f2ff; padding:50px 20px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.05); }
-.stripe-btn { background:#007bff; color:#fff; font-size:1.2rem; font-weight:bold; padding:15px 35px; border:none; border-radius:12px; cursor:pointer; transition:0.3s; margin-top:20px; }
-.stripe-btn:hover { transform:scale(1.05); background:#0056b3; animation:pulse 1.5s infinite; }
-
-/* ===== Inquiry Form ===== */
-#inquiry iframe { width:100%; height:700px; border:none; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.1); }
+.pricing { text-align:center; background-color:#d0e6f7; padding:50px 20px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.05); }
+.stripe-btn { background:#00BFFF; color:#fff; font-size:1.2rem; font-weight:bold; padding:15px 35px; border:none; border-radius:12px; cursor:pointer; transition:0.3s; margin-top:20px; }
+.stripe-btn:hover { transform:scale(1.05); background:#007bbf; animation:pulse 1.5s infinite; }
 
 /* ===== FAQ ===== */
-.faq-item { margin-bottom:20px; background:#fff; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-.faq-item button { width:100%; background:#007bff; color:#fff; padding:15px; border:none; border-radius:12px; text-align:left; cursor:pointer; font-weight:bold; transition:0.3s; }
-.faq-item button:hover { background:#0056b3; }
-.faq-item .content { display:none; padding:15px; color:#333; line-height:1.5; }
+.faq-item { margin-bottom:20px; background:#f0f4f8; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+.faq-item button { width:100%; background:#00BFFF; color:#fff; padding:15px; border:none; border-radius:12px; text-align:left; cursor:pointer; font-weight:bold; transition:0.3s; }
+.faq-item button:hover { background:#007bbf; }
+.faq-item .content { display:none; padding:15px; color:#333; line-height:1.6; }
 
 /* ===== Terms ===== */
-.terms { background:#fff; padding:30px 25px; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.05); line-height:1.6; font-size:0.95rem; margin-top:50px; text-align:left; max-height:500px; overflow-y:auto; }
-
-/* ===== Newsletter ===== */
-.newsletter { background:#007bff; color:#fff; text-align:center; padding:60px 20px; border-radius:15px; margin:50px 20px; }
-.newsletter input[type=email] { padding:15px; width:300px; max-width:80%; border:none; border-radius:8px; margin-right:10px; }
-.newsletter button { padding:15px 25px; border:none; border-radius:8px; background:#fff; color:#007bff; font-weight:bold; cursor:pointer; transition:0.3s; }
-.newsletter button:hover { transform:scale(1.05); }
+.terms { background:#f0f4f8; padding:30px 25px; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.05); line-height:1.6; font-size:0.95rem; margin-top:50px; text-align:left; max-height:600px; overflow-y:auto; }
 
 /* ===== Floating Help ===== */
-#help-btn { position:fixed; bottom:20px; right:20px; background:#007bff; color:#fff; border:none; padding:15px; border-radius:50%; font-size:1.5rem; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000; transition:0.3s;}
+#help-btn { position:fixed; bottom:20px; right:20px; background:#00BFFF; color:#fff; border:none; padding:15px; border-radius:50%; font-size:1.5rem; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000; transition:0.3s;}
 #help-btn:hover { transform:scale(1.1); animation:pulse 1.5s infinite; }
 
 /* ===== Footer ===== */
-footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; margin-top:50px; }
+footer { text-align:center; padding:25px; background-color:#1F3A93; color:#fff; margin-top:50px; }
 
 /* ===== Animations ===== */
 @keyframes fadeInUp { 0% {opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
@@ -125,9 +116,8 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
 @keyframes floatIcon {0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
 @media(max-width:768px){ 
-    .steps,.features,.testimonials,.counters{flex-direction:column;} 
+    .steps,.features,.counters{flex-direction:column;} 
     nav{flex-direction:column;gap:10px;} 
-    .newsletter input,.newsletter button{width:100%; margin:5px 0;} 
 }
 </style>
 </head>
@@ -135,7 +125,7 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 
 <!-- Navbar -->
 <nav>
-  <div class="logo">Second Opinion Careers</div>
+  <div class="logo">CareerOrbit</div>
   <ul>
     <li><a href="#hero">Home</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
@@ -145,7 +135,6 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
       <a href="#">Get Started <i class="fas fa-caret-down"></i></a>
       <ul>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#inquiry">Inquiries</a></li>
       </ul>
     </li>
     <li><a href="#faq">FAQ</a></li>
@@ -157,10 +146,10 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 <div class="hero" id="hero">
   <div class="circle1"></div>
   <div class="circle2"></div>
-  <h1>Second Opinion Careers</h1>
-  <p>We provide a full AI-powered career assistant that builds your resume, recommends jobs based on your interests, and provides real-time opportunities in your city and globally. Save time, get professional guidance, and take control of your career path.</p>
+  <h1>CareerOrbit</h1>
+  <p>Your AI-powered career assistant that builds your resume, recommends jobs, and connects you with opportunities worldwide. Professional, fast, and tailored for your unique profile.</p>
   <a class="btn-hero" href="#pricing">Get Started Now</a>
-  <a class="btn-hero" href="#inquiry">Make an Inquiry</a>
+  <a class="btn-hero" id="inquiry-btn">Make an Inquiry</a>
 
   <!-- Floating icons -->
   <div class="hero-icons">
@@ -197,35 +186,31 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 <section id="features">
 <h2 class="section-title" data-aos="fade-up">Features</h2>
 <div class="features">
-
   <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
     <i class="fas fa-file-alt"></i>
     <h3>Resume Builder</h3>
-    <p>AI-generated professional resumes highlight your experience and skills:</p>
+    <p>AI-generated professional resumes highlight your experience and skills in detail:</p>
     <ul>
-      <li>Professional Summary: Creative problem-solver with 5+ years experience</li>
+      <li>Professional Summary: Creative problem-solver with 5+ years of experience</li>
       <li>Key Skills: Python, SQL, React, Project Management</li>
       <li>Experience: Lead Developer at TechCorp (2019-2023)</li>
     </ul>
   </div>
-
   <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
     <i class="fas fa-search"></i>
     <h3>Job Recommendations</h3>
-    <p>AI-curated job listings tailored to your profile:</p>
+    <p>AI-curated job listings tailored to your profile with detailed company and role information:</p>
     <ul>
-      <li>Software Engineer – New York, Skills: JavaScript, React, Node.js</li>
-      <li>Digital Marketing Specialist – London, Skills: SEO, Google Ads</li>
-      <li>Data Analyst – Tokyo, Skills: Python, SQL, Tableau</li>
+      <li>Software Engineer – New York, Skills: JavaScript, React, Node.js, Salary: $90k–$120k</li>
+      <li>Digital Marketing Specialist – London, Skills: SEO, Google Ads, Salary: £40k–£55k</li>
+      <li>Data Analyst – Tokyo, Skills: Python, SQL, Tableau, Salary: ¥6M–¥8M</li>
     </ul>
   </div>
-
   <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
     <i class="fas fa-globe"></i>
     <h3>Global Reach</h3>
-    <p>Explore international opportunities with insights about companies, visas, and industry trends. AI ensures suggestions match your skills and interests.</p>
+    <p>Explore international opportunities with insights about companies, visas, industry trends, and top skills required. AI ensures suggestions match your strengths and goals.</p>
   </div>
-
 </div>
 </section>
 
@@ -238,13 +223,13 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 <!-- Counters -->
 <section class="counters">
   <div class="counter" data-target="1250"><span class="counter-number"></span>
-    <span class="counter-description">Users Helped Globally</span>
+    <span class="counter-description">Profiles Optimized</span>
   </div>
   <div class="counter" data-target="450"><span class="counter-number"></span>
     <span class="counter-description">Cities Covered</span>
   </div>
   <div class="counter" data-target="320"><span class="counter-number"></span>
-    <span class="counter-description">Job Recommendations Generated</span>
+    <span class="counter-description">Job Matches Generated</span>
   </div>
 </section>
 
@@ -252,13 +237,7 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 <section id="pricing" class="pricing">
 <h2 class="section-title" data-aos="fade-up">Pricing</h2>
 <p data-aos="fade-up">One-time payment for lifetime access to all AI resume and job recommendation features.</p>
-<button class="stripe-btn" data-aos="fade-up" data-aos-delay="100">Pay $6 (Stripe Placeholder)</button>
-</section>
-
-<!-- Inquiry Form -->
-<section id="inquiry" data-aos="fade-up">
-<h2 class="section-title">Inquiries</h2>
-<iframe src="https://forms.gle/Cto3FTGE575zCeH67"></iframe>
+<button class="stripe-btn" data-aos="fade-up" data-aos-delay="100">Pay $6</button>
 </section>
 
 <!-- FAQ -->
@@ -267,101 +246,7 @@ footer { text-align:center; padding:25px; background-color:#0056b3; color:#fff; 
 <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
   <button>How does the AI generate my resume?</button>
   <div class="content">
-    <p>Our AI analyzes your skills, experience, and interests to build a professional resume tailored for your industry. It formats your resume professionally, highlights strengths, and provides suggestions to improve readability.</p>
-  </div>
-</div>
-<div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-  <button>Can I access job recommendations worldwide?</button>
-  <div class="content">
-    <p>Yes! The platform provides global recommendations and helps you explore international opportunities with relevant details like visa requirements, company insights, and salary ranges.</p>
-  </div>
-</div>
-<div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-  <button>Is there a limit to how many times I can use it?</button>
-  <div class="content">
-    <p>No, the one-time payment gives you unlimited access to resume generation and job recommendations indefinitely. You can return as often as you like.</p>
-  </div>
-</div>
-</section>
-
-<!-- Terms -->
-<section id="terms">
-<h2 class="section-title" data-aos="fade-up">Terms & Conditions</h2>
-<div class="terms" data-aos="fade-up">
-<h3>1. Payment and Access</h3>
-<p>All users must pay a one-time fee to access the platform. Payment must be completed through our official channels. Access will be granted immediately after confirmation.</p>
-<h3>2. Privacy</h3>
-<p>We value your privacy. All personal data is used solely for generating resumes and job recommendations. We do not share your information with third parties without your consent.</p>
-<h3>3. Liability</h3>
-<p>The platform provides career guidance based on AI-generated insights. We are not liable for employment outcomes, decisions made by users, or external company actions.</p>
-<h3>4. Refund Policy</h3>
-<p>Due to the digital nature of our service, payments are non-refundable once access has been granted.</p>
-<h3>5. Updates</h3>
-<p>We may update features, design, and functionality of the platform at any time to improve service quality.</p>
-</div>
-</section>
-
-<!-- Newsletter -->
-<section class="newsletter">
-<h2>Subscribe for Career Updates</h2>
-<p>Receive AI tips, career insights, and updates on new features straight to your inbox.</p>
-<input type="email" placeholder="Enter your email">
-<button>Subscribe</button>
-</section>
-
-<!-- Floating Help Button -->
-<button id="help-btn"><i class="fas fa-question"></i></button>
-
-<!-- Footer -->
-<footer>
-<p>© 2026 Second Opinion Careers. All Rights Reserved.</p>
-</footer>
-
-<!-- Scripts -->
-<script>
-AOS.init({duration:1200});
-
-// FAQ toggle
-document.querySelectorAll('.faq-item button').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const content=btn.nextElementSibling;
-    content.style.display = content.style.display==="block"?"none":"block";
-  });
-});
-
-// Counters
-document.querySelectorAll('.counter').forEach(counter=>{
-  const updateCounter = ()=>{
-    const target = +counter.getAttribute('data-target');
-    const count = +counter.querySelector('.counter-number').innerText || 0;
-    const increment = target/150;
-    if(count < target){
-      counter.querySelector('.counter-number').innerText=Math.ceil(count+increment);
-      setTimeout(updateCounter,15);
-    } else { counter.querySelector('.counter-number').innerText=target; }
-  };
-  updateCounter();
-});
-
-// Heatmap
-const map = L.map('world-map').setView([20,0],2);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);
-
-const heatData = [
-  [40.7128,-74.0060,0.8,"New York: 120 jobs"],
-  [34.0522,-118.2437,0.6,"Los Angeles: 95 jobs"],
-  [51.5074,-0.1278,0.7,"London: 110 jobs"],
-  [48.8566,2.3522,0.65,"Paris: 90 jobs"],
-  [35.6895,139.6917,0.5,"Tokyo: 75 jobs"],
-  [37.7749,-122.4194,0.55,"San Francisco: 85 jobs"],
-  [55.7558,37.6173,0.45,"Moscow: 60 jobs"],
-  [28.6139,77.2090,0.4,"New Delhi: 50 jobs"]
-];
-L.heatLayer(heatData.map(d=>[d[0],d[1],d[2]]),{radius:35, blur:25, maxZoom:10}).addTo(map);
-heatData.forEach(d=>{L.marker([d[0],d[1]]).addTo(map).bindPopup(d[3]);});
-</script>
-</body>
-</html>
+    <p>Our AI analyzes your skills, experience, and interests to build a professional
 
 
 
