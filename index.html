@@ -77,15 +77,23 @@ a.btn + p {
     <li>Clear red flags</li>
   </ul>
 
-<a class="btn" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank" rel="noopener noreferrer"></a>
+<a class="btn" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank" rel="noopener noreferrer">Get a Second Opinion</a>
+
+    
+
+<script>
+// Remove any duplicate "Get a Second Opinion" text anywhere on the page
+document.querySelectorAll('span, p').forEach(el => {
+    if (el.textContent.trim() === "Get a Second Opinion") {
+        el.remove();
+    }
+});
+</script>
 
 
 
 
 
-
-
-    Get a Second Opinion
   </a>
 
   <p class="note">
