@@ -1,106 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-/* Hide duplicate text injected anywhere */
-a.btn + span,
-a.btn + p {
-    display: none !important;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Opinion Careers</title>
 
-</head>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-  <title>Second Opinion</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    /* General Styles */
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f6f8;
       margin: 0;
       padding: 0;
-      color: #222;
+      color: #333;
     }
-    .box {
-      max-width: 700px;
-      margin: 60px auto;
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      text-align: center;
     }
-    h1 { margin-top: 0; }
-    ul { padding-left: 20px; }
+
+    /* Header */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    /* Description */
+    p.description {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* Button */
     .btn {
       display: inline-block;
-      margin-top: 30px;
-      background: black;
-      color: white;
-      padding: 14px 22px;
-      text-decoration: none;
-      border-radius: 6px;
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1.2rem;
       font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-bottom: 50px;
     }
-    .note {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #666;
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Terms & Conditions */
+    .terms {
+      text-align: left;
+      font-size: 0.9rem;
+      color: #555;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 50px;
+    }
+
+    .terms h2 {
+      font-size: 1.3rem;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      padding: 20px 0;
     }
   </style>
 </head>
 <body>
 
-<div class="box">
-  <h1>Before you decide, get a second opinion.</h1>
+  <div class="container">
+    <!-- Brand Header -->
+    <h1>Second Opinion Careers</h1>
 
-  <p>
-    Upload a document or describe a situation and receive a clear,
-    plain-English breakdown of what it really means — including risks,
-    red flags, and better questions to ask.
-  </p>
+    <!-- Brand Description -->
+    <p class="description">
+      Second Opinion Careers is your personal AI-powered career assistant. Submit your interests and experience, 
+      and our system generates a professional resume and personalized job recommendations in your city or town. 
+      Access is a one-time fee, giving you unlimited use of the service.
+    </p>
 
-  <h3>You can submit</h3>
-  <ul>
-    <li>Job offers</li>
-    <li>Contracts or agreements</li>
-    <li>Quotes or invoices</li>
-    <li>Courses or programs</li>
-    <li>Any decision you’re unsure about</li>
-  </ul>
+    <!-- Google Form Button -->
+    <a class="btn" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank" rel="noopener noreferrer">
+      Get Your Second Opinion
+    </a>
 
-  <h3>You’ll receive</h3>
-  <ul>
-    <li>A simple explanation</li>
-    <li>Hidden downsides</li>
-    <li>Who it’s good or bad for</li>
-    <li>Questions you should ask</li>
-    <li>Clear red flags</li>
-  </ul>
+    <!-- Terms & Conditions -->
+    <div class="terms">
+      <h2>Terms & Conditions</h2>
+      <p>
+        By using Second Opinion Careers, you agree to provide accurate and honest information about your skills and experience. 
+        The service is for informational purposes only and does not guarantee job placement. 
+        Access is granted after a one-time payment, and users can utilize the platform as much as they like thereafter. 
+        Personal data will be handled in accordance with our privacy policy.
+      </p>
+    </div>
+  </div>
 
-<a class="btn" href="https://forms.gle/Cto3FTGE575zCeH67" target="_blank" rel="noopener noreferrer">Get a Second Opinion</a>
+  <footer>
+    &copy; 2026 Second Opinion Careers. All Rights Reserved.
+  </footer>
 
-    
-
-<script>
-// Remove any duplicate "Get a Second Opinion" text anywhere on the page
-document.querySelectorAll('span, p').forEach(el => {
-    if (el.textContent.trim() === "Get a Second Opinion") {
+  <!-- JS to remove any duplicate "Get a Second Opinion" text -->
+  <script>
+    document.querySelectorAll('span, p').forEach(el => {
+      if (el.textContent.trim() === "Get a Second Opinion") {
         el.remove();
-    }
-});
-</script>
-
-
-
-
-
-  </a>
-
-  <p class="note">
-    Educational explanations only. Not legal, financial, or professional advice.
-  </p>
-</div>
+      }
+    });
+  </script>
 
 </body>
 </html>
+
+
 
