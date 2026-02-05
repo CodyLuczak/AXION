@@ -8,12 +8,12 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Font Awesome Icons -->
+<!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <style>
 :root {
-  --bg-main: #e6e7eb;
+  --bg-main: #e1e3e6;
   --bg-card: #ffffff;
   --primary: #2563eb;
   --primary-soft: #c7d9ff;
@@ -44,7 +44,7 @@ nav a:hover, nav a.active {color:var(--primary);}
 .dropdown:hover .dropdown-content {display:block;}
 
 /* Hero */
-.hero {text-align:center; padding:180px 24px; background:linear-gradient(135deg, #c7d9ff 0%, #e6e7eb 100%); position:relative; overflow:hidden;}
+.hero {text-align:center; padding:180px 24px; background:linear-gradient(135deg, #c7d9ff 0%, #e1e3e6 100%); position:relative; overflow:hidden;}
 .hero h1 {font-size:3rem; margin-bottom:16px; animation:fadeInDown 1s ease forwards;}
 .hero p {font-size:1.2rem; max-width:700px; margin:auto; margin-bottom:24px; animation:fadeInUp 1s ease forwards; animation-delay:0.2s; opacity:0;}
 .btn {display:inline-block; margin-top:24px; padding:14px 30px; background:var(--primary); color:#fff; border-radius:10px; font-weight:600; transition: transform var(--transition-speed), box-shadow var(--transition-speed);}
@@ -52,7 +52,7 @@ nav a:hover, nav a.active {color:var(--primary);}
 
 /* Tooltip */
 .tooltip {position:relative; display:inline-block;}
-.tooltip .tooltiptext {visibility:hidden; width:260px; background:var(--tooltip-bg); color:var(--tooltip-color); text-align:center; border-radius:6px; padding:8px; position:absolute; z-index:1000; bottom:125%; left:50%; transform:translateX(-50%); opacity:0; transition:opacity 0.3s;}
+.tooltip .tooltiptext {visibility:hidden; width:280px; background:var(--tooltip-bg); color:var(--tooltip-color); text-align:center; border-radius:6px; padding:8px; position:absolute; z-index:1000; bottom:125%; left:50%; transform:translateX(-50%); opacity:0; transition:opacity 0.3s;}
 .tooltip:hover .tooltiptext {visibility:visible; opacity:1;}
 
 /* Sections */
@@ -80,6 +80,10 @@ p {max-width:900px; margin-bottom:16px;}
 .feature-list {margin-top:14px; list-style:none; padding-left:0;}
 .feature-list li {margin-bottom:10px; color:var(--text-muted); font-size:0.95rem;}
 
+/* Payment Buttons */
+.pay-btn {display:block; width:100%; text-align:center; margin-top:16px; padding:12px 0; border:none; border-radius:10px; background:#10b981; color:#fff; font-weight:600; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s;}
+.pay-btn:hover {transform:translateY(-2px); box-shadow:0 12px 24px rgba(16,185,129,0.25);}
+
 /* Footer */
 footer {background:#d1d5db; padding:80px 24px; border-top:1px solid var(--border-soft); text-align:center;}
 footer p {max-width:1000px; margin:auto; font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;}
@@ -88,7 +92,7 @@ footer strong {color:var(--text-main);}
 /* Animations */
 @keyframes fadeInDown {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
 @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
-.hero::before {content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(270deg, #c7d9ff, #e6e7eb, #c7d9ff); opacity:0.15; animation:moveGradient 20s linear infinite; z-index:-1;}
+.hero::before {content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(270deg, #c7d9ff, #e1e3e6, #c7d9ff); opacity:0.15; animation:moveGradient 20s linear infinite; z-index:-1;}
 @keyframes moveGradient {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
 /* Particles */
@@ -110,10 +114,10 @@ footer strong {color:var(--text-main);}
       <div class="dropdown">
         <a href="#">Get Started <i class="fa fa-caret-down"></i></a>
         <div class="dropdown-content">
-          <a href="#">$6 Lifetime Access</a>
-          <a href="#">Basic Subscription</a>
-          <a href="#">Pro Subscription</a>
-          <a href="#">Premium Subscription</a>
+          <a href="#pricing">$6 Lifetime Access</a>
+          <a href="#pricing">Basic Subscription</a>
+          <a href="#pricing">Pro Subscription</a>
+          <a href="#pricing">Premium Subscription</a>
         </div>
       </div>
       <a href="#privacy">Privacy</a>
@@ -124,39 +128,41 @@ footer strong {color:var(--text-main);}
 
 <section class="hero">
   <h1>AXION — Career Clarity & Resume AI</h1>
-  <p>Start your career journey with lifetime access for <strong>$6</strong>. Unlock AI-powered resume building, career clarity tools, and premium professional guidance. Upgrade anytime for advanced features, analytics, and templates.</p>
-  <a class="btn tooltip" href="#">Pay $6 & Get Lifetime Access
-    <span class="tooltiptext">One-time payment, unlimited lifetime access to AXION tools.</span>
+  <p>Start your career journey with lifetime access for <strong>$6</strong>. Unlock AI-powered resume building, career clarity tools, and professional guidance. Upgrade anytime for premium analytics and templates.</p>
+  <a class="btn tooltip" href="#pricing">Get Started Now
+    <span class="tooltiptext">Click below to select your plan and pay securely.</span>
   </a>
 </section>
 
-<!-- How It Works Section -->
+<!-- How It Works -->
 <section id="how">
 <h2>How AXION Works</h2>
-<p class="muted">AXION uses advanced AI to analyze your career profile, generate a resume, suggest job opportunities, and provide guidance on skill-building. Simply input your details, and let AXION optimize your career trajectory.</p>
+<p class="muted">AXION uses AI to optimize your career path. Build resumes, get skill insights, job matching, and professional guidance in a single platform.</p>
 <div class="grid">
-  <div class="card"><i class="fa fa-user"></i><h3>Create Profile</h3><p>Fill in your personal, education, and work experience. AXION AI parses and evaluates your skills.</p></div>
-  <div class="card"><i class="fa fa-pen"></i><h3>AI Resume Builder</h3><p>Generate a fully optimized resume tailored to job applications. Multiple templates and formats available.</p></div>
-  <div class="card"><i class="fa fa-chart-line"></i><h3>Career Insights</h3><p>Receive actionable insights and skill recommendations to advance your career in your field.</p></div>
+  <div class="card"><i class="fa fa-user"></i><h3>Create Profile</h3><p>Input personal, educational, and career details. Our AI evaluates and structures them for professional impact.</p></div>
+  <div class="card"><i class="fa fa-pen"></i><h3>AI Resume Builder</h3><p>Generate resumes in multiple styles. Use templates optimized for ATS systems and professional presentation.</p></div>
+  <div class="card"><i class="fa fa-chart-line"></i><h3>Career Insights</h3><p>Receive recommendations on skill improvements, certifications, and career opportunities suited to your background.</p></div>
 </div>
 </section>
 
-<!-- Features Section -->
+<!-- Platform Features -->
 <section id="features">
 <h2>Platform Features</h2>
-<p class="muted">AXION provides tools for everyone — from students to professionals. AI-powered resume creation, career analytics, job recommendations, and detailed feedback.</p>
+<p class="muted">AXION is designed for everyone — students, professionals, and career changers. Explore features that save time, enhance resumes, and guide career decisions.</p>
 <div class="grid">
-  <div class="card"><i class="fa fa-cogs"></i><h3>Templates & Customization</h3><p>Choose from multiple professional resume templates. Fully customizable to fit your career goals.</p></div>
-  <div class="card"><i class="fa fa-bolt"></i><h3>AI Recommendations</h3><p>Get suggestions for skills, courses, and career opportunities tailored to your profile.</p></div>
-  <div class="card"><i class="fa fa-shield-alt"></i><h3>Privacy & Security</h3><p>All your data is securely stored and confidential. AXION does not share your personal information without consent.</p></div>
+  <div class="card"><i class="fa fa-cogs"></i><h3>Templates & Customization</h3><p>Multiple professional templates with full customization options for resumes and cover letters.</p></div>
+  <div class="card"><i class="fa fa-bolt"></i><h3>AI Recommendations</h3><p>AI-driven suggestions for career growth, skill-building, and job opportunities.</p></div>
+  <div class="card"><i class="fa fa-shield-alt"></i><h3>Privacy & Security</h3><p>All data securely encrypted. We never share your information without your consent.</p></div>
+  <div class="card"><i class="fa fa-star"></i><h3>Analytics & Reports</h3><p>Access insights about applications, job fit, and resume optimization score.</p></div>
 </div>
 </section>
 
 <!-- Pricing Section -->
 <section id="pricing">
 <h2>Pricing & Subscriptions</h2>
-<p class="muted">Lifetime $6 users get full access to core tools. Subscriptions unlock advanced analytics, priority support, and exclusive templates.</p>
+<p class="muted">Lifetime $6 users get core tools. Subscriptions unlock advanced analytics, templates, coaching, and premium support.</p>
 <div class="pricing-table">
+  <!-- $6 Lifetime -->
   <div class="price-card tooltip">
     <h3>$6 Lifetime Access</h3>
     <div class="price">$6</div>
@@ -166,30 +172,39 @@ footer strong {color:var(--text-main);}
       <li>Unlimited access while logged in</li>
       <li>Basic templates and guidance</li>
     </ul>
-    <span class="tooltiptext">Core tools forever, no trial required.</span>
+    <button class="pay-btn tooltip" onclick="alert('Stripe placeholder for $6 Lifetime Access')">Pay $6</button>
+    <span class="tooltiptext">One-time payment, lifetime access to core AXION tools.</span>
   </div>
+
+  <!-- Basic -->
   <div class="price-card tooltip">
     <h3>Basic Subscription</h3>
     <div class="price">$12/mo</div>
     <ul class="feature-list">
-      <li>Advanced AI Resume Builder</li>
+      <li>All Lifetime features</li>
       <li>Priority Support</li>
-      <li>Custom career analytics</li>
+      <li>Custom analytics & recommendations</li>
       <li>Expanded template library</li>
     </ul>
-    <span class="tooltiptext">Enhance your lifetime tools with analytics and support.</span>
+    <button class="pay-btn tooltip" onclick="alert('Stripe placeholder for $12 Basic Subscription')">Subscribe $12/mo</button>
+    <span class="tooltiptext">Enhanced features for career growth.</span>
   </div>
+
+  <!-- Pro -->
   <div class="price-card tooltip">
     <h3>Pro Subscription</h3>
     <div class="price">$20/mo</div>
     <ul class="feature-list">
-      <li>All Lifetime + Basic features</li>
+      <li>All Basic features</li>
       <li>Expert template designs</li>
       <li>Job matching insights</li>
       <li>Monthly performance review</li>
     </ul>
-    <span class="tooltiptext">Advanced AI insights, personalized guidance.</span>
+    <button class="pay-btn tooltip" onclick="alert('Stripe placeholder for $20 Pro Subscription')">Subscribe $20/mo</button>
+    <span class="tooltiptext">Advanced insights & guidance.</span>
   </div>
+
+  <!-- Premium -->
   <div class="price-card tooltip">
     <h3>Premium Subscription</h3>
     <div class="price">$35/mo</div>
@@ -199,16 +214,28 @@ footer strong {color:var(--text-main);}
       <li>Exclusive premium templates</li>
       <li>Real-time analytics & alerts</li>
     </ul>
-    <span class="tooltiptext">Full access to all tools and premium insights.</span>
+    <button class="pay-btn tooltip" onclick="alert('Stripe placeholder for $35 Premium Subscription')">Subscribe $35/mo</button>
+    <span class="tooltiptext">Full premium access with expert guidance.</span>
   </div>
 </div>
 </section>
 
-<!-- Terms & Conditions -->
+<!-- Terms & Conditions (fully rewritten) -->
 <section id="terms">
 <h2>Terms & Conditions</h2>
-<p class="muted">AXION provides AI-assisted career guidance, resume building, and professional insights. The $6 lifetime fee grants access to core tools; subscription tiers unlock additional premium features. Use of AXION constitutes acceptance of these terms.</p>
-<p class="muted">[Full legal text here, ~1200 words: subscription rules, refund policies, IP, privacy, AI limitations, disclaimers, binding law clauses.]</p>
+<p class="muted"><strong>1. Acceptance of Terms:</strong> By accessing or using AXION, you agree to these Terms & Conditions. All access is conditional on full compliance with them.</p>
+<p class="muted"><strong>2. Services Provided:</strong> AXION provides AI-assisted resume creation, career insights, and related tools. The AI recommendations are guidance only; results vary per user.</p>
+<p class="muted"><strong>3. Lifetime Access:</strong> The $6 lifetime fee grants permanent access to the core platform for the user account. Unauthorized sharing or resale of access will result in account suspension.</p>
+<p class="muted"><strong>4. Subscription Plans:</strong> Subscriptions are billed monthly and automatically renew. Features include premium templates, analytics, coaching, and priority support. Cancel anytime.</p>
+<p class="muted"><strong>5. Refund Policy:</strong> All purchases are final. Lifetime and subscription plans are non-refundable. Disputes will follow governing law rules.</p>
+<p class="muted"><strong>6. Data Privacy:</strong> User data is confidential and encrypted. We comply with global privacy laws. Data may be used anonymously to improve AXION.</p>
+<p class="muted"><strong>7. Intellectual Property:</strong> All content, templates, and AI-generated materials remain property of AXION. Users may not reproduce or distribute content externally.</p>
+<p class="muted"><strong>8. Limitation of Liability:</strong> AXION is not liable for career outcomes. AI insights are informational. Use at your own discretion.</p>
+<p class="muted"><strong>9. User Conduct:</strong> Users must provide accurate information and not misuse services. Violations may lead to termination of access.</p>
+<p class="muted"><strong>10. Modifications:</strong> AXION may update services, pricing, and Terms. Users are responsible for staying informed of changes.</p>
+<p class="muted"><strong>11. Governing Law:</strong> These Terms are governed by the law of AXION’s operating jurisdiction. Disputes will be resolved in accordance with it.</p>
+<p class="muted"><strong>12. Full Disclaimer:</strong> AXION does not provide legal, professional, or personalized advice. All tools are meant to support career decisions but are not a substitute for human judgment.</p>
+<p class="muted">[Extended legal text continues for comprehensive coverage — ~1200 words for full SaaS legal protection.]</p>
 </section>
 
 <footer>
@@ -216,22 +243,22 @@ footer strong {color:var(--text-main);}
 <p class="muted">Empowering thoughtful career decisions. All AI suggestions are informational. AXION does not replace professional, legal, or personal judgment.</p>
 </footer>
 
-<!-- JS for animations & particles -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 // Particles background
 particlesJS("particles-js", {
   "particles": {
-    "number": {"value":60},
+    "number": {"value":90},
     "color":{"value":"#2563eb"},
     "shape":{"type":"circle"},
-    "opacity":{"value":0.3},
+    "opacity":{"value":0.35},
     "size":{"value":3},
-    "move":{"enable":true,"speed":1.5}
+    "move":{"enable":true,"speed":1.8}
   }
 });
 
-// Fade-in animations for cards
+// Scroll fade-in
 const cards = document.querySelectorAll('.card, .price-card');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
