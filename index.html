@@ -11,9 +11,12 @@
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+
 <style>
 :root {
-  --bg-main: #e5e7eb;
+  --bg-main: #eceff1;
   --bg-card: #ffffff;
   --primary: #1d4ed8;
   --primary-soft: #c7d9ff;
@@ -26,26 +29,27 @@
   --tooltip-color: #fff;
 }
 
-/* Reset & Global */
-* {box-sizing:border-box; margin:0; padding:0; font-family:'Inter',sans-serif;}
+/* Global */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif;}
 body {background:var(--bg-main); color:var(--text-main); line-height:1.7; scroll-behavior:smooth;}
 a {text-decoration:none; color:inherit; cursor:pointer;}
+button {cursor:pointer;}
 
 /* Header */
 header {position:sticky; top:0; background:#fff; border-bottom:1px solid var(--border-soft); z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.05);}
 .nav {max-width:1400px; margin:auto; padding:20px 24px; display:flex; justify-content:space-between; align-items:center;}
-.logo {font-weight:700; font-size:2rem; letter-spacing:1px; color:var(--primary);}
+.logo {font-weight:700; font-size:2rem; color:var(--primary);}
 nav {display:flex; align-items:center;}
 nav a {margin-left:28px; font-weight:500; color:var(--text-muted); transition:color var(--transition-speed);}
 nav a:hover, nav a.active {color:var(--primary);}
-.dropdown {position:relative; display:inline-block;}
+.dropdown {position:relative;}
 .dropdown-content {display:none; position:absolute; background:var(--bg-card); min-width:220px; box-shadow:0 12px 28px rgba(0,0,0,0.15); border-radius:12px; z-index:1001;}
 .dropdown-content a {color:var(--text-main); padding:14px 16px; display:block; transition:background var(--transition-speed);}
 .dropdown-content a:hover {background:var(--primary-soft);}
 .dropdown:hover .dropdown-content {display:block;}
 
 /* Hero */
-.hero {text-align:center; padding:220px 24px 180px; background:linear-gradient(135deg, #f0f4ff, #e5e7eb); position:relative; overflow:hidden;}
+.hero {text-align:center; padding:180px 24px 120px; background:linear-gradient(135deg, #e7f0ff, #f0f2f5); position:relative;}
 .hero h1 {font-size:3rem; margin-bottom:18px; animation:fadeInDown 1s ease forwards;}
 .hero p {font-size:1.2rem; max-width:720px; margin:auto; margin-bottom:24px; opacity:0; animation:fadeInUp 1s ease forwards; animation-delay:0.2s;}
 .btn {display:inline-block; margin-top:24px; padding:16px 36px; background:var(--primary); color:#fff; border-radius:12px; font-weight:600; font-size:1rem; transition: transform var(--transition-speed), box-shadow var(--transition-speed);}
@@ -72,7 +76,7 @@ p {max-width:900px; margin-bottom:18px;}
 .card i {font-size:2.2rem; color:var(--primary); margin-bottom:16px;}
 
 /* Pricing Table */
-.pricing-table {display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:36px; margin-top:50px;}
+.pricing-table {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:36px; margin-top:50px;}
 .price-card {background: var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); transition: transform var(--transition-speed), box-shadow var(--transition-speed); opacity:0; transform:translateY(20px);}
 .price-card.visible {opacity:1; transform:translateY(0);}
 .price-card:hover {transform:translateY(-6px); box-shadow:0 18px 42px rgba(37,99,235,0.18);}
@@ -80,10 +84,33 @@ p {max-width:900px; margin-bottom:18px;}
 .price {font-size:2.2rem; font-weight:700; color:var(--primary); margin-bottom:18px;}
 .feature-list {margin-top:18px; list-style:none; padding-left:0;}
 .feature-list li {margin-bottom:12px; color:var(--text-muted); font-size:0.95rem;}
-
-/* Payment Buttons */
-.pay-btn {display:block; width:100%; text-align:center; margin-top:18px; padding:14px 0; border:none; border-radius:12px; background:#10b981; color:#fff; font-weight:600; font-size:1rem; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s;}
+.pay-btn {display:block; width:100%; text-align:center; margin-top:18px; padding:14px 0; border:none; border-radius:12px; background:#10b981; color:#fff; font-weight:600; font-size:1rem; transition: transform 0.3s, box-shadow 0.3s;}
 .pay-btn:hover {transform:translateY(-2px); box-shadow:0 14px 28px rgba(16,185,129,0.25);}
+
+/* Testimonials */
+.testimonial-slider {position:relative; overflow:hidden; margin-top:50px;}
+.testimonial-track {display:flex; transition:transform 0.6s ease;}
+.testimonial {flex:0 0 100%; padding:24px; box-sizing:border-box; text-align:center;}
+.testimonial p {font-style:italic; margin-bottom:12px;}
+.testimonial strong {color:var(--primary);}
+
+/* FAQ Accordion */
+.faq-item {border-bottom:1px solid var(--border-soft); padding:12px 0;}
+.faq-item h3 {cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
+.faq-item p {display:none; padding-top:8px; color:var(--text-muted);}
+
+/* Contact */
+.contact-form {background:var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); max-width:700px; margin:auto; margin-top:50px;}
+.contact-form input, .contact-form textarea {width:100%; padding:14px; margin-bottom:12px; border:1px solid var(--border-soft); border-radius:8px; font-size:1rem;}
+.contact-form button {background:var(--primary); color:#fff; border:none; border-radius:12px; padding:14px 24px; font-weight:600; transition: transform 0.3s;}
+.contact-form button:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(29,78,216,0.25);}
+
+/* Blog Preview */
+.blog-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; margin-top:36px;}
+.blog-card {background:var(--bg-card); padding:24px; border-radius:16px; border:1px solid var(--border-soft); transition: transform 0.3s, box-shadow 0.3s;}
+.blog-card:hover {transform:translateY(-4px); box-shadow:0 12px 28px rgba(37,99,235,0.15);}
+.blog-card h4{margin-bottom:12px;}
+.blog-card p{color:var(--text-muted); font-size:0.95rem;}
 
 /* Terms Modal */
 #termsModal {display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.6);}
@@ -109,15 +136,9 @@ footer strong {color:var(--text-main);}
       <a href="#how">How It Works</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <div class="dropdown">
-        <a href="#">Get Started <i class="fa fa-caret-down"></i></a>
-        <div class="dropdown-content">
-          <a href="#pricing">$5.99 Lifetime Access</a>
-          <a href="#pricing">Basic Subscription</a>
-          <a href="#pricing">Pro Subscription</a>
-          <a href="#pricing">Premium Subscription</a>
-        </div>
-      </div>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
       <a id="termsBtn">Terms & Conditions</a>
     </nav>
   </div>
@@ -135,7 +156,7 @@ footer strong {color:var(--text-main);}
 <h2>How AXION Works</h2>
 <p class="muted">AXION combines AI-powered tools and professional templates to help you reach your career goals faster. Follow a simple three-step process:</p>
 <div class="grid">
-  <div class="card"><i class="fa fa-user"></i><h3>Create Profile</h3><p>Input your educational background, career history, and skills. AXION structures this data for optimal impact.</p></div>
+  <div class="card"><i class="fa fa-user"></i><h3>Create Profile</h3><p>Input your education, career history, and skills. AXION structures this data for optimal impact.</p></div>
   <div class="card"><i class="fa fa-pen"></i><h3>AI Resume Builder</h3><p>Generate tailored resumes using our AI. Multiple templates ensure professional presentation for any industry.</p></div>
   <div class="card"><i class="fa fa-chart-line"></i><h3>Career Insights</h3><p>Receive actionable guidance on skills, certifications, and job matches based on your AI profile analysis.</p></div>
 </div>
@@ -165,7 +186,7 @@ footer strong {color:var(--text-main);}
       <li>Professional templates</li>
       <li>One-time payment, lifetime use</li>
     </ul>
-    <button class="pay-btn">Pay $5.99 Lifetime</button>
+    <button class="pay-btn" onclick="payStripe('one-time')">Pay $5.99 Lifetime</button>
   </div>
   <div class="price-card">
     <h3>Basic Subscription</h3>
@@ -175,7 +196,7 @@ footer strong {color:var(--text-main);}
       <li>Priority AI insights</li>
       <li>Monthly resume review tips</li>
     </ul>
-    <button class="pay-btn">Subscribe Basic</button>
+    <button class="pay-btn" onclick="payStripe('basic')">Subscribe Basic</button>
   </div>
   <div class="price-card">
     <h3>Pro Subscription</h3>
@@ -186,7 +207,7 @@ footer strong {color:var(--text-main);}
       <li>Resume optimization for ATS</li>
       <li>Interview preparation guidance</li>
     </ul>
-    <button class="pay-btn">Subscribe Pro</button>
+    <button class="pay-btn" onclick="payStripe('pro')">Subscribe Pro</button>
   </div>
   <div class="price-card">
     <h3>Premium Subscription</h3>
@@ -195,9 +216,73 @@ footer strong {color:var(--text-main);}
       <li>Everything in Pro</li>
       <li>Career mentoring sessions</li>
       <li>Job market trend reports</li>
-      <li>Unlimited AI resume and cover letter generations</li>
+      <li>Unlimited AI resume & cover letter generations</li>
     </ul>
-    <button class="pay-btn">Subscribe Premium</button>
+    <button class="pay-btn" onclick="payStripe('premium')">Subscribe Premium</button>
+  </div>
+</div>
+</section>
+
+<section id="testimonials">
+<h2>What Users Say</h2>
+<div class="testimonial-slider">
+  <div class="testimonial-track">
+    <div class="testimonial">
+      <p>"AXION transformed my job applications! I landed interviews faster than ever."</p>
+      <strong>- Sarah M.</strong>
+    </div>
+    <div class="testimonial">
+      <p>"The AI resume builder is intuitive and powerful. Highly recommend."</p>
+      <strong>- John D.</strong>
+    </div>
+    <div class="testimonial">
+      <p>"I upgraded to Pro and the insights are game-changing."</p>
+      <strong>- Emily R.</strong>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How does the $5.99 Lifetime plan work? <i class="fa fa-plus"></i></h3>
+<p>You pay once and get lifetime access to essential features including resume generation and basic AI insights.</p>
+</div>
+<div class="faq-item">
+<h3>Can I upgrade my plan later? <i class="fa fa-plus"></i></h3>
+<p>Yes! You can upgrade anytime to unlock advanced features and subscription perks.</p>
+</div>
+<div class="faq-item">
+<h3>Is my payment secure? <i class="fa fa-plus"></i></h3>
+<p>All payments are processed securely through Stripe with encryption and industry-standard protection.</p>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<div class="contact-form">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="5" placeholder="Your Message"></textarea>
+<button>Send Message</button>
+</div>
+</section>
+
+<section id="blog">
+<h2>Blog & Updates</h2>
+<div class="blog-grid">
+  <div class="blog-card">
+    <h4>Top 10 Resume Tips</h4>
+    <p>Learn actionable strategies to make your resume stand out to recruiters and ATS systems.</p>
+  </div>
+  <div class="blog-card">
+    <h4>AI in Career Development</h4>
+    <p>Discover how AI can guide your professional growth and help you make informed career decisions.</p>
+  </div>
+  <div class="blog-card">
+    <h4>Interview Preparation Guide</h4>
+    <p>Expert tips and AI-driven insights to help you nail your next interview.</p>
   </div>
 </div>
 </section>
@@ -208,24 +293,39 @@ footer strong {color:var(--text-main);}
     <span class="close">&times;</span>
     <h2>Terms & Conditions</h2>
     <p>Welcome to AXION. By accessing or using our website, you agree to these terms. AXION provides AI-powered career guidance tools. Our services are designed to assist with resume building, career analysis, and professional development. While we strive to offer accurate guidance, we do not guarantee employment outcomes...</p>
-    <p>Full legal terms continue here for thousands of words ensuring all liability, data privacy, and user responsibilities are detailed. Users must accept these before using services.</p>
+    <p>[1500+ words detailed terms covering liability, privacy, subscription terms, refunds, user responsibilities, limitations, data usage, etc.]</p>
   </div>
 </div>
 
 <footer>
-  <p>© 2026 <strong>AXION</strong>. All Rights Reserved.</p>
-  <p>Privacy Policy | Terms & Conditions | Contact Us</p>
+<p>© 2026 <strong>AXION</strong>. All Rights Reserved.</p>
+<p>Privacy Policy | Terms & Conditions | Contact Us</p>
 </footer>
 
 <script>
 // Scroll animation
-const cards = document.querySelectorAll('.card, .price-card');
+const cards = document.querySelectorAll('.card, .price-card, .blog-card');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, {threshold:0.2});
 cards.forEach(card => observer.observe(card));
+
+// Testimonials Slider
+let track = document.querySelector('.testimonial-track');
+let index = 0;
+setInterval(()=>{index++; if(index>2) index=0; track.style.transform=`translateX(-${index*100}%)`;},5000);
+
+// FAQ Accordion
+const faqItems = document.querySelectorAll('.faq-item h3');
+faqItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const p=item.nextElementSibling;
+    if(p.style.display==='block'){p.style.display='none'; item.querySelector('i').classList.replace('fa-minus','fa-plus');}
+    else{p.style.display='block'; item.querySelector('i').classList.replace('fa-plus','fa-minus');}
+  });
+});
 
 // Terms modal
 const modal = document.getElementById('termsModal');
@@ -234,23 +334,23 @@ const span = document.querySelector('#termsModal .close');
 btn.onclick = function(){ modal.style.display="block"; }
 span.onclick = function(){ modal.style.display="none"; }
 window.onclick = function(event){ if(event.target==modal) modal.style.display="none"; }
+
+// Stripe payment placeholders
+function payStripe(plan){
+    let stripe = Stripe('pk_test_your_public_key'); // Replace with your Stripe public key
+    let checkoutSessionId = ''; 
+    switch(plan){
+        case 'one-time': checkoutSessionId = 'oneTimeSessionId'; break;
+        case 'basic': checkoutSessionId = 'basicSessionId'; break;
+        case 'pro': checkoutSessionId = 'proSessionId'; break;
+        case 'premium': checkoutSessionId = 'premiumSessionId'; break;
+    }
+    stripe.redirectToCheckout({ sessionId: checkoutSessionId });
+}
 </script>
 
 </body>
 </html>
-
-
- 
-
-
-
-
-
-  
-
-
-
-
 
 
 
