@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AXION — Clarity for Your Next Move</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AXION — Career Clarity & Resume AI</title>
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
+  <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
@@ -18,161 +18,61 @@
       --primary: #2563eb;
       --primary-soft: #e0eaff;
       --text-main: #1f2937;
-      --text-muted: #6b7280;
+      --text-muted: #4b5563;
       --border-soft: #e5e7eb;
+      --transition-speed: 0.3s;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+    * {box-sizing:border-box; margin:0; padding:0; font-family:'Inter',sans-serif;}
+    body {background:var(--bg-main); color:var(--text-main); line-height:1.65; scroll-behavior:smooth;}
+    a {text-decoration:none; color:inherit;}
 
-    body {
-      background: var(--bg-main);
-      color: var(--text-main);
-      line-height: 1.65;
-    }
+    /* Header */
+    header {position:sticky; top:0; background:rgba(240,242,245,0.95); border-bottom:1px solid var(--border-soft); z-index:1000;}
+    .nav {max-width:1200px; margin:auto; padding:20px 24px; display:flex; justify-content:space-between; align-items:center;}
+    .logo {font-weight:700; font-size:1.5rem; letter-spacing:1px; color:var(--primary);}
+    nav a {margin-left:24px; font-weight:500; color:var(--text-muted); transition:color var(--transition-speed);}
+    nav a:hover {color:var(--primary);}
+    nav a.active {color:var(--primary);}
 
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(238,241,245,0.9);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-soft);
-      z-index: 1000;
-    }
+    /* Hero */
+    .hero {text-align:center; padding:100px 24px; background:linear-gradient(135deg, #e0eaff 0%, #ffffff 100%);}
+    .hero h1 {font-size:3rem; margin-bottom:16px;}
+    .hero p {font-size:1.2rem; max-width:700px; margin:auto;}
+    .btn {display:inline-block; margin-top:24px; padding:14px 30px; background:var(--primary); color:#fff; border-radius:10px; font-weight:600; transition: transform var(--transition-speed), box-shadow var(--transition-speed);}
+    .btn:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(37,99,235,0.25);}
 
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 18px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    /* Sections */
+    section {max-width:1200px; margin:auto; padding:80px 24px;}
+    h2,h3 {font-weight:700; margin-bottom:18px;}
+    h2 {font-size:2rem;}
+    h3 {font-size:1.3rem;}
+    p {max-width:900px; margin-bottom:16px;}
+    .muted {color:var(--text-muted); font-size:0.95rem;}
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: 1px;
-      color: var(--primary);
-    }
+    /* Grid Cards */
+    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-top:40px;}
+    .card {background:var(--bg-card); padding:30px; border-radius:16px; border:1px solid var(--border-soft); transition: transform var(--transition-speed), box-shadow var(--transition-speed); opacity:0; transform:translateY(20px);}
+    .card.visible {opacity:1; transform:translateY(0);}
+    .card:hover {transform:translateY(-4px); box-shadow:0 16px 28px rgba(37,99,235,0.15);}
+    .card i {font-size:1.8rem; color:var(--primary); margin-bottom:14px;}
 
-    nav a {
-      margin-left: 22px;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
+    /* Pricing Table */
+    .pricing-table {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-top:40px;}
+    .price-card {background: var(--bg-card); padding:30px; border-radius:16px; border:1px solid var(--border-soft); transition: transform var(--transition-speed), box-shadow var(--transition-speed); opacity:0; transform:translateY(20px);}
+    .price-card.visible {opacity:1; transform:translateY(0);}
+    .price-card:hover {transform:translateY(-4px); box-shadow:0 16px 28px rgba(37,99,235,0.15);}
+    .price-card h3 {margin-top:10px; margin-bottom:14px;}
+    .price {font-size:2rem; font-weight:700; color:var(--primary); margin-bottom:14px;}
+    .feature-list {margin-top:14px; list-style:none; padding-left:0;}
+    .feature-list li {margin-bottom:10px; color:var(--text-muted); font-size:0.95rem;}
 
-    nav a:hover {
-      color: var(--primary);
-    }
-
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 90px 24px;
-    }
-
-    h1, h2 {
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      font-size: 2rem;
-    }
-
-    p {
-      max-width: 900px;
-      margin-bottom: 18px;
-    }
-
-    .muted {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .hero {
-      text-align: center;
-      padding-top: 120px;
-      padding-bottom: 140px;
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      margin: auto;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 35px;
-      padding: 14px 30px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(37,99,235,0.25);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: var(--bg-card);
-      padding: 34px;
-      border-radius: 16px;
-      border: 1px solid var(--border-soft);
-      transition: transform 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    .card i {
-      font-size: 1.9rem;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    footer {
-      background: #e6e9ef;
-      padding: 80px 24px;
-      border-top: 1px solid var(--border-soft);
-    }
-
-    footer p {
-      max-width: 1000px;
-      margin: auto;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    footer strong {
-      color: var(--text-main);
-    }
+    /* Footer */
+    footer {background:#e6e9ef; padding:80px 24px; border-top:1px solid var(--border-soft); text-align:center;}
+    footer p {max-width:1000px; margin:auto; font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;}
+    footer strong {color:var(--text-main);}
   </style>
 </head>
-
 <body>
 
 <header>
@@ -180,190 +80,108 @@
     <div class="logo">AXION</div>
     <nav>
       <a href="#how">How It Works</a>
-      <a href="#philosophy">Philosophy</a>
       <a href="#who">Who It’s For</a>
       <a href="#features">Platform</a>
+      <a href="#pricing">Pricing</a>
       <a href="#privacy">Privacy</a>
       <a href="#terms">Terms</a>
     </nav>
   </div>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <h1>Clarity for Your Next Move</h1>
-  <p>
-    AXION is a career clarity, decision, and presentation platform designed to help people
-    understand where they are, evaluate where they could go, and present themselves with
-    confidence — without pressure, exaggeration, or false promises.
-  </p>
-  <a class="btn" href="#">Get Started</a>
+  <h1>AXION — Career Clarity & Resume AI</h1>
+  <p>Start your journey today for just <strong>$6 lifetime access</strong>. Full AI-powered resume builder, career clarity tools, and professional guidance — all yours forever. No trial, no monthly fees required.</p>
+  <a class="btn" href="#">Pay $6 & Get Lifetime Access</a>
 </section>
 
+<!-- How It Works -->
 <section id="how">
   <h2>How AXION Works</h2>
-  <p class="muted">
-    Career decisions are rarely simple. AXION is built around the idea that clarity comes
-    before action, and that thoughtful decisions lead to better long-term outcomes.
-  </p>
-
+  <p class="muted">AXION combines clarity, insight, and professional guidance to help you make informed career decisions and create polished resumes.</p>
   <div class="grid">
-    <div class="card">
-      <i class="fa-solid fa-compass"></i>
-      <h3>Understand Yourself</h3>
-      <p class="muted">
-        AXION helps you articulate your skills, experience, preferences, constraints, and
-        working style. This includes what motivates you, what drains you, and what you want
-        your career to realistically support in your life.
-      </p>
-    </div>
-
-    <div class="card">
-      <i class="fa-solid fa-map"></i>
-      <h3>Clarify Direction</h3>
-      <p class="muted">
-        Rather than forcing a single outcome, AXION maps potential role clusters and career
-        directions, explaining alignment, trade-offs, and long-term considerations so you
-        can make informed choices.
-      </p>
-    </div>
-
-    <div class="card">
-      <i class="fa-solid fa-file-lines"></i>
-      <h3>Present with Intent</h3>
-      <p class="muted">
-        Once direction is clearer, AXION translates your experience into professional,
-        grounded language for resumes, profiles, and summaries that reflect intent without
-        misrepresentation.
-      </p>
-    </div>
+    <div class="card"><i class="fa-solid fa-compass"></i><h3>Understand Yourself</h3><p class="muted">Identify your strengths, skills, and working style. Gain actionable insights into your career fit and potential.</p></div>
+    <div class="card"><i class="fa-solid fa-map"></i><h3>Clarify Direction</h3><p class="muted">Explore career paths, trade-offs, and realistic opportunities. Make decisions with confidence using AXION's structured guidance.</p></div>
+    <div class="card"><i class="fa-solid fa-file-lines"></i><h3>Present Professionally</h3><p class="muted">Generate resumes, cover letters, and profiles that highlight your skills clearly and professionally.</p></div>
+    <div class="card"><i class="fa-solid fa-lightbulb"></i><h3>Validate Decisions</h3><p class="muted">Receive AI feedback and second opinions to ensure your choices and presentations are optimized for success.</p></div>
   </div>
 </section>
 
+<!-- Who It's For -->
+<section id="who">
+  <h2>Who AXION Helps</h2>
+  <div class="grid">
+    <div class="card"><h3>Students & Early Careers</h3><p class="muted">Clarify your first steps, create professional resumes, and gain a competitive edge in your job search from day one.</p></div>
+    <div class="card"><h3>Career Switchers</h3><p class="muted">Identify transferable skills, explore new paths, and present yourself effectively to enter new industries.</p></div>
+    <div class="card"><h3>Professionals</h3><p class="muted">Refine your resume, plan long-term growth, and validate your career moves with actionable insights.</p></div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+  <h2>Platform Features</h2>
+  <div class="grid">
+    <div class="card"><h3>Clarity Tools</h3><p class="muted">Understand your skills, strengths, and career alignment in depth with structured AI guidance.</p></div>
+    <div class="card"><h3>Direction Insights</h3><p class="muted">Explore multiple career paths, trade-offs, and probabilities to make confident decisions.</p></div>
+    <div class="card"><h3>Presentation</h3><p class="muted">Build professional resumes, cover letters, and summaries designed to impress employers.</p></div>
+    <div class="card"><h3>Validation Feedback</h3><p class="muted">Receive AI-generated second opinions to refine your career documents and decisions.</p></div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+  <h2>Pricing & Plans</h2>
+  <p class="muted">AXION is designed for everyone. Start with the lifetime $6 plan, or upgrade for premium features through monthly subscriptions.</p>
+  <div class="pricing-table">
+    <div class="price-card"><h3>$6 Lifetime Access</h3><div class="price">$6</div><ul class="feature-list"><li>Full Resume Builder AI</li><li>Career Clarity Tools</li><li>PDF Resume Download</li><li>Limited AI Feedback</li><li>Lifetime Access</li></ul><a class="btn" href="#">Pay $6 & Get Lifetime Access</a></div>
+    <div class="price-card"><h3>Basic Subscription</h3><div class="price">$12 / month</div><ul class="feature-list"><li>All $6 Features</li><li>Unlimited Resume Downloads</li><li>1 AI Second Opinion per Month</li><li>Extra Templates</li><li>Early Access to New Tools</li></ul><a class="btn" href="#">Subscribe Placeholder</a></div>
+    <div class="price-card"><h3>Pro Subscription</h3><div class="price">$24 / month</div><ul class="feature-list"><li>All Basic Features</li><li>Advanced AI Insights</li><li>Priority Support</li><li>Role Suggestions & Match Scoring</li><li>Custom Career Reports</li></ul><a class="btn" href="#">Subscribe Placeholder</a></div>
+    <div class="price-card"><h3>Premium Subscription</h3><div class="price">$39 / month</div><ul class="feature-list"><li>All Pro Features</li><li>Personalized Coaching Guides</li><li>CV Optimization & LinkedIn Ready</li><li>Full Career Analytics Dashboard</li><li>Exclusive Templates & Tools</li></ul><a class="btn" href="#">Subscribe Placeholder</a></div>
+  </div>
+</section>
+
+<!-- Philosophy -->
 <section id="philosophy">
   <h2>Our Philosophy</h2>
-  <p class="muted">
-    AXION is built on the belief that career decisions should be informed, reflective,
-    and personal. We do not believe in shortcuts, guarantees, or one-size-fits-all advice.
-  </p>
-  <p class="muted">
-    The platform is designed to support thinking, not replace it. AXION helps surface
-    patterns, considerations, and options, while keeping the individual firmly in control
-    of their decisions.
-  </p>
+  <p class="muted">AXION supports informed decision-making. We provide AI-driven insights, resume tools, and guidance, but do not guarantee employment or outcomes.</p>
+  <p class="muted">We aim to clarify, guide, and present your skills professionally while leaving all decisions to the user.</p>
 </section>
 
-<section id="who">
-  <h2>Who AXION Is For</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Students & Early Careers</h3>
-      <p class="muted">
-        AXION provides structure for those navigating early career decisions, helping reduce
-        overwhelm while keeping options open rather than locking users into premature paths.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Career Switchers</h3>
-      <p class="muted">
-        For individuals considering change, AXION helps identify transferable skills,
-        realistic transitions, and how to present experience honestly in new contexts.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Professionals</h3>
-      <p class="muted">
-        Experienced professionals use AXION to validate direction, prepare for transitions,
-        or plan long-term growth without relying on surface-level advice.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="features">
-  <h2>The AXION Platform</h2>
-  <p class="muted">
-    AXION is not a single tool. It is a structured platform built around four core pillars
-    that support users at different stages of their career journey.
-  </p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Clarity</h3>
-      <p class="muted">
-        Tools and frameworks designed to reduce confusion and surface alignment between
-        skills, interests, constraints, and opportunities.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Direction</h3>
-      <p class="muted">
-        Role and path exploration that focuses on realistic options, trade-offs, and
-        long-term sustainability rather than short-term trends.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Presentation</h3>
-      <p class="muted">
-        Resume and profile support grounded in intent, clarity, and professional standards —
-        not inflated claims or generic templates.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Validation</h3>
-      <p class="muted">
-        Second-opinion style analysis designed to support confidence and reflection without
-        removing personal responsibility.
-      </p>
-    </div>
-  </div>
-</section>
-
+<!-- Privacy -->
 <section id="privacy">
-  <h2>Privacy & Data Approach</h2>
-  <p class="muted">
-    AXION is designed with restraint. We collect only the information required to provide
-    the service and do not sell personal data to third parties.
-  </p>
-  <p class="muted">
-    User data is used solely to generate outputs within the platform. Sensitive information
-    should always be reviewed before external use. AXION prioritises transparency and user
-    control over automation.
-  </p>
+  <h2>Privacy & Data</h2>
+  <p class="muted">Your data is used solely to generate career insights and resume outputs. We do not sell your data and maintain strict security protocols.</p>
 </section>
 
+<!-- Terms & Conditions -->
 <section id="terms">
   <h2>Terms & Conditions</h2>
-  <p class="muted">
-    AXION is an informational and decision-support platform. It does not provide employment
-    guarantees, legal advice, financial advice, or professional certification. All outputs
-    are generated based on user-provided information.
-  </p>
-  <p class="muted">
-    Career outcomes depend on numerous factors beyond AXION’s control, including market
-    conditions, employer decisions, individual performance, and external circumstances.
-    AXION makes no warranties regarding job placement, compensation, or career success.
-  </p>
-  <p class="muted">
-    Users remain fully responsible for decisions made using the platform. Continued use of
-    AXION constitutes acceptance of these terms and acknowledgement of its limitations.
-  </p>
+  <p class="muted">AXION provides AI-assisted career guidance, resume building, and professional insights. The $6 lifetime fee grants access to core tools; subscription tiers unlock additional premium features. Use of AXION constitutes acceptance of these terms.</p>
+  <p class="muted">Users are responsible for all decisions, applications, and submissions. AXION does not guarantee employment, income, or career outcomes. All content is informational and should be used as guidance, not professional advice.</p>
+  <p class="muted">Subscriptions are optional, can be cancelled anytime, and provide additional tools and coaching features beyond the lifetime plan. Lifetime access to the $6 plan remains intact regardless of subscription status.</p>
+  <p class="muted">We reserve the right to modify or update features, pricing, or terms while maintaining lifetime core access for $6 plan users. By using the site, you agree to review updates and continue responsible use.</p>
 </section>
 
 <footer>
-  <p><strong>AXION</strong> — Clarity for your next move.</p>
-  <p>
-    AXION supports thoughtful decision-making. It does not replace professional, legal,
-    or personal judgement.
-  </p>
+  <p><strong>AXION</strong> — Career Clarity & Resume AI</p>
+  <p class="muted">Empowering thoughtful career decisions. All AI suggestions are informational. AXION does not replace professional, legal, or personal judgment.</p>
 </footer>
+
+<script>
+  // Fade-in on scroll
+  const cards = document.querySelectorAll('.card, .price-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+  }, {threshold:0.2});
+  cards.forEach(card => observer.observe(card));
+</script>
 
 </body>
 </html>
+
 
  
 
