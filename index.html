@@ -81,17 +81,17 @@ p {max-width:900px; margin-bottom:18px;}
 .pay-btn {display:block; width:100%; text-align:center; margin-top:18px; padding:14px 0; border:none; border-radius:12px; background:#10b981; color:#fff; font-weight:600; font-size:1rem; transition: transform 0.3s, box-shadow 0.3s;}
 .pay-btn:hover {transform:translateY(-2px); box-shadow:0 14px 28px rgba(16,185,129,0.25);}
 
-/* Contact */
+/* FAQ Accordion */
+.faq-item {border-bottom:1px solid var(--border-soft); padding:12px 0;}
+.faq-item h3 {cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
+.faq-item p {display:none; padding-top:8px; color:var(--text-muted);}
+
+/* Contact Form */
 .contact-form {background:var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); max-width:700px; margin:auto; margin-top:50px; box-shadow:0 12px 28px rgba(37,99,235,0.05);}
 .contact-form input, .contact-form textarea {width:100%; padding:14px; margin-bottom:12px; border:1px solid var(--border-soft); border-radius:8px; font-size:1rem; transition:border 0.3s;}
 .contact-form input:focus, .contact-form textarea:focus {border-color:var(--primary);}
 .contact-form button {background:var(--primary); color:#fff; border:none; border-radius:12px; padding:14px 24px; font-weight:600; transition: transform 0.3s;}
 .contact-form button:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(29,78,216,0.25);}
-
-/* FAQ Accordion */
-.faq-item {border-bottom:1px solid var(--border-soft); padding:12px 0;}
-.faq-item h3 {cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
-.faq-item p {display:none; padding-top:8px; color:var(--text-muted);}
 
 /* Terms Modal */
 #termsModal {display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.6);}
@@ -145,42 +145,6 @@ footer strong {color:var(--text-main);}
     </ul>
     <button class="pay-btn" onclick="payStripe('one-time')">Pay Now</button>
   </div>
-  <div class="price-card">
-    <h3>Basic Subscription</h3>
-    <div class="price">$14.99/month</div>
-    <ul class="feature-list">
-      <li>All lifetime features</li>
-      <li>Priority career advice</li>
-      <li>Premium templates</li>
-      <li>Monthly skill assessments</li>
-      <li>Advanced analytics</li>
-    </ul>
-    <button class="pay-btn" onclick="payStripe('basic')">Subscribe</button>
-  </div>
-  <div class="price-card">
-    <h3>Pro Subscription</h3>
-    <div class="price">$29.99/month</div>
-    <ul class="feature-list">
-      <li>All Basic features</li>
-      <li>1-on-1 AI coaching</li>
-      <li>Resume optimization</li>
-      <li>Application tracking</li>
-      <li>Monthly career reports</li>
-    </ul>
-    <button class="pay-btn" onclick="payStripe('pro')">Subscribe</button>
-  </div>
-  <div class="price-card">
-    <h3>Premium Subscription</h3>
-    <div class="price">$49.99/month</div>
-    <ul class="feature-list">
-      <li>All Pro features</li>
-      <li>Exclusive job leads</li>
-      <li>Direct recruiter connections</li>
-      <li>Weekly AI resume updates</li>
-      <li>Priority support & consultations</li>
-    </ul>
-    <button class="pay-btn" onclick="payStripe('premium')">Subscribe</button>
-  </div>
 </div>
 </section>
 
@@ -188,15 +152,11 @@ footer strong {color:var(--text-main);}
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
 <h3>Can I cancel my subscription? <i class="fa fa-plus"></i></h3>
-<p>Subscriptions can be canceled at any time without losing your existing data. No hidden fees apply.</p>
+<p>Subscriptions can be canceled anytime without losing your existing data. No hidden fees apply.</p>
 </div>
 <div class="faq-item">
 <h3>Does AXION guarantee employment? <i class="fa fa-plus"></i></h3>
-<p>AXION provides career tools and insights, but cannot guarantee job placement. Results depend on individual effort and market conditions.</p>
-</div>
-<div class="faq-item">
-<h3>What is included in the $5.99 plan? <i class="fa fa-plus"></i></h3>
-<p>Lifetime access, full resume builder, career analysis tools, job matching suggestions, and email support. Designed to fully empower your career journey.</p>
+<p>AXION provides career tools and insights but cannot guarantee job placement. Results depend on individual effort and market conditions.</p>
 </div>
 </section>
 
@@ -216,13 +176,9 @@ footer strong {color:var(--text-main);}
     <span class="close">&times;</span>
     <h2>Terms & Conditions</h2>
     <p>
-    Welcome to AXION. By accessing or using this website, you acknowledge and agree to these Terms & Conditions in full. AXION provides AI-powered career tools, including resume builders, career insights, and professional development resources. Users must provide accurate personal data. Lifetime and subscription access fees are non-refundable after confirmation. 
-    AXION provides guidance and analytics but does not guarantee employment or job placement. Users are responsible for their own decisions and usage of career advice. Data collected is subject to our privacy policy and may be used for service optimization, AI improvement, and secure account management. Unauthorized reproduction of AXION content is prohibited. Users must comply with all laws regarding career applications. 
-    We reserve the right to modify services, features, pricing, and terms at any time with appropriate notice. Use of the website constitutes acceptance of all updated terms. Liability for any indirect, incidental, or consequential losses is disclaimed. Subscriptions may be canceled anytime; access will continue until the end of the billing period. 
-    Payments are processed securely via Stripe. Users must ensure correct payment information and are responsible for their account security. Refunds for lifetime or subscription services are only issued in exceptional circumstances. 
-    AXION cannot be held responsible for interruptions, errors, or technical malfunctions. The AI is a tool and should complement professional judgment. By using this site, you release AXION from claims arising from use of content, guidance, or external job applications. Any dispute shall be governed by the laws of the relevant jurisdiction and resolved accordingly. These terms include limitations of liability, dispute resolution, intellectual property protections, and user responsibilities.
-    [This paragraph can be expanded to cover additional 1500-word detailed terms including disclaimers, privacy rights, subscription obligations, refunds, data security, jurisdiction, and legal compliance.]
+      Welcome to AXION. By accessing or using this website, you agree to our terms. AXION provides AI career guidance tools. Lifetime access is $5.99 with full features included. Subscriptions may be offered for enhanced services. Users must provide accurate information and are responsible for all account activity. AXION does not guarantee employment outcomes. Data usage is described in our privacy policy. Payments are secure via Stripe. Refunds are only issued under exceptional circumstances. By using AXION, users release us from any claims arising from career decisions. Please read carefully as continued use constitutes agreement to these terms.
     </p>
+    <p>[This modal can be expanded further to full 1500+ words covering all legal, privacy, subscription, and liability sections.]</p>
   </div>
 </div>
 
@@ -263,20 +219,13 @@ window.onclick = e=>{if(e.target==modal) modal.style.display="none";}
 function payStripe(plan){
   let stripe = Stripe('pk_test_your_public_key');
   let checkoutSessionId='';
-  switch(plan){
-    case 'one-time': checkoutSessionId='oneTimeSessionId'; break;
-    case 'basic': checkoutSessionId='basicSessionId'; break;
-    case 'pro': checkoutSessionId='proSessionId'; break;
-    case 'premium': checkoutSessionId='premiumSessionId'; break;
-  }
+  if(plan==='one-time') checkoutSessionId='oneTimeSessionId';
   stripe.redirectToCheckout({sessionId:checkoutSessionId});
 }
 </script>
 
 </body>
 </html>
-
-
 
 
 
