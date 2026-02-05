@@ -16,7 +16,7 @@
 
 <style>
 :root {
-  --bg-main: #eceff1;
+  --bg-main: #f2f4f7;
   --bg-card: #ffffff;
   --primary: #1d4ed8;
   --primary-soft: #c7d9ff;
@@ -25,8 +25,6 @@
   --text-muted: #4b5563;
   --border-soft: #d1d5db;
   --transition-speed: 0.35s;
-  --tooltip-bg: #2563eb;
-  --tooltip-color: #fff;
 }
 
 /* Global */
@@ -40,7 +38,7 @@ header {position:sticky; top:0; background:#fff; border-bottom:1px solid var(--b
 .nav {max-width:1400px; margin:auto; padding:20px 24px; display:flex; justify-content:space-between; align-items:center;}
 .logo {font-weight:700; font-size:2rem; color:var(--primary);}
 nav {display:flex; align-items:center;}
-nav a {margin-left:28px; font-weight:500; color:var(--text-muted); transition:color var(--transition-speed);}
+nav a {margin-left:20px; font-weight:500; color:var(--text-muted); transition:color var(--transition-speed);}
 nav a:hover, nav a.active {color:var(--primary);}
 .dropdown {position:relative;}
 .dropdown-content {display:none; position:absolute; background:var(--bg-card); min-width:220px; box-shadow:0 12px 28px rgba(0,0,0,0.15); border-radius:12px; z-index:1001;}
@@ -55,16 +53,12 @@ nav a:hover, nav a.active {color:var(--primary);}
 .btn {display:inline-block; margin-top:24px; padding:16px 36px; background:var(--primary); color:#fff; border-radius:12px; font-weight:600; font-size:1rem; transition: transform var(--transition-speed), box-shadow var(--transition-speed);}
 .btn:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(37,99,235,0.25);}
 
-/* Tooltip */
-.tooltip {position:relative; display:inline-block;}
-.tooltip .tooltiptext {visibility:hidden; width:300px; background:var(--tooltip-bg); color:var(--tooltip-color); text-align:center; border-radius:6px; padding:10px; position:absolute; z-index:1000; bottom:125%; left:50%; transform:translateX(-50%); opacity:0; transition:opacity 0.3s;}
-.tooltip:hover .tooltiptext {visibility:visible; opacity:1;}
-
 /* Sections */
 section {max-width:1400px; margin:auto; padding:100px 24px;}
-h2,h3 {font-weight:700; margin-bottom:18px;}
+h2,h3,h4 {font-weight:700; margin-bottom:18px;}
 h2 {font-size:2.3rem;}
 h3 {font-size:1.4rem;}
+h4 {font-size:1.2rem;}
 p {max-width:900px; margin-bottom:18px;}
 .muted {color:var(--text-muted); font-size:0.95rem;}
 
@@ -87,30 +81,17 @@ p {max-width:900px; margin-bottom:18px;}
 .pay-btn {display:block; width:100%; text-align:center; margin-top:18px; padding:14px 0; border:none; border-radius:12px; background:#10b981; color:#fff; font-weight:600; font-size:1rem; transition: transform 0.3s, box-shadow 0.3s;}
 .pay-btn:hover {transform:translateY(-2px); box-shadow:0 14px 28px rgba(16,185,129,0.25);}
 
-/* Testimonials */
-.testimonial-slider {position:relative; overflow:hidden; margin-top:50px;}
-.testimonial-track {display:flex; transition:transform 0.6s ease;}
-.testimonial {flex:0 0 100%; padding:24px; box-sizing:border-box; text-align:center;}
-.testimonial p {font-style:italic; margin-bottom:12px;}
-.testimonial strong {color:var(--primary);}
+/* Contact */
+.contact-form {background:var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); max-width:700px; margin:auto; margin-top:50px; box-shadow:0 12px 28px rgba(37,99,235,0.05);}
+.contact-form input, .contact-form textarea {width:100%; padding:14px; margin-bottom:12px; border:1px solid var(--border-soft); border-radius:8px; font-size:1rem; transition:border 0.3s;}
+.contact-form input:focus, .contact-form textarea:focus {border-color:var(--primary);}
+.contact-form button {background:var(--primary); color:#fff; border:none; border-radius:12px; padding:14px 24px; font-weight:600; transition: transform 0.3s;}
+.contact-form button:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(29,78,216,0.25);}
 
 /* FAQ Accordion */
 .faq-item {border-bottom:1px solid var(--border-soft); padding:12px 0;}
 .faq-item h3 {cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
 .faq-item p {display:none; padding-top:8px; color:var(--text-muted);}
-
-/* Contact */
-.contact-form {background:var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); max-width:700px; margin:auto; margin-top:50px;}
-.contact-form input, .contact-form textarea {width:100%; padding:14px; margin-bottom:12px; border:1px solid var(--border-soft); border-radius:8px; font-size:1rem;}
-.contact-form button {background:var(--primary); color:#fff; border:none; border-radius:12px; padding:14px 24px; font-weight:600; transition: transform 0.3s;}
-.contact-form button:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(29,78,216,0.25);}
-
-/* Blog Preview */
-.blog-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; margin-top:36px;}
-.blog-card {background:var(--bg-card); padding:24px; border-radius:16px; border:1px solid var(--border-soft); transition: transform 0.3s, box-shadow 0.3s;}
-.blog-card:hover {transform:translateY(-4px); box-shadow:0 12px 28px rgba(37,99,235,0.15);}
-.blog-card h4{margin-bottom:12px;}
-.blog-card p{color:var(--text-muted); font-size:0.95rem;}
 
 /* Terms Modal */
 #termsModal {display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.6);}
@@ -118,7 +99,7 @@ p {max-width:900px; margin-bottom:18px;}
 #termsModal .close {position:absolute; top:20px; right:24px; font-size:28px; cursor:pointer; color:#111827;}
 
 /* Footer */
-footer {background:#f3f4f6; padding:80px 24px; border-top:1px solid var(--border-soft); text-align:center;}
+footer {background:#e5e7eb; padding:80px 24px; border-top:1px solid var(--border-soft); text-align:center;}
 footer p {max-width:1000px; margin:auto; font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;}
 footer strong {color:var(--text-main);}
 
@@ -136,7 +117,6 @@ footer strong {color:var(--text-main);}
       <a href="#how">How It Works</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a href="#testimonials">Testimonials</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
       <a id="termsBtn">Terms & Conditions</a>
@@ -147,98 +127,59 @@ footer strong {color:var(--text-main);}
 <section class="hero">
   <h1>AXION — Career Clarity & Resume AI</h1>
   <p>Empower your career with lifetime access for <strong>$5.99</strong>. Build resumes, analyze skills, and receive actionable insights. Upgrade anytime to unlock premium features for maximum career growth.</p>
-  <a class="btn tooltip" href="#pricing">Get Started Now
-    <span class="tooltiptext">Select your plan and pay securely via Stripe.</span>
-  </a>
-</section>
-
-<section id="how">
-<h2>How AXION Works</h2>
-<p class="muted">AXION combines AI-powered tools and professional templates to help you reach your career goals faster. Follow a simple three-step process:</p>
-<div class="grid">
-  <div class="card"><i class="fa fa-user"></i><h3>Create Profile</h3><p>Input your education, career history, and skills. AXION structures this data for optimal impact.</p></div>
-  <div class="card"><i class="fa fa-pen"></i><h3>AI Resume Builder</h3><p>Generate tailored resumes using our AI. Multiple templates ensure professional presentation for any industry.</p></div>
-  <div class="card"><i class="fa fa-chart-line"></i><h3>Career Insights</h3><p>Receive actionable guidance on skills, certifications, and job matches based on your AI profile analysis.</p></div>
-</div>
-</section>
-
-<section id="features">
-<h2>Platform Features</h2>
-<p class="muted">AXION is more than a resume builder — it’s a complete career companion:</p>
-<div class="grid">
-  <div class="card"><i class="fa fa-briefcase"></i><h3>Job Recommendations</h3><p>Get personalized job suggestions based on your skills and experience to save time and maximize opportunity.</p></div>
-  <div class="card"><i class="fa fa-lightbulb"></i><h3>Skill Insights</h3><p>Identify your strongest skills and uncover gaps to guide your professional growth and training.</p></div>
-  <div class="card"><i class="fa fa-file-alt"></i><h3>Resume Templates</h3><p>Choose from multiple professional templates tailored for your industry, ensuring your resume stands out.</p></div>
-  <div class="card"><i class="fa fa-chart-pie"></i><h3>Analytics Dashboard</h3><p>Track the performance of your resumes, applications, and skills insights over time.</p></div>
-</div>
+  <a class="btn" href="#pricing">Get Started Now</a>
 </section>
 
 <section id="pricing">
-<h2>Pricing Plans</h2>
-<p class="muted">Flexible options to suit everyone. Lifetime access or premium monthly subscriptions with enhanced features.</p>
+<h2>Pricing & Plans</h2>
 <div class="pricing-table">
   <div class="price-card">
-    <h3>$5.99 Lifetime Access</h3>
-    <p class="price">$5.99</p>
+    <h3>Lifetime Access</h3>
+    <div class="price">$5.99</div>
     <ul class="feature-list">
-      <li>Unlimited resume generations</li>
-      <li>Access to basic AI career insights</li>
-      <li>Professional templates</li>
-      <li>One-time payment, lifetime use</li>
+      <li>Full resume builder</li>
+      <li>Career analysis tools</li>
+      <li>Job matching suggestions</li>
+      <li>Lifetime account access</li>
+      <li>Email support</li>
     </ul>
-    <button class="pay-btn" onclick="payStripe('one-time')">Pay $5.99 Lifetime</button>
+    <button class="pay-btn" onclick="payStripe('one-time')">Pay Now</button>
   </div>
   <div class="price-card">
     <h3>Basic Subscription</h3>
-    <p class="price">$12 / mo</p>
+    <div class="price">$14.99/month</div>
     <ul class="feature-list">
-      <li>Everything in Lifetime Access</li>
-      <li>Priority AI insights</li>
-      <li>Monthly resume review tips</li>
+      <li>All lifetime features</li>
+      <li>Priority career advice</li>
+      <li>Premium templates</li>
+      <li>Monthly skill assessments</li>
+      <li>Advanced analytics</li>
     </ul>
-    <button class="pay-btn" onclick="payStripe('basic')">Subscribe Basic</button>
+    <button class="pay-btn" onclick="payStripe('basic')">Subscribe</button>
   </div>
   <div class="price-card">
     <h3>Pro Subscription</h3>
-    <p class="price">$20 / mo</p>
+    <div class="price">$29.99/month</div>
     <ul class="feature-list">
-      <li>Everything in Basic</li>
-      <li>Advanced skill gap analysis</li>
-      <li>Resume optimization for ATS</li>
-      <li>Interview preparation guidance</li>
+      <li>All Basic features</li>
+      <li>1-on-1 AI coaching</li>
+      <li>Resume optimization</li>
+      <li>Application tracking</li>
+      <li>Monthly career reports</li>
     </ul>
-    <button class="pay-btn" onclick="payStripe('pro')">Subscribe Pro</button>
+    <button class="pay-btn" onclick="payStripe('pro')">Subscribe</button>
   </div>
   <div class="price-card">
     <h3>Premium Subscription</h3>
-    <p class="price">$35 / mo</p>
+    <div class="price">$49.99/month</div>
     <ul class="feature-list">
-      <li>Everything in Pro</li>
-      <li>Career mentoring sessions</li>
-      <li>Job market trend reports</li>
-      <li>Unlimited AI resume & cover letter generations</li>
+      <li>All Pro features</li>
+      <li>Exclusive job leads</li>
+      <li>Direct recruiter connections</li>
+      <li>Weekly AI resume updates</li>
+      <li>Priority support & consultations</li>
     </ul>
-    <button class="pay-btn" onclick="payStripe('premium')">Subscribe Premium</button>
-  </div>
-</div>
-</section>
-
-<section id="testimonials">
-<h2>What Users Say</h2>
-<div class="testimonial-slider">
-  <div class="testimonial-track">
-    <div class="testimonial">
-      <p>"AXION transformed my job applications! I landed interviews faster than ever."</p>
-      <strong>- Sarah M.</strong>
-    </div>
-    <div class="testimonial">
-      <p>"The AI resume builder is intuitive and powerful. Highly recommend."</p>
-      <strong>- John D.</strong>
-    </div>
-    <div class="testimonial">
-      <p>"I upgraded to Pro and the insights are game-changing."</p>
-      <strong>- Emily R.</strong>
-    </div>
+    <button class="pay-btn" onclick="payStripe('premium')">Subscribe</button>
   </div>
 </div>
 </section>
@@ -246,45 +187,27 @@ footer strong {color:var(--text-main);}
 <section id="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
-<h3>How does the $5.99 Lifetime plan work? <i class="fa fa-plus"></i></h3>
-<p>You pay once and get lifetime access to essential features including resume generation and basic AI insights.</p>
+<h3>Can I cancel my subscription? <i class="fa fa-plus"></i></h3>
+<p>Subscriptions can be canceled at any time without losing your existing data. No hidden fees apply.</p>
 </div>
 <div class="faq-item">
-<h3>Can I upgrade my plan later? <i class="fa fa-plus"></i></h3>
-<p>Yes! You can upgrade anytime to unlock advanced features and subscription perks.</p>
+<h3>Does AXION guarantee employment? <i class="fa fa-plus"></i></h3>
+<p>AXION provides career tools and insights, but cannot guarantee job placement. Results depend on individual effort and market conditions.</p>
 </div>
 <div class="faq-item">
-<h3>Is my payment secure? <i class="fa fa-plus"></i></h3>
-<p>All payments are processed securely through Stripe with encryption and industry-standard protection.</p>
+<h3>What is included in the $5.99 plan? <i class="fa fa-plus"></i></h3>
+<p>Lifetime access, full resume builder, career analysis tools, job matching suggestions, and email support. Designed to fully empower your career journey.</p>
 </div>
 </section>
 
 <section id="contact">
 <h2>Contact Us</h2>
-<div class="contact-form">
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea rows="5" placeholder="Your Message"></textarea>
-<button>Send Message</button>
-</div>
-</section>
-
-<section id="blog">
-<h2>Blog & Updates</h2>
-<div class="blog-grid">
-  <div class="blog-card">
-    <h4>Top 10 Resume Tips</h4>
-    <p>Learn actionable strategies to make your resume stand out to recruiters and ATS systems.</p>
-  </div>
-  <div class="blog-card">
-    <h4>AI in Career Development</h4>
-    <p>Discover how AI can guide your professional growth and help you make informed career decisions.</p>
-  </div>
-  <div class="blog-card">
-    <h4>Interview Preparation Guide</h4>
-    <p>Expert tips and AI-driven insights to help you nail your next interview.</p>
-  </div>
-</div>
+<form class="contact-form">
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<textarea placeholder="Your Message" rows="6" required></textarea>
+<button type="submit">Send Message</button>
+</form>
 </section>
 
 <!-- Terms & Conditions Modal -->
@@ -292,8 +215,14 @@ footer strong {color:var(--text-main);}
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Terms & Conditions</h2>
-    <p>Welcome to AXION. By accessing or using our website, you agree to these terms. AXION provides AI-powered career guidance tools. Our services are designed to assist with resume building, career analysis, and professional development. While we strive to offer accurate guidance, we do not guarantee employment outcomes...</p>
-    <p>[1500+ words detailed terms covering liability, privacy, subscription terms, refunds, user responsibilities, limitations, data usage, etc.]</p>
+    <p>
+    Welcome to AXION. By accessing or using this website, you acknowledge and agree to these Terms & Conditions in full. AXION provides AI-powered career tools, including resume builders, career insights, and professional development resources. Users must provide accurate personal data. Lifetime and subscription access fees are non-refundable after confirmation. 
+    AXION provides guidance and analytics but does not guarantee employment or job placement. Users are responsible for their own decisions and usage of career advice. Data collected is subject to our privacy policy and may be used for service optimization, AI improvement, and secure account management. Unauthorized reproduction of AXION content is prohibited. Users must comply with all laws regarding career applications. 
+    We reserve the right to modify services, features, pricing, and terms at any time with appropriate notice. Use of the website constitutes acceptance of all updated terms. Liability for any indirect, incidental, or consequential losses is disclaimed. Subscriptions may be canceled anytime; access will continue until the end of the billing period. 
+    Payments are processed securely via Stripe. Users must ensure correct payment information and are responsible for their account security. Refunds for lifetime or subscription services are only issued in exceptional circumstances. 
+    AXION cannot be held responsible for interruptions, errors, or technical malfunctions. The AI is a tool and should complement professional judgment. By using this site, you release AXION from claims arising from use of content, guidance, or external job applications. Any dispute shall be governed by the laws of the relevant jurisdiction and resolved accordingly. These terms include limitations of liability, dispute resolution, intellectual property protections, and user responsibilities.
+    [This paragraph can be expanded to cover additional 1500-word detailed terms including disclaimers, privacy rights, subscription obligations, refunds, data security, jurisdiction, and legal compliance.]
+    </p>
   </div>
 </div>
 
@@ -303,25 +232,20 @@ footer strong {color:var(--text-main);}
 </footer>
 
 <script>
-// Scroll animation
-const cards = document.querySelectorAll('.card, .price-card, .blog-card');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
+// Scroll animations
+const cards = document.querySelectorAll('.card, .price-card');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
     if(entry.isIntersecting) entry.target.classList.add('visible');
   });
-}, {threshold:0.2});
-cards.forEach(card => observer.observe(card));
+},{threshold:0.2});
+cards.forEach(card=>observer.observe(card));
 
-// Testimonials Slider
-let track = document.querySelector('.testimonial-track');
-let index = 0;
-setInterval(()=>{index++; if(index>2) index=0; track.style.transform=`translateX(-${index*100}%)`;},5000);
-
-// FAQ Accordion
+// FAQ accordion
 const faqItems = document.querySelectorAll('.faq-item h3');
 faqItems.forEach(item=>{
   item.addEventListener('click',()=>{
-    const p=item.nextElementSibling;
+    const p = item.nextElementSibling;
     if(p.style.display==='block'){p.style.display='none'; item.querySelector('i').classList.replace('fa-minus','fa-plus');}
     else{p.style.display='block'; item.querySelector('i').classList.replace('fa-plus','fa-minus');}
   });
@@ -331,27 +255,26 @@ faqItems.forEach(item=>{
 const modal = document.getElementById('termsModal');
 const btn = document.getElementById('termsBtn');
 const span = document.querySelector('#termsModal .close');
-btn.onclick = function(){ modal.style.display="block"; }
-span.onclick = function(){ modal.style.display="none"; }
-window.onclick = function(event){ if(event.target==modal) modal.style.display="none"; }
+btn.onclick = ()=>{modal.style.display="block";}
+span.onclick = ()=>{modal.style.display="none";}
+window.onclick = e=>{if(e.target==modal) modal.style.display="none";}
 
-// Stripe payment placeholders
+// Stripe placeholder
 function payStripe(plan){
-    let stripe = Stripe('pk_test_your_public_key'); // Replace with your Stripe public key
-    let checkoutSessionId = ''; 
-    switch(plan){
-        case 'one-time': checkoutSessionId = 'oneTimeSessionId'; break;
-        case 'basic': checkoutSessionId = 'basicSessionId'; break;
-        case 'pro': checkoutSessionId = 'proSessionId'; break;
-        case 'premium': checkoutSessionId = 'premiumSessionId'; break;
-    }
-    stripe.redirectToCheckout({ sessionId: checkoutSessionId });
+  let stripe = Stripe('pk_test_your_public_key');
+  let checkoutSessionId='';
+  switch(plan){
+    case 'one-time': checkoutSessionId='oneTimeSessionId'; break;
+    case 'basic': checkoutSessionId='basicSessionId'; break;
+    case 'pro': checkoutSessionId='proSessionId'; break;
+    case 'premium': checkoutSessionId='premiumSessionId'; break;
+  }
+  stripe.redirectToCheckout({sessionId:checkoutSessionId});
 }
 </script>
 
 </body>
 </html>
-
 
 
 
