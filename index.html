@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brand Website – Full Recode</title>
-    <meta name="description" content="High‑detail, professionally structured website with scalable architecture and future‑ready sections.">
+    <title>AXION — Structured Access. Built for Scale.</title>
+    <meta name="description" content="AXION is a precision-built, subscription-based digital platform offering structured access levels designed for clarity, growth, and long-term reliability.">
 
-    <!-- ======================
-         GLOBAL STYLES
-    ======================= -->
+    <!-- ==================================================
+         GLOBAL STYLES & VARIABLES
+    =================================================== -->
     <style>
-        /* ======================
+        /* ==================================================
            RESET & BASE
-        ======================= */
+        =================================================== */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -29,386 +29,275 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             background-color: #0f0f14;
             color: #eaeaf0;
-            line-height: 1.6;
-            letter-spacing: 0.2px;
+            line-height: 1.7;
+            letter-spacing: 0.3px;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        button {
-            border: none;
-            background: none;
-            color: inherit;
-            cursor: pointer;
-        }
-
-        /* ======================
+        /* ==================================================
            VARIABLES
-        ======================= */
+        =================================================== */
         :root {
-            --color-primary: #6c5cff;
-            --color-secondary: #00d1b2;
-            --color-accent: #ff5c93;
-            --color-bg-main: #0f0f14;
-            --color-bg-soft: #171722;
-            --color-bg-card: #1f1f2e;
-            --color-text-main: #eaeaf0;
-            --color-text-muted: #b3b3c6;
+            --primary: #6c5cff;
+            --secondary: #00d1b2;
+            --accent: #ff5c93;
+            --bg-main: #0f0f14;
+            --bg-soft: #171722;
+            --bg-card: #1f1f2e;
+            --bg-deep: #0b0b10;
+            --text-main: #eaeaf0;
+            --text-muted: #b3b3c6;
             --radius-sm: 6px;
             --radius-md: 12px;
-            --radius-lg: 20px;
-            --transition-fast: 0.2s ease;
-            --transition-med: 0.35s ease;
-            --transition-slow: 0.6s ease;
+            --radius-lg: 24px;
+            --fast: 0.2s ease;
+            --med: 0.35s ease;
         }
 
-        /* ======================
-           LAYOUT HELPERS
-        ======================= */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+        /* ==================================================
+           LAYOUT
+        =================================================== */
+        .container { max-width: 1200px; margin: auto; padding: 0 1.5rem; }
+        .section { padding: 7rem 0; }
+        .section-soft { background: var(--bg-soft); }
+        .grid { display: grid; gap: 3rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
-        .section {
-            padding: 6rem 0;
-        }
-
-        .section-soft {
-            background-color: var(--color-bg-soft);
-        }
-
-        .grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        }
-
-        .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-
-        /* ======================
+        /* ==================================================
            TYPOGRAPHY
-        ======================= */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.2rem; }
+        =================================================== */
+        h1, h2, h3, h4 { font-weight: 600; line-height: 1.25; margin-bottom: 1.2rem; }
+        h1 { font-size: 3.1rem; }
+        h2 { font-size: 2.3rem; }
         h3 { font-size: 1.6rem; }
         h4 { font-size: 1.25rem; }
+        p { color: var(--text-muted); max-width: 75ch; margin-bottom: 1.1rem; }
+        ul { padding-left: 1.2rem; color: var(--text-muted); }
+        li { margin-bottom: 0.6rem; }
 
-        p {
-            color: var(--color-text-muted);
-            margin-bottom: 1rem;
-        }
+        /* ==================================================
+           BUTTONS
+        =================================================== */
+        .btn { padding: 0.9rem 1.8rem; border-radius: var(--radius-md); font-size: 0.95rem; font-weight: 500; display: inline-block; transition: transform var(--fast); }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { background: var(--bg-card); }
 
-        /* ======================
+        /* ==================================================
            HEADER
-        ======================= */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: rgba(15, 15, 20, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        =================================================== */
+        header { position: sticky; top: 0; z-index: 1000; background: rgba(15,15,20,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav { display: flex; justify-content: space-between; align-items: center; height: 76px; }
+        .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); font-size: 0.95rem; }
 
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-size: 0.95rem;
-            color: var(--color-text-muted);
-            transition: color var(--transition-fast);
-        }
-
-        .nav-links a:hover {
-            color: var(--color-text-main);
-        }
-
-        /* ======================
+        /* ==================================================
            HERO
-        ======================= */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at top, #1b1b2e, #0f0f14 60%);
-        }
+        =================================================== */
+        .hero { min-height: 92vh; display: flex; align-items: center; background: radial-gradient(circle at top, #1b1b35, #0f0f14 65%); }
+        .hero-content { max-width: 800px; }
+        .hero p { font-size: 1.2rem; }
+        .hero-actions { margin-top: 3rem; display: flex; gap: 1.4rem; }
 
-        .hero-content {
-            max-width: 720px;
-        }
+        /* ==================================================
+           CARDS
+        =================================================== */
+        .card { background: var(--bg-card); padding: 2.8rem; border-radius: var(--radius-lg); transition: transform var(--med); }
+        .card:hover { transform: translateY(-6px); }
 
-        .hero h1 {
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-        }
-
-        .hero-actions {
-            margin-top: 2.5rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.85rem 1.6rem;
-            border-radius: var(--radius-md);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: transform var(--transition-fast), background var(--transition-fast);
-        }
-
-        .btn-primary {
-            background-color: var(--color-primary);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background-color: #5a4ce0;
-        }
-
-        .btn-secondary {
-            background-color: var(--color-bg-card);
-            color: var(--color-text-main);
-        }
-
-        /* ======================
-           FEATURES
-        ======================= */
-        .feature-card {
-            background-color: var(--color-bg-card);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
-            transition: transform var(--transition-med);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 0.75rem;
-        }
-
-        /* ======================
+        /* ==================================================
            PRICING
-        ======================= */
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
+        =================================================== */
+        .price { font-size: 2.8rem; font-weight: 700; color: var(--primary); margin: 0.6rem 0 1rem; }
+        .tier-name { font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.4rem; }
 
-        /* ======================
-           PLACEHOLDER LEGAL
-        ======================= */
-        .legal-placeholder {
-            background-color: #111118;
-            border: 1px dashed rgba(255,255,255,0.15);
-            padding: 3rem;
-            border-radius: var(--radius-md);
-            text-align: center;
-        }
+        /* ==================================================
+           TERMS OVERLAY
+        =================================================== */
+        .terms-overlay { position: fixed; inset: 0; background: rgba(10,10,16,0.93); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .terms-box { background: var(--bg-card); max-width: 780px; max-height: 85vh; overflow-y: auto; padding: 3.2rem; border-radius: var(--radius-lg); }
+        .terms-actions { margin-top: 2.5rem; text-align: right; }
 
-        /* ======================
+        /* ==================================================
            FOOTER
-        ======================= */
-        footer {
-            background-color: #0b0b10;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-
-        .footer-bottom {
-            margin-top: 3rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-        }
+        =================================================== */
+        footer { background: var(--bg-deep); padding: 4.5rem 0 2rem; }
+        .footer-grid { display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .footer-bottom { margin-top: 3rem; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
 
-    <!-- ======================
-         HEADER
-    ======================= -->
-    <header>
-        <div class="container nav">
-            <div class="logo">BRAND</div>
-            <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#about">About</a>
-                <a href="#legal">Legal</a>
-            </nav>
-        </div>
-    </header>
+<!-- ==================================================
+     TERMS GATE (ONE-TIME)
+================================================== -->
+<div class="terms-overlay" id="termsOverlay">
+    <div class="terms-box">
+        <h2>Terms and Conditions</h2>
+        <p>By accessing AXION, you agree to these Terms and Conditions. If you do not agree, you must not use the platform.</p>
+        <h4>Use of Service</h4><p>AXION provides structured digital access via subscription. Misuse, automation abuse, or unauthorised access is prohibited.</p>
+        <h4>Subscriptions & Access</h4><p>Each subscription level provides defined access. Features may evolve while preserving tier intent.</p>
+        <h4>Payments</h4><p>All fees are billed in advance and are non-refundable unless required by law.</p>
+        <h4>Intellectual Property</h4><p>All systems, branding, and content are the exclusive property of AXION.</p>
+        <h4>Liability</h4><p>The platform is provided "as is" without warranties of any kind.</p>
+        <div class="terms-actions"><button class="btn btn-primary" onclick="acceptTerms()">I Accept</button></div>
+    </div>
+</div>
 
-    <!-- ======================
-         HERO
-    ======================= -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Designed With Precision.<br>Built For Scale.</h1>
-            <p>This website has been fully re‑engineered with clarity, depth, and future growth in mind. Every section is structured to expand without compromise.</p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="#pricing">Get Started</a>
-                <a class="btn btn-secondary" href="#features">Learn More</a>
+<!-- ==================================================
+     HEADER
+================================================== -->
+<header>
+    <div class="container nav">
+        <div class="logo">AXION</div>
+        <nav class="nav-links">
+            <a href="#about">What Is AXION</a>
+            <a href="#features">Platform</a>
+            <a href="#pricing">Access Levels</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ==================================================
+     HERO
+================================================== -->
+<section class="hero">
+    <div class="container hero-content">
+        <h1>Structured Access.<br>Purpose-Built Systems.</h1>
+        <p>AXION is a subscription-based digital platform engineered to deliver structured, reliable access to evolving tools, resources, and systems. It is built for users who value clarity, stability, and long-term scalability.</p>
+        <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary">View Access Levels</a>
+            <a href="#about" class="btn btn-secondary">Learn What AXION Is</a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     ABOUT
+================================================== -->
+<section id="about" class="section">
+    <div class="container grid grid-2">
+        <div>
+            <h2>What Is AXION</h2>
+            <p>AXION is not a generic service or content site. It is a structured digital environment designed around controlled access, predictable systems, and long-term expansion.</p>
+            <p>The platform is intentionally built to avoid clutter, instability, and unclear value propositions. Every feature, section, and access level exists for a defined reason.</p>
+        </div>
+        <div>
+            <h3>Why AXION Exists</h3>
+            <ul>
+                <li>To provide clarity instead of feature overload</li>
+                <li>To deliver predictable value at every access level</li>
+                <li>To scale without compromising structure</li>
+                <li>To prioritise reliability over trends</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PLATFORM FEATURES
+================================================== -->
+<section id="features" class="section section-soft">
+    <div class="container">
+        <h2>The AXION Platform</h2>
+        <div class="grid grid-3">
+            <div class="card"><h3>Structured Architecture</h3><p>AXION is designed with modular systems that allow expansion without redesign or instability.</p></div>
+            <div class="card"><h3>Controlled Access</h3><p>Every subscription level unlocks clearly defined capabilities, avoiding overlap or confusion.</p></div>
+            <div class="card"><h3>Long-Term Reliability</h3><p>Features are introduced deliberately, ensuring consistency and dependability over time.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================================================
+     PRICING
+================================================== -->
+<section id="pricing" class="section">
+    <div class="container">
+        <h2>Access Levels</h2>
+        <div class="grid grid-4">
+            <div class="card">
+                <div class="tier-name">Foundation</div>
+                <h3>Essential Access</h3>
+                <div class="price">$5.99</div>
+                <ul>
+                    <li>Core platform access</li>
+                    <li>Stable feature set</li>
+                    <li>Standard updates</li>
+                    <li>Baseline support</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="tier-name">Growth</div>
+                <h3>Expanded Access</h3>
+                <div class="price">$14.99</div>
+                <ul>
+                    <li>Everything in Foundation</li>
+                    <li>Additional tools and modules</li>
+                    <li>Priority feature rollout</li>
+                    <li>Enhanced support</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="tier-name">Advanced</div>
+                <h3>Professional Access</h3>
+                <div class="price">$29.99</div>
+                <ul>
+                    <li>Everything in Growth</li>
+                    <li>Advanced systems access</li>
+                    <li>Early feature previews</li>
+                    <li>Direct feedback channels</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="tier-name">Elite</div>
+                <h3>Complete Access</h3>
+                <div class="price">$59.99</div>
+                <ul>
+                    <li>Full AXION platform access</li>
+                    <li>Exclusive features</li>
+                    <li>Highest priority updates</li>
+                    <li>Dedicated support level</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ======================
-         FEATURES
-    ======================= -->
-    <section id="features" class="section">
-        <div class="container">
-            <h2>Core Features</h2>
-            <div class="grid grid-3">
-                <div class="feature-card">
-                    <h3>Detail‑First Design</h3>
-                    <p>Every component is intentionally spaced, aligned, and styled to feel premium and deliberate.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Scalable Architecture</h3>
-                    <p>Sections are modular, allowing future pages and systems to be added cleanly.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Performance Ready</h3>
-                    <p>Lightweight structure ensures fast loading and smooth interaction.</p>
-                </div>
-            </div>
+<!-- ==================================================
+     FOOTER
+================================================== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div><h4>AXION</h4><p>Structured digital access built for longevity.</p></div>
+            <div><h4>Explore</h4><p><a href="#about">About</a></p><p><a href="#pricing">Access Levels</a></p></div>
+            <div><h4>Legal</h4><p>Terms accepted on first visit.</p></div>
         </div>
-    </section>
+        <div class="footer-bottom">© 2026 AXION. All rights reserved.</div>
+    </div>
+</footer>
 
-    <!-- ======================
-         PRICING
-    ======================= -->
-    <section id="pricing" class="section section-soft">
-        <div class="container">
-            <h2>Simple Pricing</h2>
-            <div class="grid grid-2">
-                <div class="feature-card">
-                    <h3>Standard Access</h3>
-                    <div class="price">$5.99</div>
-                    <p>Access to the full platform with continuous updates and improvements.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Future Expansion</h3>
-                    <p>Additional tiers and features can be integrated without redesign.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================
-         ABOUT
-    ======================= -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About This Build</h2>
-            <p>This codebase prioritises readability, correctness, and long‑term maintainability. It avoids shortcuts, generic filler, and unstable patterns.</p>
-        </div>
-    </section>
-
-    <!-- ======================
-         LEGAL PLACEHOLDER
-    ======================= -->
-    <section id="legal" class="section section-soft">
-        <div class="container">
-            <h2>Legal & Policies</h2>
-            <div class="legal-placeholder">
-                <p>Terms & Conditions and Privacy Policy will be placed here.</p>
-                <p>This section is reserved and structurally complete.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ======================
-         FOOTER
-    ======================= -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4>Brand</h4>
-                    <p>Purpose‑built digital experiences.</p>
-                </div>
-                <div>
-                    <h4>Navigation</h4>
-                    <p><a href="#features">Features</a></p>
-                    <p><a href="#pricing">Pricing</a></p>
-                </div>
-                <div>
-                    <h4>Legal</h4>
-                    <p><a href="#legal">Terms Placeholder</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                © 2026 Brand. All rights reserved.
-            </div>
-        </div>
-    </footer>
+<script>
+    const overlay = document.getElementById('termsOverlay');
+    function acceptTerms() {
+        localStorage.setItem('axion_terms_accepted', 'true');
+        overlay.style.display = 'none';
+    }
+    window.addEventListener('load', () => {
+        if (!localStorage.getItem('axion_terms_accepted')) {
+            overlay.style.display = 'flex';
+        }
+    });
+</script>
 
 </body>
 </html>
-
-
-
-
 
   
 
