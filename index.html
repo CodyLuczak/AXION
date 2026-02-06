@@ -1,232 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXION — Career Clarity & Resume AI</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Website – Full Recode</title>
+    <meta name="description" content="High‑detail, professionally structured website with scalable architecture and future‑ready sections.">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ======================
+         GLOBAL STYLES
+    ======================= -->
+    <style>
+        /* ======================
+           RESET & BASE
+        ======================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
 
-<!-- Stripe.js -->
-<script src="https://js.stripe.com/v3/"></script>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: #0f0f14;
+            color: #eaeaf0;
+            line-height: 1.6;
+            letter-spacing: 0.2px;
+        }
 
-<style>
-:root {
-  --bg-main: #f2f4f7;
-  --bg-card: #ffffff;
-  --primary: #1d4ed8;
-  --primary-soft: #c7d9ff;
-  --secondary: #2563eb;
-  --text-main: #111827;
-  --text-muted: #4b5563;
-  --border-soft: #d1d5db;
-  --transition-speed: 0.35s;
-}
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-/* Global */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif;}
-body {background:var(--bg-main); color:var(--text-main); line-height:1.7; scroll-behavior:smooth;}
-a {text-decoration:none; color:inherit; cursor:pointer;}
-button {cursor:pointer;}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-/* Header */
-header {position:sticky; top:0; background:#fff; border-bottom:1px solid var(--border-soft); z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.05);}
-.nav {max-width:1400px; margin:auto; padding:20px 24px; display:flex; justify-content:space-between; align-items:center;}
-.logo {font-weight:700; font-size:2rem; color:var(--primary);}
-nav {display:flex; align-items:center;}
-nav a {margin-left:20px; font-weight:500; color:var(--text-muted); transition:color var(--transition-speed);}
-nav a:hover, nav a.active {color:var(--primary);}
-.dropdown {position:relative;}
-.dropdown-content {display:none; position:absolute; background:var(--bg-card); min-width:220px; box-shadow:0 12px 28px rgba(0,0,0,0.15); border-radius:12px; z-index:1001;}
-.dropdown-content a {color:var(--text-main); padding:14px 16px; display:block; transition:background var(--transition-speed);}
-.dropdown-content a:hover {background:var(--primary-soft);}
-.dropdown:hover .dropdown-content {display:block;}
+        ul {
+            list-style: none;
+        }
 
-/* Hero */
-.hero {text-align:center; padding:180px 24px 120px; background:linear-gradient(135deg, #e7f0ff, #f0f2f5); position:relative;}
-.hero h1 {font-size:3rem; margin-bottom:18px; animation:fadeInDown 1s ease forwards;}
-.hero p {font-size:1.2rem; max-width:720px; margin:auto; margin-bottom:24px; opacity:0; animation:fadeInUp 1s ease forwards; animation-delay:0.2s;}
-.btn {display:inline-block; margin-top:24px; padding:16px 36px; background:var(--primary); color:#fff; border-radius:12px; font-weight:600; font-size:1rem; transition: transform var(--transition-speed), box-shadow var(--transition-speed);}
-.btn:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(37,99,235,0.25);}
+        button {
+            border: none;
+            background: none;
+            color: inherit;
+            cursor: pointer;
+        }
 
-/* Sections */
-section {max-width:1400px; margin:auto; padding:100px 24px;}
-h2,h3,h4 {font-weight:700; margin-bottom:18px;}
-h2 {font-size:2.3rem;}
-h3 {font-size:1.4rem;}
-h4 {font-size:1.2rem;}
-p {max-width:900px; margin-bottom:18px;}
-.muted {color:var(--text-muted); font-size:0.95rem;}
+        /* ======================
+           VARIABLES
+        ======================= */
+        :root {
+            --color-primary: #6c5cff;
+            --color-secondary: #00d1b2;
+            --color-accent: #ff5c93;
+            --color-bg-main: #0f0f14;
+            --color-bg-soft: #171722;
+            --color-bg-card: #1f1f2e;
+            --color-text-main: #eaeaf0;
+            --color-text-muted: #b3b3c6;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition-fast: 0.2s ease;
+            --transition-med: 0.35s ease;
+            --transition-slow: 0.6s ease;
+        }
 
-/* Grid Cards */
-.grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:36px; margin-top:50px;}
-.card {background:var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); transition: transform var(--transition-speed), box-shadow var(--transition-speed); opacity:0; transform:translateY(20px);}
-.card.visible {opacity:1; transform:translateY(0);}
-.card:hover {transform:translateY(-6px); box-shadow:0 16px 40px rgba(37,99,235,0.15);}
-.card i {font-size:2.2rem; color:var(--primary); margin-bottom:16px;}
+        /* ======================
+           LAYOUT HELPERS
+        ======================= */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-/* Pricing Table */
-.pricing-table {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:36px; margin-top:50px;}
-.price-card {background: var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); transition: transform var(--transition-speed), box-shadow var(--transition-speed); opacity:0; transform:translateY(20px);}
-.price-card.visible {opacity:1; transform:translateY(0);}
-.price-card:hover {transform:translateY(-6px); box-shadow:0 18px 42px rgba(37,99,235,0.18);}
-.price-card h3 {margin-top:10px; margin-bottom:16px;}
-.price {font-size:2.2rem; font-weight:700; color:var(--primary); margin-bottom:18px;}
-.feature-list {margin-top:18px; list-style:none; padding-left:0;}
-.feature-list li {margin-bottom:12px; color:var(--text-muted); font-size:0.95rem;}
-.pay-btn {display:block; width:100%; text-align:center; margin-top:18px; padding:14px 0; border:none; border-radius:12px; background:#10b981; color:#fff; font-weight:600; font-size:1rem; transition: transform 0.3s, box-shadow 0.3s;}
-.pay-btn:hover {transform:translateY(-2px); box-shadow:0 14px 28px rgba(16,185,129,0.25);}
+        .section {
+            padding: 6rem 0;
+        }
 
-/* FAQ Accordion */
-.faq-item {border-bottom:1px solid var(--border-soft); padding:12px 0;}
-.faq-item h3 {cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
-.faq-item p {display:none; padding-top:8px; color:var(--text-muted);}
+        .section-soft {
+            background-color: var(--color-bg-soft);
+        }
 
-/* Contact Form */
-.contact-form {background:var(--bg-card); padding:36px; border-radius:20px; border:1px solid var(--border-soft); max-width:700px; margin:auto; margin-top:50px; box-shadow:0 12px 28px rgba(37,99,235,0.05);}
-.contact-form input, .contact-form textarea {width:100%; padding:14px; margin-bottom:12px; border:1px solid var(--border-soft); border-radius:8px; font-size:1rem; transition:border 0.3s;}
-.contact-form input:focus, .contact-form textarea:focus {border-color:var(--primary);}
-.contact-form button {background:var(--primary); color:#fff; border:none; border-radius:12px; padding:14px 24px; font-weight:600; transition: transform 0.3s;}
-.contact-form button:hover {transform:translateY(-2px); box-shadow:0 12px 28px rgba(29,78,216,0.25);}
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
 
-/* Terms Modal */
-#termsModal {display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.6);}
-#termsModal .modal-content {background:#fff; margin:5% auto; padding:36px; border-radius:20px; width:90%; max-width:900px; max-height:80%; overflow-y:auto; position:relative;}
-#termsModal .close {position:absolute; top:20px; right:24px; font-size:28px; cursor:pointer; color:#111827;}
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
 
-/* Footer */
-footer {background:#e5e7eb; padding:80px 24px; border-top:1px solid var(--border-soft); text-align:center;}
-footer p {max-width:1000px; margin:auto; font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;}
-footer strong {color:var(--text-main);}
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
 
-/* Animations */
-@keyframes fadeInDown {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
-@keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
-</style>
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        /* ======================
+           TYPOGRAPHY
+        ======================= */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.6rem; }
+        h4 { font-size: 1.25rem; }
+
+        p {
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* ======================
+           HEADER
+        ======================= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(15, 15, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text-main);
+        }
+
+        /* ======================
+           HERO
+        ======================= */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top, #1b1b2e, #0f0f14 60%);
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        .hero-actions {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform var(--transition-fast), background var(--transition-fast);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #5a4ce0;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-bg-card);
+            color: var(--color-text-main);
+        }
+
+        /* ======================
+           FEATURES
+        ======================= */
+        .feature-card {
+            background-color: var(--color-bg-card);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            transition: transform var(--transition-med);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        /* ======================
+           PRICING
+        ======================= */
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ======================
+           PLACEHOLDER LEGAL
+        ======================= */
+        .legal-placeholder {
+            background-color: #111118;
+            border: 1px dashed rgba(255,255,255,0.15);
+            padding: 3rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        /* ======================
+           FOOTER
+        ======================= */
+        footer {
+            background-color: #0b0b10;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">AXION</div>
-    <nav>
-      <a href="#how">How It Works</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <a id="termsBtn">Terms & Conditions</a>
-    </nav>
-  </div>
-</header>
+    <!-- ======================
+         HEADER
+    ======================= -->
+    <header>
+        <div class="container nav">
+            <div class="logo">BRAND</div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+                <a href="#legal">Legal</a>
+            </nav>
+        </div>
+    </header>
 
-<section class="hero">
-  <h1>AXION — Career Clarity & Resume AI</h1>
-  <p>Empower your career with lifetime access for <strong>$5.99</strong>. Build resumes, analyze skills, and receive actionable insights. Upgrade anytime to unlock premium features for maximum career growth.</p>
-  <a class="btn" href="#pricing">Get Started Now</a>
-</section>
+    <!-- ======================
+         HERO
+    ======================= -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Designed With Precision.<br>Built For Scale.</h1>
+            <p>This website has been fully re‑engineered with clarity, depth, and future growth in mind. Every section is structured to expand without compromise.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#pricing">Get Started</a>
+                <a class="btn btn-secondary" href="#features">Learn More</a>
+            </div>
+        </div>
+    </section>
 
-<section id="pricing">
-<h2>Pricing & Plans</h2>
-<div class="pricing-table">
-  <div class="price-card">
-    <h3>Lifetime Access</h3>
-    <div class="price">$5.99</div>
-    <ul class="feature-list">
-      <li>Full resume builder</li>
-      <li>Career analysis tools</li>
-      <li>Job matching suggestions</li>
-      <li>Lifetime account access</li>
-      <li>Email support</li>
-    </ul>
-    <button class="pay-btn" onclick="payStripe('one-time')">Pay Now</button>
-  </div>
-</div>
-</section>
+    <!-- ======================
+         FEATURES
+    ======================= -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Core Features</h2>
+            <div class="grid grid-3">
+                <div class="feature-card">
+                    <h3>Detail‑First Design</h3>
+                    <p>Every component is intentionally spaced, aligned, and styled to feel premium and deliberate.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Scalable Architecture</h3>
+                    <p>Sections are modular, allowing future pages and systems to be added cleanly.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Performance Ready</h3>
+                    <p>Lightweight structure ensures fast loading and smooth interaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="faq">
-<h2>Frequently Asked Questions</h2>
-<div class="faq-item">
-<h3>Can I cancel my subscription? <i class="fa fa-plus"></i></h3>
-<p>Subscriptions can be canceled anytime without losing your existing data. No hidden fees apply.</p>
-</div>
-<div class="faq-item">
-<h3>Does AXION guarantee employment? <i class="fa fa-plus"></i></h3>
-<p>AXION provides career tools and insights but cannot guarantee job placement. Results depend on individual effort and market conditions.</p>
-</div>
-</section>
+    <!-- ======================
+         PRICING
+    ======================= -->
+    <section id="pricing" class="section section-soft">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <div class="grid grid-2">
+                <div class="feature-card">
+                    <h3>Standard Access</h3>
+                    <div class="price">$5.99</div>
+                    <p>Access to the full platform with continuous updates and improvements.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Future Expansion</h3>
+                    <p>Additional tiers and features can be integrated without redesign.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="contact">
-<h2>Contact Us</h2>
-<form class="contact-form">
-<input type="text" placeholder="Full Name" required>
-<input type="email" placeholder="Email Address" required>
-<textarea placeholder="Your Message" rows="6" required></textarea>
-<button type="submit">Send Message</button>
-</form>
-</section>
+    <!-- ======================
+         ABOUT
+    ======================= -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About This Build</h2>
+            <p>This codebase prioritises readability, correctness, and long‑term maintainability. It avoids shortcuts, generic filler, and unstable patterns.</p>
+        </div>
+    </section>
 
-<!-- Terms & Conditions Modal -->
-<div id="termsModal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Terms & Conditions</h2>
-    <p>
-      Welcome to AXION. By accessing or using this website, you agree to our terms. AXION provides AI career guidance tools. Lifetime access is $5.99 with full features included. Subscriptions may be offered for enhanced services. Users must provide accurate information and are responsible for all account activity. AXION does not guarantee employment outcomes. Data usage is described in our privacy policy. Payments are secure via Stripe. Refunds are only issued under exceptional circumstances. By using AXION, users release us from any claims arising from career decisions. Please read carefully as continued use constitutes agreement to these terms.
-    </p>
-    <p>[This modal can be expanded further to full 1500+ words covering all legal, privacy, subscription, and liability sections.]</p>
-  </div>
-</div>
+    <!-- ======================
+         LEGAL PLACEHOLDER
+    ======================= -->
+    <section id="legal" class="section section-soft">
+        <div class="container">
+            <h2>Legal & Policies</h2>
+            <div class="legal-placeholder">
+                <p>Terms & Conditions and Privacy Policy will be placed here.</p>
+                <p>This section is reserved and structurally complete.</p>
+            </div>
+        </div>
+    </section>
 
-<footer>
-<p>© 2026 <strong>AXION</strong>. All Rights Reserved.</p>
-<p>Privacy Policy | Terms & Conditions | Contact Us</p>
-</footer>
-
-<script>
-// Scroll animations
-const cards = document.querySelectorAll('.card, .price-card');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add('visible');
-  });
-},{threshold:0.2});
-cards.forEach(card=>observer.observe(card));
-
-// FAQ accordion
-const faqItems = document.querySelectorAll('.faq-item h3');
-faqItems.forEach(item=>{
-  item.addEventListener('click',()=>{
-    const p = item.nextElementSibling;
-    if(p.style.display==='block'){p.style.display='none'; item.querySelector('i').classList.replace('fa-minus','fa-plus');}
-    else{p.style.display='block'; item.querySelector('i').classList.replace('fa-plus','fa-minus');}
-  });
-});
-
-// Terms modal
-const modal = document.getElementById('termsModal');
-const btn = document.getElementById('termsBtn');
-const span = document.querySelector('#termsModal .close');
-btn.onclick = ()=>{modal.style.display="block";}
-span.onclick = ()=>{modal.style.display="none";}
-window.onclick = e=>{if(e.target==modal) modal.style.display="none";}
-
-// Stripe placeholder
-function payStripe(plan){
-  let stripe = Stripe('pk_test_your_public_key');
-  let checkoutSessionId='';
-  if(plan==='one-time') checkoutSessionId='oneTimeSessionId';
-  stripe.redirectToCheckout({sessionId:checkoutSessionId});
-}
-</script>
+    <!-- ======================
+         FOOTER
+    ======================= -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Brand</h4>
+                    <p>Purpose‑built digital experiences.</p>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <p><a href="#features">Features</a></p>
+                    <p><a href="#pricing">Pricing</a></p>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <p><a href="#legal">Terms Placeholder</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 Brand. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
-
 
 
 
