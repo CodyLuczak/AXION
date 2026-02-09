@@ -1,6 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><style>
+/* HERO POLISH – SAFE ADDITION */
+.hero,
+.hero-section,
+#hero {
+  position: relative;
+  padding: 120px 8vw 140px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0)
+  );
+}
+
+.hero h1,
+.hero-section h1,
+#hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.hero p,
+.hero-section p,
+#hero p {
+  max-width: 620px;
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin-bottom: 36px;
+}
+
+.hero .cta,
+.hero-section .cta,
+#hero .cta {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  background: black;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero .cta:hover,
+.hero-section .cta:hover,
+#hero .cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+</style>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AXION — Structured Access Platform</title>
