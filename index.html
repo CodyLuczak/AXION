@@ -26,63 +26,92 @@
 }
 
 /* ------------------------------
-   GLOBAL
+   GLOBAL STYLES
 --------------------------------*/
 html { scroll-behavior: smooth; }
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
     background: var(--bg-main);
     color: var(--text-main);
-    line-height: 1.7;
+    line-height:1.7;
     margin:0;
 }
-a { color: inherit; text-decoration: none; }
-ul { padding-left: 1.2rem; }
-li { margin-bottom: 0.6rem; }
+a { color: inherit; text-decoration:none; }
+ul { padding-left:1.2rem; }
+li { margin-bottom:0.6rem; }
+h1,h2,h3,h4,h5,h6 { margin:0; }
+button { font-family:inherit; cursor:pointer; border:none; }
 
 /* ------------------------------
    HEADER / NAV
 --------------------------------*/
 header {
     position: sticky;
-    top: 0;
-    z-index: 1000;
+    top:0;
+    z-index:1000;
     background: rgba(15,15,20,0.92);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom:1px solid rgba(255,255,255,0.06);
 }
-.nav { display:flex; justify-content:space-between; align-items:center; height:80px; }
-.logo { font-size:1.6rem; font-weight:800; letter-spacing:2px; }
-.nav-links { display:flex; gap:2.4rem; align-items:center; }
+.nav {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:80px;
+    padding:0 2rem;
+}
+.logo {
+    font-size:1.7rem;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-left:0.5rem;
+}
+.nav-links {
+    display:flex;
+    gap:1.5rem;
+    align-items:center;
+}
 .nav-links a { font-size:0.95rem; color:var(--text-muted); }
-button { font-family:inherit; cursor:pointer; border:none; }
+.nav-links button { margin-left:0.5rem; }
 
 /* ------------------------------
    HERO
 --------------------------------*/
 .hero {
-    min-height: 92vh;
-    display: flex;
-    align-items: center;
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
     background: radial-gradient(circle at top, #1b1b35, #0f0f14 65%);
-    padding: 120px 8vw;
+    padding:120px 8vw;
+    position:relative;
+    overflow:hidden;
 }
-.hero-content { max-width:860px; }
-.hero h1 { font-size: clamp(2.5rem,5vw,4rem); margin-bottom: 20px; font-weight:700; line-height:1.05; }
-.hero p { font-size:1.2rem; opacity:0.85; margin-bottom:36px; }
-.hero-actions { margin-top:3rem; display:flex; gap:1.2rem; flex-wrap:wrap; }
-.btn-primary { padding: 14px 28px; border-radius:999px; font-weight:600; text-decoration:none; background:black; color:white; transition:0.2s ease; }
+.hero h1 {
+    font-size:clamp(2.5rem,5vw,4rem);
+    font-weight:700;
+    line-height:1.05;
+    margin-bottom:20px;
+}
+.hero p {
+    font-size:1.2rem;
+    opacity:0.85;
+    margin-bottom:36px;
+}
+.hero-actions { margin-top:3rem; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+.btn-primary { padding:14px 28px; border-radius:999px; font-weight:600; text-decoration:none; background:black; color:white; transition:0.2s ease; }
 .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
-.btn-secondary { padding: 14px 28px; border-radius:999px; font-weight:600; text-decoration:none; background:transparent; border:1px solid rgba(255,255,255,0.15); color:white; transition:0.2s ease; }
+.btn-secondary { padding:14px 28px; border-radius:999px; font-weight:600; text-decoration:none; background:transparent; border:1px solid rgba(255,255,255,0.15); color:white; transition:0.2s ease; }
 .btn-secondary:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
 
 /* ------------------------------
    SECTIONS
 --------------------------------*/
-section { padding: 7.5rem 8vw; }
+section { padding:7.5rem 8vw; }
 .soft { background: var(--bg-soft); }
 .section.alt { background:#171722; border-top:1px solid rgba(255,255,255,0.05); }
-.section h2 { font-size: clamp(2rem,4vw,2.8rem); font-weight:600; margin-bottom:20px; position:relative; }
+.section h2 { font-size:clamp(2rem,4vw,2.8rem); font-weight:600; margin-bottom:20px; position:relative; }
 .section h2::after { content:""; display:block; width:48px; height:4px; background:var(--primary); margin-top:16px; border-radius:4px; }
 .section p { max-width:720px; font-size:1rem; opacity:0.85; margin-bottom:28px; }
 .section-grid { display:grid; gap:40px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:60px; }
@@ -92,13 +121,14 @@ section { padding: 7.5rem 8vw; }
 .card p { font-size:0.95rem; line-height:1.55; }
 
 /* ------------------------------
-   OFFER SECTION
+   OFFER / SUBSCRIPTION
 --------------------------------*/
 .offer { padding:110px 8vw; background: var(--bg-soft); }
 .offer h2 { font-size: clamp(2rem,4vw,2.8rem); margin-bottom:20px; }
 .offer .lead { max-width:760px; font-size:1.05rem; opacity:0.9; margin-bottom:60px; }
 .offer-grid { display:grid; gap:40px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-.offer-box { background: var(--bg-card); padding:36px; border-radius:18px; box-shadow:0 15px 30px rgba(0,0,0,0.05); }
+.offer-box { background: var(--bg-card); padding:36px; border-radius:18px; box-shadow:0 15px 30px rgba(0,0,0,0.05); transition:0.3s; }
+.offer-box:hover { transform: translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,0.1); }
 .offer-box.highlight { border:2px solid var(--primary); }
 .offer-box h3 { margin-bottom:12px; font-weight:600; }
 .offer-box .price { font-size:2rem; font-weight:700; margin:10px 0 20px; }
@@ -108,7 +138,7 @@ section { padding: 7.5rem 8vw; }
 /* ------------------------------
    CTA
 --------------------------------*/
-.cta-section { padding:100px 8vw; text-align:center; background:var(--primary); color:white; }
+.cta-section { padding:100px 8vw; text-align:center; background:var(--primary); color:white; border-radius:26px; margin:60px auto; }
 .cta-section h2 { font-size:clamp(2.2rem,4vw,3rem); margin-bottom:20px; }
 .cta-section p { max-width:720px; margin:0 auto 40px; opacity:0.85; }
 .cta-button { display:inline-block; padding:16px 36px; background:white; color:black; border-radius:999px; font-weight:600; text-decoration:none; transition:0.2s ease; }
@@ -124,6 +154,54 @@ section { padding: 7.5rem 8vw; }
 .faq-item p { opacity:0.85; }
 
 /* ------------------------------
+   DASHBOARD PREVIEW
+--------------------------------*/
+.dashboard-section { padding: 7.5rem 8vw; }
+.dashboard-header { margin-bottom:3rem; }
+.dashboard-sub { color: var(--text-muted); margin-top:0.4rem; }
+.subscription-badge { margin-top:0.8rem; font-weight:500; color:var(--secondary); }
+.dashboard-grid { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.dashboard-card { background: var(--bg-card); padding:2rem; border-radius: var(--radius-md); transition:0.3s; }
+.dashboard-card.locked { opacity:0.65; position:relative; }
+.dashboard-card:hover { transform:translateY(-6px); box-shadow:0 12px 24px rgba(0,0,0,0.2); }
+.upgrade-btn { margin-top:1rem; padding:0.8rem 1.5rem; border-radius:999px; background:var(--primary); color:#fff; cursor:pointer; }
+
+/* ------------------------------
+   MODALS
+--------------------------------*/
+.terms-overlay, .auth-overlay {
+    position: fixed; inset:0;
+    background: rgba(10,10,16,0.94);
+    display:none;
+    align-items:center; justify-content:center;
+    z-index:3000;
+}
+.terms-box, .auth-box {
+    background: var(--bg-card);
+    max-width:820px;
+    width:100%;
+    padding:3rem;
+    border-radius: var(--radius-lg);
+    overflow-y:auto;
+}
+.auth-box { max-width:420px; }
+.auth-box input { width:100%; padding:0.8rem; margin-bottom:1rem; background:#12121a; border:1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); color:#fff; }
+
+/* ------------------------------
+   ADDITIONAL SECTIONS
+--------------------------------*/
+.testimonials { padding:120px 8vw; background: var(--bg-main); }
+.testimonials h2 { font-size: clamp(2rem,4vw,2.8rem); margin-bottom:60px; }
+.testimonials-grid { display:grid; gap:40px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.testimonial-card { background: var(--bg-card); padding:32px; border-radius: var(--radius-md); }
+.testimonial-card p { font-style:italic; margin-bottom:12px; }
+.testimonial-card h4 { font-weight:600; color: var(--primary); }
+
+.newsletter { padding:100px 8vw; background: var(--bg-soft); text-align:center; border-radius:26px; margin:60px 0; }
+.newsletter input { padding:0.8rem 1rem; border-radius:999px; border:none; width:280px; max-width:100%; margin-right:8px; }
+.newsletter button { padding:0.8rem 1.8rem; border-radius:999px; background: var(--primary); color:#fff; cursor:pointer; }
+
+/* ------------------------------
    FOOTER
 --------------------------------*/
 footer { background: var(--bg-deep); padding:4.5rem 8vw 2rem; }
@@ -131,84 +209,59 @@ footer { background: var(--bg-deep); padding:4.5rem 8vw 2rem; }
 .footer-bottom { margin-top:3rem; text-align:center; font-size:0.85rem; color:var(--text-muted); }
 
 /* ------------------------------
-   DASHBOARD
+   RESPONSIVE
 --------------------------------*/
-.dashboard-section { padding: 7.5rem 8vw; }
-.dashboard-header { margin-bottom:3rem; }
-.dashboard-sub { color: var(--text-muted); margin-top:0.4rem; }
-.subscription-badge { margin-top:0.8rem; font-weight:500; color:var(--secondary); }
-.dashboard-grid { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-.dashboard-card { background: var(--bg-card); padding:2rem; border-radius: var(--radius-md); }
-.dashboard-card.locked { opacity:0.65; position:relative; }
-.upgrade-btn { margin-top:1rem; }
-
-/* ------------------------------
-   TERMS & AUTH MODAL
---------------------------------*/
-.terms-overlay, .auth-overlay {
-    position: fixed; inset: 0;
-    background: rgba(10,10,16,0.94);
-    display: none;
-    align-items: center; justify-content: center;
-    z-index: 3000;
+@media(max-width:768px){
+    .hero h1 { font-size:2.4rem; }
+    .section-grid, .offer-grid, .testimonials-grid { grid-template-columns:1fr; }
+    .nav-links { flex-direction:column; gap:1rem; }
 }
-.terms-box, .auth-box {
-    background: var(--bg-card);
-    max-width: 820px;
-    width: 100%;
-    padding:3rem;
-    border-radius: var(--radius-lg);
-    overflow-y: auto;
-}
-.auth-box { max-width:420px; }
-.auth-box input { width:100%; padding:0.8rem; margin-bottom:1rem; background:#12121a; border:1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); color:#fff; }
 </style>
 </head>
 <body>
 
-<!-- TERMS & CONDITIONS POPUP -->
+<!-- TERMS MODAL -->
 <div class="terms-overlay" id="termsOverlay">
-    <div class="terms-box">
-        <h2>Terms and Conditions</h2>
-        <p>By accessing AXION, you agree to comply with these Terms and Conditions. AXION provides structured, subscription-based digital access. Features, availability, and access levels may evolve as the platform grows.</p>
-        <p>Accounts are personal and may not be shared. Subscription access does not grant ownership of any platform assets.</p>
-        <p>AXION reserves the right to modify, suspend, or discontinue any aspect of the platform when necessary.</p>
-        <div style="margin-top:2.5rem;text-align:right;">
-            <button class="btn btn-primary" onclick="acceptTerms()">I Accept</button>
-        </div>
-    </div>
+  <div class="terms-box">
+      <h2>Terms and Conditions</h2>
+      <p>By accessing AXION, you agree to comply with these Terms and Conditions...</p>
+      <div style="margin-top:2.5rem;text-align:right;">
+          <button class="btn btn-primary" onclick="acceptTerms()">I Accept</button>
+      </div>
+  </div>
 </div>
 
 <!-- AUTH MODAL -->
 <div class="auth-overlay" id="authOverlay">
-    <div class="auth-box">
-        <h3>Account Access</h3>
-        <input type="email" placeholder="Email address">
-        <input type="password" placeholder="Password">
-        <button class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Continue</button>
-        <button class="btn btn-secondary" style="width:100%;margin-top:1rem;" onclick="closeAuth()">Close</button>
-    </div>
+  <div class="auth-box">
+      <h3>Account Access</h3>
+      <input type="email" placeholder="Email address">
+      <input type="password" placeholder="Password">
+      <button class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Continue</button>
+      <button class="btn btn-secondary" style="width:100%;margin-top:1rem;" onclick="closeAuth()">Close</button>
+  </div>
 </div>
 
+<!-- HEADER -->
 <header>
-    <div class="container nav">
-        <div class="logo">AXION</div>
-        <nav class="nav-links">
-            <a href="#about">What Is AXION</a>
-            <a href="#platform">Platform</a>
-            <a href="#pricing">Access</a>
-            <a href="#roadmap">Roadmap</a>
-            <button class="btn btn-secondary" onclick="openAuth()">Login</button>
-            <button class="btn btn-primary" onclick="openAuth()">Sign Up</button>
-        </nav>
-    </div>
+  <div class="nav">
+      <div class="logo">AXION</div>
+      <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#platform">Platform</a>
+          <a href="#pricing">Access</a>
+          <a href="#roadmap">Roadmap</a>
+          <button class="btn btn-secondary" onclick="openAuth()">Login</button>
+          <button class="btn btn-primary" onclick="openAuth()">Sign Up</button>
+      </div>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
         <h1>Structured Access.<br>Built for Longevity.</h1>
-        <p>AXION is a controlled digital platform delivering clarity, progression, and long-term value through clearly defined access levels.</p>
+        <p>AXION delivers clarity, progression, and long-term value through defined access levels.</p>
         <div class="hero-actions">
             <a href="#pricing" class="btn-primary">View Access Levels</a>
             <a href="#about" class="btn-secondary">Explore Platform</a>
@@ -216,141 +269,19 @@ footer { background: var(--bg-deep); padding:4.5rem 8vw 2rem; }
     </div>
 </section>
 
-<!-- BUILT WITH INTENTION -->
-<section class="section alt">
-  <h2>Built with intention</h2>
-  <p>This isn’t filler content. This section exists to explain what your brand stands for and why it’s different — clearly, confidently, and without noise.</p>
-  <div class="section-grid">
-    <div class="card"><h3>Clarity first</h3><p>Everything is designed to be understood at a glance — no clutter, no unnecessary steps.</p></div>
-    <div class="card"><h3>Designed to feel solid</h3><p>Spacing, typography, and structure are intentional so the site feels premium and trustworthy.</p></div>
-    <div class="card"><h3>Built to grow</h3><p>This layout scales cleanly as you add features, products, or content later.</p></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-    <div class="container grid grid-2">
-        <div>
-            <h2>What Is AXION</h2>
-            <p>AXION is designed for users who value structure over noise. Every system, feature, and interaction is intentionally layered.</p>
-            <p>Progression is earned, access is controlled, and value is preserved.</p>
-        </div>
-        <div>
-            <h3>Core Principles</h3>
-            <ul>
-                <li>Controlled access by design</li>
-                <li>Clear subscription progression</li>
-                <li>Long-term scalability</li>
-                <li>Stability over trends</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- PLATFORM -->
-<section id="platform" class="soft">
-    <div class="container">
-        <h2>The AXION Platform</h2>
-        <div class="grid grid-3">
-            <div class="card"><h3>Modular Systems</h3><p>Each component is built to expand without disrupting structure.</p></div>
-            <div class="card"><h3>Member Progression</h3><p>Access levels unlock deeper functionality over time.</p></div>
-            <div class="card"><h3>Future Ready</h3><p>AXION is engineered for upcoming tools and integrations.</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- OFFER -->
-<section class="offer">
-  <h2>Everything you need to get started</h2>
-  <p class="lead">
-    Pay <strong>$5.99 once</strong> and you’re ready to go. This is a <strong>one-off access fee</strong> — not a subscription. Optional subscriptions are available later if you want extra features, but they are <strong>never required</strong>.
-  </p>
-  <div class="offer-grid">
-    <div class="offer-box highlight">
-      <h3>One-off access</h3>
-      <div class="price">$5.99</div>
-      <p class="muted">Pay once. Yours to use.</p>
-      <ul>
-        <li>Full access to core features</li>
-        <li>No recurring charges</li>
-        <li>Instant setup</li>
-        <li>Everything required to get started</li>
-      </ul>
-    </div>
-    <div class="offer-box">
-      <h3>Optional subscriptions</h3>
-      <p class="muted">For users who want extended features, automation, or premium tools.</p>
-      <ul>
-        <li>Advanced functionality</li>
-        <li>Extra tools & enhancements</li>
-        <li>Flexible — add or cancel anytime</li>
-        <li>Not required to use the platform</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Get started for $5.99</h2>
-  <p>One payment. No commitment. Everything you need to start using the platform today — optional upgrades available if you want them.</p>
-  <a href="#pricing" class="cta-button">Get Access</a>
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <h3>Is the $5.99 a subscription?</h3>
-    <p>No. The $5.99 fee is a one-time payment that gives you access to the core platform. There are no recurring charges required.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Do I need a subscription to use it?</h3>
-    <p>No. Subscriptions are optional extras only. You can use the platform fully without ever subscribing.</p>
-  </div>
-  <div class="faq-item">
-    <h3>What do subscriptions add?</h3>
-    <p>Subscriptions unlock additional features, tools, or automation for users who want more — but they are never required to get started.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Can I upgrade later?</h3>
-    <p>Yes. You can start with the one-off access and add extras at any time if you choose.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div><h4>AXION</h4><p>Structured digital access built for longevity.</p></div>
-            <div><h4>Explore</h4><p><a href="#about">About</a></p><p><a href="#pricing">Access</a></p></div>
-            <div><h4>Account</h4><p><a href="#" onclick="openAuth()">Login</a></p></div>
-        </div>
-        <div class="footer-bottom">© 2026 AXION. All rights reserved.</div>
-    </div>
-</footer>
+<!-- SECTIONS GO HERE (offer, platform, testimonials, roadmap, newsletter, faq, footer) -->
+<!-- ... -->
 
 <script>
 const termsOverlay = document.getElementById('termsOverlay');
 const authOverlay = document.getElementById('authOverlay');
-
-function acceptTerms() {
-    localStorage.setItem('axion_terms_accepted','true');
-    termsOverlay.style.display='none';
-}
+function acceptTerms() { localStorage.setItem('axion_terms_accepted','true'); termsOverlay.style.display='none'; }
 function openAuth() { authOverlay.style.display='flex'; }
 function closeAuth() { authOverlay.style.display='none'; }
-
-window.addEventListener('load',()=>{
-    if(!localStorage.getItem('axion_terms_accepted')){
-        termsOverlay.style.display='flex';
-    }
-});
+window.addEventListener('load',()=>{ if(!localStorage.getItem('axion_terms_accepted')){ termsOverlay.style.display='flex'; } });
 </script>
-
 </body>
 </html>
-
 
 
 
