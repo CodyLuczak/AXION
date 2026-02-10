@@ -4,1208 +4,935 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AXION — Structured Access Platform</title>
-<meta name="description" content="AXION is a structured digital access platform built for clarity, progression, and long-term value.">
+<meta name="description" content="AXION is a structured, subscription-based digital platform built for clarity, progression, and long-term scale.">
 
-<!-- =========================================================
-     ROOT VARIABLES
-========================================================= -->
 <style>
+/* ------------------------------
+   ROOT & COLORS
+--------------------------------*/
 :root {
     --primary: #6c5cff;
-    --primary-soft: rgba(108,92,255,0.15);
     --secondary: #00d1b2;
     --accent: #ff5c93;
-
     --bg-main: #0f0f14;
     --bg-soft: #171722;
     --bg-card: #1f1f2e;
     --bg-deep: #0b0b10;
-
     --text-main: #eaeaf0;
     --text-muted: #b3b3c6;
-    --text-faint: #7a7a95;
-
-    --radius-xs: 4px;
-    --radius-sm: 8px;
-    --radius-md: 14px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
     --radius-lg: 26px;
-
-    --shadow-soft: 0 10px 30px rgba(0,0,0,0.25);
-    --shadow-hover: 0 18px 50px rgba(0,0,0,0.35);
+    --shadow-soft: 0 6px 20px rgba(0,0,0,0.2);
+    --shadow-medium: 0 12px 30px rgba(0,0,0,0.25);
 }
 
-/* =========================================================
-   GLOBAL RESET
-========================================================= */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* ------------------------------
+   GLOBAL STYLES
+--------------------------------*/
+* { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
     background: var(--bg-main);
     color: var(--text-main);
     line-height: 1.7;
-}
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    background: none;
+    overflow-x: hidden;
 }
 
-/* =========================================================
-   LAYOUT HELPERS
-========================================================= */
-.container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 2.5rem;
-}
-.spacer-xs { height: 1rem; }
-.spacer-sm { height: 2rem; }
-.spacer-md { height: 4rem; }
-.spacer-lg { height: 7rem; }
+/* LINKS & BUTTONS */
+a { color: inherit; text-decoration: none; transition:0.2s ease; }
+a:hover { opacity:0.85; }
+button { font-family:inherit; cursor:pointer; border:none; transition:0.2s ease; }
 
-/* =========================================================
-   HEADER / NAVIGATION
-========================================================= */
+/* CONTAINERS */
+.container { max-width:1440px; margin:0 auto; padding:0 8vw; }
+.grid { display:grid; gap:40px; }
+.grid-2 { grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+.grid-3 { grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+
+/* ------------------------------
+   HEADER / NAV
+--------------------------------*/
 header {
     position: sticky;
     top: 0;
-    z-index: 999;
-    background: rgba(15,15,20,0.92);
-    backdrop-filter: blur(14px);
+    z-index: 1000;
+    background: rgba(15,15,20,0.95);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.nav {
-    height: 82px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.logo {
-    font-size: 1.7rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    padding-left: 0.5rem;
-}
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-}
-.nav-links a {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-}
-.nav-links a:hover {
-    color: var(--text-main);
+.nav { display:flex; justify-content:space-between; align-items:center; height:80px; }
+.logo { font-size:1.8rem; font-weight:900; letter-spacing:2px; color: var(--primary); }
+.nav-links { display:flex; gap:1.8rem; align-items:center; }
+.nav-links a { font-size:0.95rem; color:var(--text-muted); padding:6px 12px; border-radius:8px; }
+.nav-links a:hover { background: rgba(108,92,255,0.15); color:var(--primary); }
+.nav-links button { padding:10px 20px; border-radius:999px; font-weight:600; }
+.btn-primary { background: var(--primary); color:white; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow: var(--shadow-medium); }
+.btn-secondary { background: transparent; border:1px solid rgba(255,255,255,0.15); color:white; }
+.btn-secondary:hover { transform:translateY(-2px); box-shadow: var(--shadow-medium); }
+
+/* MOBILE NAVIGATION */
+@media(max-width:1024px) {
+    .nav { flex-wrap:wrap; gap:12px; }
+    .nav-links { flex-wrap:wrap; justify-content:flex-end; gap:12px; }
 }
 
-/* =========================================================
-   BUTTONS
-========================================================= */
-.btn-primary {
-    padding: 0.85rem 1.8rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--primary), #8b7cff);
-    color: #fff;
-    font-weight: 600;
-    box-shadow: var(--shadow-soft);
-    transition: all 0.25s ease;
-}
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-}
-.btn-secondary {
-    padding: 0.85rem 1.8rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    transition: all 0.25s ease;
-}
-.btn-secondary:hover {
-    background: rgba(255,255,255,0.05);
-}
-
-/* =========================================================
-   HERO
-========================================================= */
+/* ------------------------------
+   HERO SECTION
+--------------------------------*/
 .hero {
     min-height: 95vh;
     display: flex;
     align-items: center;
-    background:
-        radial-gradient(circle at 20% 10%, rgba(108,92,255,0.25), transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(255,92,147,0.15), transparent 45%),
-        var(--bg-main);
-}
-.hero-inner {
-    max-width: 860px;
-}
-.hero h1 {
-    font-size: clamp(2.8rem, 5vw, 4.4rem);
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-}
-.hero p {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    max-width: 720px;
-}
-.hero-actions {
-    margin-top: 3rem;
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-}
-
-/* =========================================================
-   SECTION BASE
-========================================================= */
-section {
-    padding: 7.5rem 0;
-}
-.section-soft { background: var(--bg-soft); }
-.section-deep { background: var(--bg-deep); }
-
-.section-title {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    margin-bottom: 1rem;
-}
-.section-lead {
-    max-width: 760px;
-    color: var(--text-muted);
-    font-size: 1.05rem;
-}
-
-/* =========================================================
-   FEATURE GRID
-========================================================= */
-.grid {
-    display: grid;
-    gap: 2.5rem;
-}
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-.card {
-    background: var(--bg-card);
-    border-radius: var(--radius-md);
-    padding: 2.2rem;
-    box-shadow: var(--shadow-soft);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-}
-.card h3 {
-    margin-top: 0;
-    margin-bottom: 0.6rem;
-}
-.card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-/* =========================================================
-   PRICING / OFFER
-========================================================= */
-.offer-box {
-    border: 2px solid transparent;
-}
-.offer-box.highlight {
-    border-color: var(--primary);
-    background:
-        linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-        linear-gradient(135deg, var(--primary), var(--accent)) border-box;
-}
-.price {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin: 1rem 0;
-}
-
-/* =========================================================
-   DASHBOARD PREVIEW
-========================================================= */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 2.2rem;
-}
-.dashboard-card.locked {
-    opacity: 0.55;
+    background: radial-gradient(circle at top, #1b1b35, #0f0f14 70%);
+    padding: 120px 8vw;
     position: relative;
 }
-.dashboard-card.locked::after {
-    content: "Locked";
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--primary);
-    color: #fff;
-    font-size: 0.7rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 999px;
+.hero-content { max-width:780px; z-index:2; }
+.hero h1 {
+    font-size: clamp(3rem,6vw,4.2rem);
+    margin-bottom: 24px;
+    font-weight:800;
+    line-height:1.05;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero p { font-size:1.25rem; opacity:0.85; margin-bottom:40px; line-height:1.6; }
+.hero-actions { display:flex; gap:1.2rem; flex-wrap:wrap; margin-top:2rem; }
+.hero-actions a { font-weight:600; padding:14px 32px; border-radius:999px; text-decoration:none; }
+
+/* HERO BUTTONS */
+.hero-actions .btn-primary { background: var(--primary); color:white; }
+.hero-actions .btn-primary:hover { transform:translateY(-2px); box-shadow: var(--shadow-medium); }
+.hero-actions .btn-secondary { background: transparent; border:1px solid rgba(255,255,255,0.15); color:white; }
+.hero-actions .btn-secondary:hover { background: rgba(108,92,255,0.15); }
+
+/* HERO BACKGROUND ANIMATION */
+.hero::before {
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at center, rgba(108,92,255,0.15), transparent 70%);
+    opacity:0.4; z-index:1;
+    animation: floatHero 12s ease-in-out infinite alternate;
+}
+@keyframes floatHero {
+    0% { transform: translateY(0px) rotate(0deg);}
+    50% { transform: translateY(-12px) rotate(2deg);}
+    100% { transform: translateY(0px) rotate(0deg);}
 }
 
-/* =========================================================
-   TESTIMONIALS
-========================================================= */
-.testimonial {
-    font-style: italic;
+/* ------------------------------
+   HERO FEATURE CARDS (NEW)
+--------------------------------*/
+.hero-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; margin-top:60px; }
+.hero-card {
+    background: var(--bg-card); padding:28px; border-radius: var(--radius-md);
+    text-align:center; transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
-.testimonial strong {
-    display: block;
-    margin-top: 1rem;
-    font-style: normal;
+.hero-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-medium); }
+.hero-card h3 { font-weight:600; margin-bottom:12px; }
+.hero-card p { font-size:0.95rem; opacity:0.85; line-height:1.5; }
+
+/* ------------------------------
+   ANIMATIONS FOR HERO CARDS
+--------------------------------*/
+.hero-card::before {
+    content:""; position:absolute; width:100%; height:100%; top:0; left:0;
+    border-radius: var(--radius-md); box-shadow:0 0 30px rgba(108,92,255,0.2);
+    opacity:0; transition:opacity 0.4s ease;
+}
+.hero-card:hover::before { opacity:1; }
+
+/* ------------------------------
+   CUSTOM SCROLLBAR
+--------------------------------*/
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius:8px; }
+
+/* ------------------------------
+   RESPONSIVE HERO
+--------------------------------*/
+@media(max-width:768px){
+    .hero { padding:80px 5vw; }
+    .hero h1 { font-size:clamp(2.2rem,8vw,3rem); }
+    .hero p { font-size:1rem; }
 }
 
-/* =========================================================
-   ROADMAP
-========================================================= */
-.roadmap-step {
-    border-left: 3px solid var(--primary);
-    padding-left: 1.5rem;
+/* ------------------------------
+   ANIMATION DELAYS
+--------------------------------*/
+.fade-in { opacity:0; transform:translateY(20px); animation:fadeInUp 0.8s forwards; }
+.fade-in.delay-1 { animation-delay:0.2s; }
+.fade-in.delay-2 { animation-delay:0.4s; }
+.fade-in.delay-3 { animation-delay:0.6s; }
+.fade-in.delay-4 { animation-delay:0.8s; }
+
+@keyframes fadeInUp {
+    to { opacity:1; transform:translateY(0px);}
 }
 
-/* =========================================================
-   FAQ
-========================================================= */
-.faq-item {
-    max-width: 820px;
+/* ------------------------------
+   TERMS & AUTH MODALS
+--------------------------------*/
+.terms-overlay, .auth-overlay {
+    position:fixed; inset:0; background: rgba(10,10,16,0.95);
+    display:none; align-items:center; justify-content:center; z-index:3000;
 }
-.faq-item h4 {
-    margin-bottom: 0.4rem;
+.terms-box, .auth-box {
+    background: var(--bg-card); max-width: 820px; width:100%; padding:3rem;
+    border-radius: var(--radius-lg); overflow-y:auto;
 }
+.auth-box { max-width:420px; }
+.auth-box input { width:100%; padding:0.8rem; margin-bottom:1rem; border-radius: var(--radius-sm); background:#12121a; border:1px solid rgba(255,255,255,0.1); color:white; }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-footer {
-    padding: 6rem 0 2.5rem;
-    background: var(--bg-deep);
-}
-.footer-bottom {
-    margin-top: 3rem;
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-faint);
-}
+/* ADDITIONAL STYLING FOR LATER PARTS */
+:root { --accent-gradient: linear-gradient(90deg, var(--primary), var(--accent)); }
+
 </style>
 </head>
-
 <body>
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<!-- TERMS MODAL -->
+<div class="terms-overlay" id="termsOverlay">
+    <div class="terms-box">
+        <h2>Terms and Conditions</h2>
+        <p>By accessing AXION, you agree to comply with these Terms and Conditions. AXION provides structured, subscription-based digital access. Features, availability, and access levels may evolve as the platform grows.</p>
+        <p>Accounts are personal and may not be shared. Subscription access does not grant ownership of any platform assets.</p>
+        <p>AXION reserves the right to modify, suspend, or discontinue any aspect of the platform when necessary.</p>
+        <div style="margin-top:2.5rem;text-align:right;">
+            <button class="btn btn-primary" onclick="acceptTerms()">I Accept</button>
+        </div>
+    </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="authOverlay">
+    <div class="auth-box">
+        <h3>Account Access</h3>
+        <input type="email" placeholder="Email address">
+        <input type="password" placeholder="Password">
+        <button class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Continue</button>
+        <button class="btn btn-secondary" style="width:100%;margin-top:1rem;" onclick="closeAuth()">Close</button>
+    </div>
+</div>
+
+<!-- HEADER -->
 <header>
     <div class="container nav">
-        <div class="logo">AXION</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
+        <div class="logo fade-in delay-1">AXION</div>
+        <nav class="nav-links fade-in delay-2">
+            <a href="#about">What Is AXION</a>
             <a href="#platform">Platform</a>
             <a href="#pricing">Access</a>
             <a href="#roadmap">Roadmap</a>
-            <button class="btn-secondary">Login</button>
-            <button class="btn-primary">Sign Up</button>
-        </div>
+            <button class="btn btn-secondary" onclick="openAuth()">Login</button>
+            <button class="btn btn-primary" onclick="openAuth()">Sign Up</button>
+        </nav>
     </div>
 </header>
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- HERO -->
 <section class="hero">
-    <div class="container">
-        <div class="hero-inner">
-            <h1>Structured Access.<br>Built for Longevity.</h1>
-            <p>
-                AXION is a controlled digital platform designed for clarity,
-                progression, and long-term value. No noise. No fluff.
-                Just structured access done properly.
-            </p>
-            <div class="hero-actions">
-                <a href="#pricing" class="btn-primary">Get Access</a>
-                <a href="#platform" class="btn-secondary">Explore Platform</a>
-            </div>
+    <div class="hero-content fade-in delay-1">
+        <h1>Structured Access.<br>Built for Longevity.</h1>
+        <p>AXION is a controlled digital platform delivering clarity, progression, and long-term value through clearly defined access levels.</p>
+        <div class="hero-actions">
+            <a href="#pricing" class="btn-primary">View Access Levels</a>
+            <a href="#about" class="btn-secondary">Explore Platform</a>
+        </div>
+    </div>
+
+    <!-- HERO FEATURE CARDS -->
+    <div class="hero-cards fade-in delay-3">
+        <div class="hero-card">
+            <h3>Clarity First</h3>
+            <p>Every interaction is designed to be intuitive and straightforward for maximum clarity.</p>
+        </div>
+        <div class="hero-card">
+            <h3>Progressive Unlocks</h3>
+            <p>Access features gradually as you engage with the platform, keeping your journey structured.</p>
+        </div>
+        <div class="hero-card">
+            <h3>Future Ready</h3>
+            <p>Built to adapt and scale as new tools and technologies are introduced.</p>
         </div>
     </div>
 </section>
 
-<!-- =========================================================
-     BUILT WITH INTENTION
-========================================================= -->
-<section class="section-soft">
-    <div class="container">
-        <h2 class="section-title">Built with intention</h2>
-        <p class="section-lead">
-            Every part of AXION exists for a reason. Nothing is accidental.
-        </p>
+<script>
+const termsOverlay = document.getElementById('termsOverlay');
+const authOverlay = document.getElementById('authOverlay');
 
-        <div class="spacer-md"></div>
+function acceptTerms() {
+    localStorage.setItem('axion_terms_accepted','true');
+    termsOverlay.style.display='none';
+}
+function openAuth() { authOverlay.style.display='flex'; }
+function closeAuth() { authOverlay.style.display='none'; }
 
-        <div class="grid grid-3">
-            <div class="card">
-                <h3>Clarity First</h3>
-                <p>Everything is understandable at a glance.</p>
-            </div>
-            <div class="card">
-                <h3>Controlled Access</h3>
-                <p>Progression is deliberate, not chaotic.</p>
-            </div>
-            <div class="card">
-                <h3>Designed to Scale</h3>
-                <p>The system grows without breaking.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-<section id="about">
-    <div class="container">
-        <h2 class="section-title">What is AXION?</h2>
-        <p class="section-lead">
-            AXION is for people who prefer systems over hype,
-            structure over randomness, and long-term thinking.
-        </p>
-    </div>
-</section>
-
-<!-- =========================================================
-     PLATFORM
-========================================================= -->
-<section id="platform" class="section-soft">
-    <div class="container">
-        <h2 class="section-title">The Platform</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="card"><h3>Modules</h3><p>Expandable, independent systems.</p></div>
-            <div class="card"><h3>Progression</h3><p>Access evolves as you do.</p></div>
-            <div class="card"><h3>Longevity</h3><p>Built for years, not trends.</p></div>
-            <div class="card"><h3>Stability</h3><p>Predictable and reliable behavior.</p></div>
-            <div class="card"><h3>Security</h3><p>Controlled environments.</p></div>
-            <div class="card"><h3>Future Expansion</h3><p>New layers integrate cleanly.</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     PRICING
-========================================================= -->
-<section id="pricing">
-    <div class="container">
-        <h2 class="section-title">Access & Pricing</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="card offer-box highlight">
-                <h3>One-Off Access</h3>
-                <div class="price">$5.99</div>
-                <p>Pay once. No subscription required.</p>
-                <ul>
-                    <li>Core platform access</li>
-                    <li>No recurring fees</li>
-                    <li>Instant entry</li>
-                </ul>
-            </div>
-
-            <div class="card offer-box">
-                <h3>Optional Subscription</h3>
-                <div class="price">$—</div>
-                <p>Only if you want more.</p>
-                <ul>
-                    <li>Advanced tools</li>
-                    <li>Extended features</li>
-                    <li>Cancel anytime</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     DASHBOARD PREVIEW
-========================================================= -->
-<section class="section-soft">
-    <div class="container">
-        <h2 class="section-title">Dashboard Preview</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="dashboard-grid">
-            <div class="card">Core Module</div>
-            <div class="card">Progress Tracker</div>
-            <div class="card locked">Advanced Tools</div>
-            <div class="card locked">Automation</div>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     TESTIMONIALS
-========================================================= -->
-<section>
-    <div class="container">
-        <h2 class="section-title">Early Feedback</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="card testimonial">
-                “Finally something that feels intentional.”
-                <strong>— Early User</strong>
-            </div>
-            <div class="card testimonial">
-                “No noise. No pressure. Just structure.”
-                <strong>— Member</strong>
-            </div>
-            <div class="card testimonial">
-                “This actually feels sustainable.”
-                <strong>— Beta Access</strong>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     ROADMAP
-========================================================= -->
-<section id="roadmap" class="section-soft">
-    <div class="container">
-        <h2 class="section-title">Roadmap</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="roadmap-step">
-                <h4>Phase 1</h4>
-                <p>Core platform launch</p>
-            </div>
-            <div class="roadmap-step">
-                <h4>Phase 2</h4>
-                <p>Expanded modules</p>
-            </div>
-            <div class="roadmap-step">
-                <h4>Phase 3</h4>
-                <p>Advanced systems</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     FAQ
-========================================================= -->
-<section>
-    <div class="container">
-        <h2 class="section-title">FAQ</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="faq-item">
-            <h4>Is $5.99 a subscription?</h4>
-            <p>No. It’s a one-time payment.</p>
-        </div>
-
-        <div class="faq-item">
-            <h4>Do I need a subscription?</h4>
-            <p>No. Subscriptions are optional.</p>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-<footer>
-    <div class="container">
-        <p>AXION — Structured Digital Access</p>
-        <div class="footer-bottom">
-            © 2026 AXION. All rights reserved.
-        </div>
-    </div>
-</footer>
+window.addEventListener('load',()=>{
+    if(!localStorage.getItem('axion_terms_accepted')){
+        termsOverlay.style.display='flex';
+    }
+});
+</script>
 
 </body>
 </html>
-<!-- =========================================================
-     EXTENDED VALUE SECTION
-========================================================= -->
-<section class="section-deep">
+<!-- ------------------------------
+     PART 2: ABOUT & PLATFORM
+---------------------------------->
+
+<!-- BUILT WITH INTENTION -->
+<section class="section alt fade-in delay-1" id="about">
     <div class="container">
-        <h2 class="section-title">Why AXION Exists</h2>
-        <p class="section-lead">
-            AXION was created to remove chaos from digital platforms and replace
-            it with clarity, intention, and long-term structure.
-        </p>
+        <h2>Built with Intention</h2>
+        <p>This isn’t filler content. This section exists to explain what your brand stands for and why it’s different — clearly, confidently, and without noise.</p>
+        <div class="section-grid">
+            <div class="card fade-in delay-2">
+                <h3>Clarity First</h3>
+                <p>Everything is designed to be understood at a glance — no clutter, no unnecessary steps.</p>
+            </div>
+            <div class="card fade-in delay-3">
+                <h3>Designed to Feel Solid</h3>
+                <p>Spacing, typography, and structure are intentional so the site feels premium and trustworthy.</p>
+            </div>
+            <div class="card fade-in delay-4">
+                <h3>Built to Grow</h3>
+                <p>This layout scales cleanly as you add features, products, or content later.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <div class="spacer-md"></div>
+<!-- ABOUT AXION -->
+<section class="section fade-in delay-1">
+    <div class="container grid grid-2">
+        <div>
+            <h2>What Is AXION</h2>
+            <p>AXION is designed for users who value structure over noise. Every system, feature, and interaction is intentionally layered to guide the user journey.</p>
+            <p>Progression is earned, access is controlled, and value is preserved for long-term engagement.</p>
+        </div>
+        <div>
+            <h3>Core Principles</h3>
+            <ul>
+                <li>Controlled access by design</li>
+                <li>Clear subscription progression</li>
+                <li>Long-term scalability</li>
+                <li>Stability over trends</li>
+                <li>Premium UX focus</li>
+                <li>Structured learning curve</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
+<!-- PLATFORM SECTION -->
+<section class="soft section fade-in delay-1" id="platform">
+    <div class="container">
+        <h2>The AXION Platform</h2>
+        <p class="lead">Our platform combines structure with flexibility, allowing members to unlock features progressively while keeping the experience clean and intuitive.</p>
         <div class="grid grid-3">
-            <div class="card">
-                <h3>No Artificial Urgency</h3>
-                <p>
-                    AXION does not rely on countdown timers, pressure tactics,
-                    or manipulative scarcity models. Access is stable and transparent.
-                </p>
+            <div class="card fade-in delay-2">
+                <h3>Modular Systems</h3>
+                <p>Each component is built to expand without disrupting structure, so adding new tools never feels overwhelming.</p>
             </div>
-            <div class="card">
-                <h3>Intentional Design</h3>
-                <p>
-                    Every feature is added only when it serves a purpose.
-                    Nothing exists to inflate perceived value.
-                </p>
+            <div class="card fade-in delay-3">
+                <h3>Member Progression</h3>
+                <p>Access levels unlock deeper functionality over time, rewarding engagement and maintaining value.</p>
             </div>
-            <div class="card">
-                <h3>Long-Term Thinking</h3>
-                <p>
-                    The platform is built to evolve over years, not weeks.
-                    Sustainability is prioritized over rapid churn.
-                </p>
+            <div class="card fade-in delay-4">
+                <h3>Future Ready</h3>
+                <p>AXION is engineered for upcoming tools, integrations, and evolving user needs.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- =========================================================
-     DEEP PLATFORM BREAKDOWN
-========================================================= -->
-<section>
+<!-- PLATFORM DETAILS CARDS -->
+<section class="section fade-in delay-1">
     <div class="container">
-        <h2 class="section-title">Platform Architecture</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="card">
-                <h3>Core Layer</h3>
-                <p>
-                    The foundation of AXION. This layer provides essential access,
-                    navigation, and baseline functionality required for all users.
-                </p>
+        <h2>Features in Focus</h2>
+        <p class="lead">We highlight the core elements that make AXION unique, giving your users confidence and clarity.</p>
+        <div class="section-grid">
+            <div class="card fade-in delay-2">
+                <h3>Analytics Dashboard</h3>
+                <p>Track your usage, monitor progress, and measure outcomes with an intuitive interface and actionable insights.</p>
             </div>
-            <div class="card">
-                <h3>Expansion Layer</h3>
-                <p>
-                    Optional systems that integrate cleanly without disrupting
-                    the core experience. Accessed only if required.
-                </p>
+            <div class="card fade-in delay-3">
+                <h3>Access Control</h3>
+                <p>Customize permissions and unlock levels for different types of users while maintaining security and clarity.</p>
             </div>
-            <div class="card">
-                <h3>Advanced Layer</h3>
-                <p>
-                    Reserved for future development. This layer supports
-                    high-level automation, optimization, and advanced workflows.
-                </p>
+            <div class="card fade-in delay-4">
+                <h3>Custom Notifications</h3>
+                <p>Stay informed about important updates, unlocks, and platform changes without noise or distraction.</p>
+            </div>
+            <div class="card fade-in delay-5">
+                <h3>Integration Ready</h3>
+                <p>Plug AXION into your existing workflow or tools seamlessly, supporting both current and future systems.</p>
+            </div>
+            <div class="card fade-in delay-6">
+                <h3>Community & Support</h3>
+                <p>Engage with fellow members, share insights, and receive guidance directly from AXION support channels.</p>
+            </div>
+            <div class="card fade-in delay-7">
+                <h3>Responsive Across Devices</h3>
+                <p>Whether desktop, tablet, or mobile, AXION provides a consistent, premium experience everywhere.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- =========================================================
-     USER JOURNEY SECTION
-========================================================= -->
-<section class="section-soft">
+<!-- SUBSCRIPTION INTRO (PREVIEW) -->
+<section class="offer fade-in delay-1" id="pricing">
     <div class="container">
-        <h2 class="section-title">User Journey</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="card">
-                <h3>Step 1 — Entry</h3>
-                <p>
-                    Users gain access through a one-time $5.99 payment.
-                    No subscriptions are required to begin.
-                </p>
+        <h2>Access Levels & Subscriptions</h2>
+        <p class="lead">Pay once for the core platform or opt for additional subscriptions to unlock extended features. Subscriptions are entirely optional.</p>
+        <div class="offer-grid">
+            <div class="offer-box highlight fade-in delay-2">
+                <h3>One-off Access</h3>
+                <div class="price">$5.99</div>
+                <p class="muted">Single payment grants you complete access to the core platform — no recurring charges required.</p>
+                <ul>
+                    <li>Full core functionality</li>
+                    <li>Immediate access</li>
+                    <li>All essential features included</li>
+                </ul>
             </div>
-            <div class="card">
-                <h3>Step 2 — Orientation</h3>
-                <p>
-                    Clear onboarding explains structure, navigation,
-                    and available tools without overload.
-                </p>
-            </div>
-            <div class="card">
-                <h3>Step 3 — Progression</h3>
-                <p>
-                    Users advance at their own pace, unlocking
-                    optional systems when relevant.
-                </p>
+            <div class="offer-box fade-in delay-3">
+                <h3>Optional Subscription</h3>
+                <p class="muted">For users who want extra tools, automation, and premium features beyond the core platform.</p>
+                <ul>
+                    <li>Advanced analytics</li>
+                    <li>Custom automation tools</li>
+                    <li>Flexible & cancellable</li>
+                    <li>Enhanced community access</li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- =========================================================
-     SUBSCRIPTION DETAILS (OPTIONAL)
-========================================================= -->
-<section>
+<!-- CTA SECTION -->
+<section class="cta-section fade-in delay-1">
     <div class="container">
-        <h2 class="section-title">Optional Subscriptions Explained</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="grid grid-3">
-            <div class="card">
-                <h3>Completely Optional</h3>
-                <p>
-                    Subscriptions are never required to use AXION.
-                    They exist only for users who want extended functionality.
-                </p>
-            </div>
-            <div class="card">
-                <h3>No Locked Core Features</h3>
-                <p>
-                    The core experience remains fully accessible
-                    regardless of subscription status.
-                </p>
-            </div>
-            <div class="card">
-                <h3>Cancel Anytime</h3>
-                <p>
-                    Subscriptions can be started or stopped
-                    without penalties or restrictions.
-                </p>
-            </div>
-        </div>
+        <h2>Get started today for $5.99</h2>
+        <p>One payment. No commitment. Everything you need to start using AXION today — optional upgrades available at any time.</p>
+        <a href="#pricing" class="cta-button">Get Access</a>
     </div>
-</section>
-
-<!-- =========================================================
-     EXTENDED FAQ
-========================================================= -->
-<section class="section-soft">
-    <div class="container">
-        <h2 class="section-title">More Questions</h2>
-
-        <div class="spacer-md"></div>
-
-        <div class="faq-item">
-            <h4>Why is the entry price so low?</h4>
-            <p>
-                The $5.99 fee exists to filter genuine users
-                while remaining accessible to everyone.
-            </p>
-        </div>
-
-        <div class="faq-item">
-            <h4>Is AXION finished?</h4>
-            <p>
-                AXION is actively evolving, but only expands
-                when additions improve clarity and stability.
-            </p>
-        </div>
-
-        <div class="faq-item">
-            <h4>Will pricing change?</h4>
-            <p>
-                Existing users will always retain access
-                to features included at the time of entry.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- =========================================================
-     FINAL CALL TO ACTION
-========================================================= -->
-<section class="section-deep">
-    <div class="container">
-        <h2 class="section-title">Access AXION</h2>
-        <p class="section-lead">
-            One-time access. Optional expansion. Built to last.
-        </p>
-
-        <div class="spacer-sm"></div>
-
-        <a href="#pricing" class="btn-primary">Get Started for $5.99</a>
-    </div>
-</section>
-<!-- ===========================
-     EXTENDED FEATURES & SUBSCRIPTIONS
-=========================== -->
-<section class="section alt" id="subscriptions">
-  <h2>Enhance Your AXION Experience</h2>
-  <p>Optional subscriptions unlock advanced tools, automation, and premium features for those who want to take full control and grow faster.</p>
-  
-  <div class="section-grid">
-    <div class="card">
-      <h3>Automation Tools</h3>
-      <p>Streamline repetitive actions with built-in automation that adapts to your workflow. Spend less time on routine tasks and more on growth.</p>
-    </div>
-    <div class="card">
-      <h3>Analytics & Insights</h3>
-      <p>Detailed dashboards show your progress, usage trends, and feature engagement to optimize your time and resources.</p>
-    </div>
-    <div class="card">
-      <h3>Custom Workspaces</h3>
-      <p>Create fully customizable environments tailored to your goals — with widgets, layouts, and access controls all in one place.</p>
-    </div>
-    <div class="card">
-      <h3>Priority Support</h3>
-      <p>Get fast, direct help whenever you need it. Premium members skip the queue and get personal guidance from our support team.</p>
-    </div>
-  </div>
-
-  <!-- SUBSCRIPTION OPTIONS -->
-  <div class="offer-grid" style="margin-top:60px;">
-    <div class="offer-box highlight">
-      <h3>Pro Access</h3>
-      <div class="price">$14.99/mo</div>
-      <p class="muted">Unlock the full suite of advanced features.</p>
-      <ul>
-        <li>Automation tools</li>
-        <li>Advanced analytics</li>
-        <li>Custom workspaces</li>
-        <li>Priority support</li>
-      </ul>
-      <a href="#signup" class="btn-primary" style="margin-top:15px; display:inline-block;">Subscribe</a>
-    </div>
-    <div class="offer-box">
-      <h3>Starter Boost</h3>
-      <div class="price">$9.99/mo</div>
-      <p class="muted">Get a taste of advanced features to grow efficiently.</p>
-      <ul>
-        <li>Limited automation</li>
-        <li>Basic analytics</li>
-        <li>1 custom workspace</li>
-        <li>Email support</li>
-      </ul>
-      <a href="#signup" class="btn-secondary" style="margin-top:15px; display:inline-block;">Subscribe</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     ROADMAP & FUTURE PLANS
-=========================== -->
-<section class="section" id="roadmap">
-  <h2>Our Roadmap</h2>
-  <p>We’re constantly building new tools and features. Here’s what’s coming next for AXION:</p>
-
-  <div class="section-grid">
-    <div class="card">
-      <h3>Q1 2026</h3>
-      <p>Launch of advanced analytics, new dashboard widgets, and enhanced workflow automation.</p>
-    </div>
-    <div class="card">
-      <h3>Q2 2026</h3>
-      <p>Custom theme support, expanded integrations with third-party tools, and additional subscription tiers.</p>
-    </div>
-    <div class="card">
-      <h3>Q3 2026</h3>
-      <p>Mobile app release, offline mode for premium users, and multi-workspace synchronization.</p>
-    </div>
-    <div class="card">
-      <h3>Q4 2026</h3>
-      <p>AI-driven suggestions, collaboration features, and fully interactive tutorials for all users.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     TESTIMONIALS
-=========================== -->
-<section class="section alt" id="testimonials">
-  <h2>What Our Users Say</h2>
-  <p>AXION isn’t just a platform — it’s a structured ecosystem that our members love.</p>
-
-  <div class="section-grid">
-    <div class="card">
-      <p>"AXION transformed how I manage my projects. The subscription tools are incredibly intuitive and save me hours every week."</p>
-      <h3>- Jordan M.</h3>
-    </div>
-    <div class="card">
-      <p>"The optional upgrades make such a difference. I love the automation tools — nothing else on the market is this clean."</p>
-      <h3>- Casey R.</h3>
-    </div>
-    <div class="card">
-      <p>"Everything feels premium. The platform is clear, structured, and makes progression rewarding. I recommend AXION to everyone."</p>
-      <h3>- Taylor K.</h3>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     BLOG / INSIGHTS
-=========================== -->
-<section class="section" id="blog">
-  <h2>Insights & Updates</h2>
-  <p>Learn from our team, explore tips, and stay ahead with the latest digital strategies.</p>
-
-  <div class="section-grid">
-    <div class="card">
-      <h3>How Structured Access Boosts Productivity</h3>
-      <p>Discover why having clear access tiers and tools can help you stay focused and grow faster than ever.</p>
-      <a href="#" class="btn-secondary" style="margin-top:12px;">Read More</a>
-    </div>
-    <div class="card">
-      <h3>Top 5 Automation Tools in 2026</h3>
-      <p>Our experts highlight the most powerful tools to automate your workflow and save hours every week.</p>
-      <a href="#" class="btn-secondary" style="margin-top:12px;">Read More</a>
-    </div>
-    <div class="card">
-      <h3>Optimizing Workspaces for Growth</h3>
-      <p>Custom workspaces let you tailor the platform to your needs. Learn tips for making them most effective.</p>
-      <a href="#" class="btn-secondary" style="margin-top:12px;">Read More</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     CALL TO ACTION 2
-=========================== -->
-<section class="cta-section">
-  <h2>Start Your Journey with AXION Today</h2>
-  <p>Just $5.99 gives you instant access. Add optional upgrades whenever you want and unlock everything at your pace.</p>
-  <a href="#signup" class="cta-button">Get Started Now</a>
 </section>
 
 <script>
-// Optional: smooth scrolling for internal links
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-  anchor.addEventListener('click', function(e){
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if(target){
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Fade-in animations for Part 2
+const fadeElems = document.querySelectorAll('.fade-in');
+fadeElems.forEach((el, i) => {
+    setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+    }, i * 200);
+});
+</script>
+<!-- ------------------------------
+     PART 3: FAQ, DASHBOARD & SUBSCRIPTIONS
+---------------------------------->
+
+<!-- FAQ SECTION -->
+<section class="faq fade-in delay-1">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item fade-in delay-2">
+            <h3>Is the $5.99 a subscription?</h3>
+            <p>No. The $5.99 fee is a one-time payment that gives you access to the core platform. There are no recurring charges required.</p>
+        </div>
+
+        <div class="faq-item fade-in delay-3">
+            <h3>Do I need a subscription to use AXION?</h3>
+            <p>No. Subscriptions are optional extras only. You can use the platform fully without ever subscribing.</p>
+        </div>
+
+        <div class="faq-item fade-in delay-4">
+            <h3>What do subscriptions add?</h3>
+            <p>Subscriptions unlock additional features, automation tools, and premium content for users who want more — but they are never required.</p>
+        </div>
+
+        <div class="faq-item fade-in delay-5">
+            <h3>Can I upgrade later?</h3>
+            <p>Yes. You can start with one-off access and add optional subscriptions at any time if you choose to enhance your experience.</p>
+        </div>
+
+        <div class="faq-item fade-in delay-6">
+            <h3>Is my data secure?</h3>
+            <p>AXION follows strict data protection protocols and does not share personal information without consent. Security is integrated into every level of the platform.</p>
+        </div>
+
+        <div class="faq-item fade-in delay-7">
+            <h3>Can I cancel a subscription?</h3>
+            <p>Absolutely. Subscriptions are flexible and can be canceled at any time. Your core platform access remains unaffected.</p>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD / SUBSCRIPTION SECTION -->
+<section class="dashboard-section fade-in delay-1">
+    <div class="container">
+        <div class="dashboard-header">
+            <h2>Your AXION Dashboard</h2>
+            <p class="dashboard-sub">See your progress, subscriptions, and unlocked features at a glance.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card fade-in delay-2">
+                <h3>Core Access</h3>
+                <p>One-off payment access — unlocked all essential features.</p>
+                <span class="subscription-badge">Active</span>
+            </div>
+
+            <div class="dashboard-card locked fade-in delay-3">
+                <h3>Premium Tools</h3>
+                <p>Automation and advanced analytics for members who opt for the subscription.</p>
+                <button class="btn btn-primary upgrade-btn">Upgrade</button>
+            </div>
+
+            <div class="dashboard-card fade-in delay-4">
+                <h3>Community Insights</h3>
+                <p>Access insights from other members, view discussions, and share tips.</p>
+                <span class="subscription-badge">Included</span>
+            </div>
+
+            <div class="dashboard-card locked fade-in delay-5">
+                <h3>Custom Notifications</h3>
+                <p>Receive tailored alerts and updates based on your preferences — subscription feature.</p>
+                <button class="btn btn-primary upgrade-btn">Upgrade</button>
+            </div>
+
+            <div class="dashboard-card fade-in delay-6">
+                <h3>Integration Hub</h3>
+                <p>Connect AXION with other tools and platforms for a unified workflow.</p>
+                <span class="subscription-badge">Included</span>
+            </div>
+
+            <div class="dashboard-card locked fade-in delay-7">
+                <h3>Advanced Analytics</h3>
+                <p>Deep insights into your usage, progress, and engagement trends.</p>
+                <button class="btn btn-primary upgrade-btn">Upgrade</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUBSCRIPTION CTA SECTION -->
+<section class="cta-section fade-in delay-1">
+    <div class="container">
+        <h2>Unlock Premium Features</h2>
+        <p>Upgrade your AXION experience for advanced tools, automation, and priority community access. Optional subscription, cancel anytime.</p>
+        <a href="#pricing" class="cta-button">Upgrade Now</a>
+    </div>
+</section>
+
+<!-- FEATURE HIGHLIGHTS CARDS -->
+<section class="section soft fade-in delay-1">
+    <div class="container">
+        <h2>Why Upgrade?</h2>
+        <p class="lead">These premium features give you more control, insights, and efficiency across AXION.</p>
+        <div class="section-grid">
+            <div class="card fade-in delay-2">
+                <h3>Automation Tools</h3>
+                <p>Save time and automate recurring tasks with precision and clarity.</p>
+            </div>
+            <div class="card fade-in delay-3">
+                <h3>Advanced Analytics</h3>
+                <p>Gain actionable insights into trends, progress, and platform usage.</p>
+            </div>
+            <div class="card fade-in delay-4">
+                <h3>Community Priority</h3>
+                <p>Get early access to new features and support within the member community.</p>
+            </div>
+            <div class="card fade-in delay-5">
+                <h3>Customizable Dashboards</h3>
+                <p>Tailor your dashboard view to highlight what matters most to you.</p>
+            </div>
+            <div class="card fade-in delay-6">
+                <h3>Integration Flexibility</h3>
+                <p>Connect AXION to your preferred tools and workflows effortlessly.</p>
+            </div>
+            <div class="card fade-in delay-7">
+                <h3>Notifications & Alerts</h3>
+                <p>Receive smart notifications to stay informed without distraction.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Animate dashboard cards
+const dashCards = document.querySelectorAll('.dashboard-card');
+dashCards.forEach((card, i) => {
+    setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    }, i * 250);
+});
+
+// Animate FAQ items
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach((item, i) => {
+    setTimeout(() => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+    }, i * 200);
+});
+</script>
+<!-- ------------------------------
+     PART 4: TESTIMONIALS & ROADMAP
+---------------------------------->
+
+<!-- TESTIMONIALS SECTION -->
+<section class="section soft fade-in delay-1">
+    <div class="container">
+        <h2>What Our Users Say</h2>
+        <p class="lead">AXION is built to provide structure, clarity, and progress — but don’t just take our word for it.</p>
+        <div class="section-grid">
+
+            <div class="card fade-in delay-2">
+                <h3>Jordan P.</h3>
+                <p>"AXION transformed the way I approach digital tools. Everything is structured and intuitive — I can focus on growth instead of clutter."</p>
+            </div>
+
+            <div class="card fade-in delay-3">
+                <h3>Samira L.</h3>
+                <p>"The one-off access was perfect. No subscriptions required, but the premium features are an incredible upgrade."</p>
+            </div>
+
+            <div class="card fade-in delay-4">
+                <h3>Alex T.</h3>
+                <p>"I love the dashboard! Seeing my progress and subscription features at a glance makes AXION feel like a true productivity companion."</p>
+            </div>
+
+            <div class="card fade-in delay-5">
+                <h3>Riley K.</h3>
+                <p>"The integrations and automation tools are game-changers. I finally feel in control of my workflow."</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP SECTION -->
+<section class="section fade-in delay-1">
+    <div class="container">
+        <h2>AXION Roadmap</h2>
+        <p class="lead">We are committed to structured growth. Here’s what’s coming next on the AXION journey.</p>
+
+        <div class="roadmap">
+            <div class="roadmap-step fade-in delay-2">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Initial Launch</h3>
+                    <p>Core access features, structured dashboard, and essential tools released for all users.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-in delay-3">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Premium Features</h3>
+                    <p>Automation tools, advanced analytics, and priority community features added for subscribers.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-in delay-4">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Integrations</h3>
+                    <p>Connect AXION with third-party platforms and tools for seamless workflow management.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-in delay-5">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Enhanced Customization</h3>
+                    <p>Custom dashboards, notification preferences, and advanced reporting for premium users.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-in delay-6">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Future Tools</h3>
+                    <p>We continue to add features based on member feedback, ensuring AXION grows with your needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP & TESTIMONIALS STYLES -->
+<style>
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 60px;
+}
+.roadmap-step {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease-out;
+}
+.step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(108,92,255,0.1);
+    width: 60px;
+    height: 60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.step-content h3 {
+    margin-bottom: 0.4rem;
+    font-weight:600;
+}
+.step-content p {
+    opacity:0.85;
+    line-height:1.5;
+}
+.fade-in {
+    opacity:0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+    opacity:1;
+    transform: translateY(0);
+}
+</style>
+
+<script>
+// Animate roadmap steps and testimonial cards when visible
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+};
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+    entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+    });
+}, appearOptions);
+
+faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+});
+</script>
+
+<!-- INTERACTIVE FEATURE CARDS -->
+<section class="section alt fade-in delay-1">
+    <div class="container">
+        <h2>Interactive Features</h2>
+        <p class="lead">Test out some of AXION’s features interactively before upgrading.</p>
+        <div class="section-grid">
+
+            <div class="card hover-scale fade-in delay-2">
+                <h3>Task Prioritization</h3>
+                <p>Drag-and-drop tasks to organize and visualize your priorities.</p>
+            </div>
+
+            <div class="card hover-scale fade-in delay-3">
+                <h3>Progress Tracker</h3>
+                <p>View your unlocked features and progression in a dynamic timeline.</p>
+            </div>
+
+            <div class="card hover-scale fade-in delay-4">
+                <h3>Subscription Preview</h3>
+                <p>See exactly what you get if you choose premium access before committing.</p>
+            </div>
+
+            <div class="card hover-scale fade-in delay-5">
+                <h3>Interactive Dashboard</h3>
+                <p>Rearrange widgets, see live updates, and personalize your workspace.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+.hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-scale:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(108,92,255,0.15);
+}
+</style>
+<!-- ------------------------------
+     PART 5: SUBSCRIPTION & EMAIL CAPTURE
+---------------------------------->
+
+<!-- SUBSCRIPTION / NEWSLETTER SECTION -->
+<section class="section soft fade-in delay-1">
+    <div class="container">
+        <h2>Stay Updated with AXION</h2>
+        <p class="lead">Subscribe to receive platform updates, premium feature announcements, and exclusive tips.</p>
+        <div class="subscription-container">
+            <input type="email" placeholder="Enter your email" id="subscriberEmail">
+            <button class="btn btn-primary" onclick="subscribeEmail()">Subscribe</button>
+        </div>
+        <p id="subscriptionMessage" style="margin-top:1rem; color: var(--secondary); font-weight:500;"></p>
+    </div>
+</section>
+
+<!-- SUBSCRIPTION STYLES -->
+<style>
+.subscription-container {
+    display:flex;
+    max-width: 500px;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+.subscription-container input {
+    flex:1;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-md);
+    border:1px solid rgba(255,255,255,0.1);
+    background: var(--bg-card);
+    color: white;
+    font-size:1rem;
+}
+.subscription-container button {
+    padding: 0.8rem 1.6rem;
+    font-weight:600;
+    border-radius: var(--radius-lg);
+}
+</style>
+
+<script>
+function subscribeEmail() {
+    const emailInput = document.getElementById('subscriberEmail');
+    const message = document.getElementById('subscriptionMessage');
+    const email = emailInput.value.trim();
+    if(email && email.includes('@')) {
+        message.textContent = "Thanks for subscribing! You’ll get updates soon.";
+        emailInput.value = '';
+        // TODO: Connect to backend API or email provider
+        console.log("Subscribed email:", email);
+    } else {
+        message.textContent = "Please enter a valid email address.";
     }
-  });
-});
-</script>
-<!-- ===========================
-     DASHBOARD PREVIEW
-=========================== -->
-<section class="dashboard-section" id="dashboard">
-  <div class="dashboard-header">
-    <h2>Your AXION Dashboard</h2>
-    <p class="dashboard-sub">Manage your access, track progress, and unlock new features seamlessly.</p>
-  </div>
-  <div class="dashboard-grid">
-    <div class="dashboard-card">
-      <h3>Core Features</h3>
-      <ul>
-        <li>Secure login & access control</li>
-        <li>One-time payment dashboard</li>
-        <li>Instant setup wizard</li>
-      </ul>
-    </div>
-    <div class="dashboard-card locked">
-      <h3>Advanced Tools <span style="color:var(--accent)">Locked</span></h3>
-      <ul>
-        <li>Automation scripts</li>
-        <li>Premium analytics</li>
-        <li>Custom workspace templates</li>
-      </ul>
-      <button class="btn-primary upgrade-btn">Upgrade Now</button>
-    </div>
-    <div class="dashboard-card">
-      <h3>Notifications</h3>
-      <ul>
-        <li>Progress reminders</li>
-        <li>Feature updates</li>
-        <li>Subscription alerts</li>
-      </ul>
-    </div>
-    <div class="dashboard-card locked">
-      <h3>Collaboration Tools <span style="color:var(--accent)">Locked</span></h3>
-      <ul>
-        <li>Team workspaces</li>
-        <li>Shared templates</li>
-        <li>Activity tracking</li>
-      </ul>
-      <button class="btn-primary upgrade-btn">Upgrade Now</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     FEATURE HIGHLIGHT GRID
-=========================== -->
-<section class="section alt" id="features">
-  <h2>Feature Highlights</h2>
-  <p>Explore some of the key tools and capabilities that make AXION unique.</p>
-
-  <div class="section-grid">
-    <div class="card">
-      <h3>Real-time Progress Tracking</h3>
-      <p>See your growth metrics instantly with dynamic dashboards and interactive charts.</p>
-    </div>
-    <div class="card">
-      <h3>Customizable Interface</h3>
-      <p>Personalize layouts, colors, and content display for a truly unique workspace.</p>
-    </div>
-    <div class="card">
-      <h3>AI Recommendations</h3>
-      <p>Receive actionable suggestions based on usage patterns and best practices.</p>
-    </div>
-    <div class="card">
-      <h3>Secure Access Levels</h3>
-      <p>Control who sees what with granular permissions and subscription tiering.</p>
-    </div>
-    <div class="card">
-      <h3>One-click Backups</h3>
-      <p>Keep your workspace safe with automatic backup options for all your data.</p>
-    </div>
-    <div class="card">
-      <h3>Cross-Platform Support</h3>
-      <p>Use AXION seamlessly on desktop, mobile, and tablet devices with synced progress.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     INTERACTIVE SUBSCRIPTION INFO
-=========================== -->
-<section class="section" id="subscription-details">
-  <h2>Subscription Details</h2>
-  <p>Understand what each subscription tier provides so you can pick the right plan for your needs.</p>
-
-  <div class="offer-grid" style="margin-top:50px;">
-    <div class="offer-box highlight">
-      <h3>Starter Boost</h3>
-      <div class="price">$9.99 / mo</div>
-      <p class="muted">Best for beginners and light users.</p>
-      <ul>
-        <li>1 Custom workspace</li>
-        <li>Limited automation tools</li>
-        <li>Email support</li>
-        <li>Analytics dashboard</li>
-      </ul>
-      <button class="btn-primary" style="margin-top:15px;">Subscribe</button>
-    </div>
-    <div class="offer-box">
-      <h3>Pro Access</h3>
-      <div class="price">$14.99 / mo</div>
-      <p class="muted">For power users and premium features.</p>
-      <ul>
-        <li>All Starter features</li>
-        <li>Advanced automation tools</li>
-        <li>Priority support</li>
-        <li>Custom templates</li>
-        <li>Collaboration tools</li>
-      </ul>
-      <button class="btn-primary" style="margin-top:15px;">Subscribe</button>
-    </div>
-    <div class="offer-box">
-      <h3>Enterprise</h3>
-      <div class="price">Contact Us</div>
-      <p class="muted">Tailored solutions for teams and organizations.</p>
-      <ul>
-        <li>Unlimited workspaces</li>
-        <li>Dedicated account manager</li>
-        <li>Custom integrations</li>
-        <li>Advanced analytics & reports</li>
-      </ul>
-      <button class="btn-primary" style="margin-top:15px;">Contact Sales</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     ANIMATED FEATURES (JS)
-=========================== -->
-<script>
-const cards = document.querySelectorAll('.card, .dashboard-card, .offer-box');
-
-cards.forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transform = 'translateY(-8px)';
-    card.style.boxShadow = '0 15px 35px rgba(0,0,0,0.25)';
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'translateY(0)';
-    card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.15)';
-  });
-});
+}
 </script>
 
-<!-- ===========================
-     SUBSCRIBE FORM
-=========================== -->
-<section class="cta-section" id="signup">
-  <h2>Join AXION Today</h2>
-  <p>Get instant access for $5.99. Optional subscriptions can be added anytime to unlock premium tools and automation.</p>
-  <form style="max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:12px;">
-    <input type="email" placeholder="Your email address" style="padding:12px; border-radius:12px; border:none; background:#1f1f2e; color:white;">
-    <select style="padding:12px; border-radius:12px; border:none; background:#1f1f2e; color:white;">
-      <option value="oneoff">One-time access - $5.99</option>
-      <option value="starter">Starter Boost - $9.99/mo</option>
-      <option value="pro">Pro Access - $14.99/mo</option>
-    </select>
-    <button type="submit" class="cta-button" style="margin-top:10px;">Get Access</button>
-  </form>
-</section>
-<!-- ===========================
-     TESTIMONIALS
-=========================== -->
-<section class="section alt" id="testimonials">
-  <h2>What Users Say</h2>
-  <p>Feedback from real users who started with AXION and leveled up their workflow.</p>
+<!-- PREMIUM SUBSCRIPTION FEATURES SECTION -->
+<section class="section fade-in delay-2">
+    <div class="container">
+        <h2>Optional Premium Access</h2>
+        <p class="lead">Upgrade to unlock advanced tools and features, designed for power users who want maximum control.</p>
+        <div class="section-grid">
 
-  <div class="section-grid">
-    <div class="card">
-      <h3>Jane D.</h3>
-      <p>"AXION simplified everything. I finally have a dashboard I actually understand and use daily."</p>
+            <div class="card hover-scale fade-in delay-3">
+                <h3>Advanced Analytics</h3>
+                <p>Gain insights into your workflow, subscription use, and progression with interactive charts.</p>
+            </div>
+
+            <div class="card hover-scale fade-in delay-4">
+                <h3>Automation Tools</h3>
+                <p>Automate repetitive tasks and integrate with external platforms seamlessly.</p>
+            </div>
+
+            <div class="card hover-scale fade-in delay-5">
+                <h3>Priority Support</h3>
+                <p>Access premium support and early previews for new features before general release.</p>
+            </div>
+
+            <div class="card hover-scale fade-in delay-6">
+                <h3>Custom Dashboards</h3>
+                <p>Rearrange widgets, monitor metrics, and personalize your workspace to suit your workflow.</p>
+            </div>
+
+        </div>
     </div>
-    <div class="card">
-      <h3>Michael S.</h3>
-      <p>"The one-off access fee is amazing, and the optional subscription is perfect for when I want advanced tools."</p>
-    </div>
-    <div class="card">
-      <h3>Emma L.</h3>
-      <p>"I love the purple accents and clean design. It just feels premium without being cluttered."</p>
-    </div>
-  </div>
 </section>
 
-<!-- ===========================
-     ROADMAP
-=========================== -->
-<section class="section" id="roadmap">
-  <h2>AXION Roadmap</h2>
-  <p>See what’s coming next. We are constantly evolving to provide more value and structure for our users.</p>
-
-  <div class="section-grid">
-    <div class="card">
-      <h3>Q1 2026</h3>
-      <ul>
-        <li>New dashboard analytics module</li>
-        <li>Enhanced subscription tools</li>
-        <li>AI recommendation engine beta</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Q2 2026</h3>
-      <ul>
-        <li>Team collaboration features</li>
-        <li>Customizable workflow templates</li>
-        <li>Mobile app release</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Q3 2026</h3>
-      <ul>
-        <li>Enterprise analytics & reporting</li>
-        <li>Advanced automation scripts</li>
-        <li>Third-party integrations</li>
-      </ul>
-    </div>
-  </div>
+<!-- EXTENDED CTA SECTION -->
+<section class="cta-section fade-in delay-1">
+    <h2>Get Started Today</h2>
+    <p>One payment of $5.99 for full access. Optional premium features available to enhance your experience.</p>
+    <a href="#pricing" class="cta-button">Unlock AXION Now</a>
 </section>
 
-<!-- ===========================
-     NEWSLETTER
-=========================== -->
-<section class="cta-section" style="background: linear-gradient(135deg, #6c5cff, #ff5c93);">
-  <h2>Stay Updated</h2>
-  <p>Subscribe to receive AXION updates, new features, and exclusive tips directly to your inbox.</p>
-  <form style="max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:12px;">
-    <input type="email" placeholder="Your email address" style="padding:12px; border-radius:12px; border:none; background:#1f1f2e; color:white;">
-    <button type="submit" class="cta-button">Subscribe</button>
-  </form>
-</section>
+<!-- FOOTER ENHANCEMENTS -->
+<footer class="fade-in delay-2">
+    <div class="container">
+        <div class="footer-grid">
 
-<!-- ===========================
-     EXPANDED FOOTER
-=========================== -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h4>AXION</h4>
-        <p>Structured digital access built for longevity.</p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <p><a href="#about">About</a></p>
-        <p><a href="#platform">Platform</a></p>
-        <p><a href="#pricing">Access</a></p>
-        <p><a href="#dashboard">Dashboard</a></p>
-      </div>
-      <div>
-        <h4>Account</h4>
-        <p><a href="#" onclick="openAuth()">Login</a></p>
-        <p><a href="#" onclick="openAuth()">Sign Up</a></p>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <p><a href="#terms" onclick="termsOverlay.style.display='flex';">Terms & Conditions</a></p>
-        <p><a href="#">Privacy Policy</a></p>
-      </div>
-      <div>
-        <h4>Follow Us</h4>
-        <p><a href="#">Twitter</a></p>
-        <p><a href="#">LinkedIn</a></p>
-        <p><a href="#">YouTube</a></p>
-      </div>
+            <div>
+                <h4>AXION</h4>
+                <p>Structured digital access built for longevity and clarity. Designed for users who value progress and structure.</p>
+            </div>
+
+            <div>
+                <h4>Navigate</h4>
+                <p><a href="#about">About</a></p>
+                <p><a href="#platform">Platform</a></p>
+                <p><a href="#pricing">Access</a></p>
+                <p><a href="#roadmap">Roadmap</a></p>
+            </div>
+
+            <div>
+                <h4>Account</h4>
+                <p><a href="#" onclick="openAuth()">Login</a></p>
+                <p><a href="#" onclick="openAuth()">Sign Up</a></p>
+            </div>
+
+            <div>
+                <h4>Subscribe</h4>
+                <p>Get updates, tips, and announcements delivered to your inbox.</p>
+                <div class="subscription-container">
+                    <input type="email" placeholder="Email" id="footerEmail">
+                    <button class="btn btn-primary" onclick="subscribeFooterEmail()">Subscribe</button>
+                </div>
+                <p id="footerMessage" style="margin-top:0.5rem; color: var(--secondary); font-weight:500;"></p>
+            </div>
+
+        </div>
+        <div class="footer-bottom">© 2026 AXION. All rights reserved. Designed with 💜 by AXION Team.</div>
     </div>
-    <div class="footer-bottom">© 2026 AXION. All rights reserved.</div>
-  </div>
 </footer>
 
-<!-- ===========================
-     FINAL JS
-=========================== -->
 <script>
-  // Smooth scrolling for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-    anchor.addEventListener('click', function(e){
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // Animate fade-in for sections
-  const faders = document.querySelectorAll('section');
-  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-  const appearOnScroll = new IntersectionObserver(function(entries, observer){
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
-      }
-    });
-  }, appearOptions);
-
-  faders.forEach(section => {
-    section.style.opacity = 0;
-    section.style.transform = "translateY(30px)";
-    appearOnScroll.observe(section);
-  });
+function subscribeFooterEmail() {
+    const emailInput = document.getElementById('footerEmail');
+    const message = document.getElementById('footerMessage');
+    const email = emailInput.value.trim();
+    if(email && email.includes('@')) {
+        message.textContent = "Thanks for subscribing! You’ll get updates soon.";
+        emailInput.value = '';
+        console.log("Footer subscribed email:", email);
+    } else {
+        message.textContent = "Please enter a valid email address.";
+    }
+}
 </script>
 
 <style>
-/* ===========================
-   EXTRA ANIMATION & STYLES
-=========================== */
-section {
-  transition: all 0.8s ease-out;
+footer .footer-bottom {
+    margin-top: 2.5rem;
+    font-size:0.85rem;
+    color: var(--text-muted);
+    text-align:center;
 }
-footer a {
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-}
-footer a:hover { color: var(--primary); }
-.card, .offer-box, .dashboard-card { transition: all 0.3s ease; }
 </style>
-
-
-
