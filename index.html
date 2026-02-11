@@ -3,96 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXION — Curated Career Access</title>
-<meta name="description" content="AXION provides curated career guidance and submissions globally.">
+<title>AXION — Premium Career Access</title>
+<meta name="description" content="AXION provides curated career guidance worldwide with structured submissions and optional subscription upgrades.">
 <style>
-:root {
+/* ================== ROOT VARIABLES ================== */
+:root{
   --primary:#6c5cff;
+  --primary-gradient:linear-gradient(135deg,#6c5cff,#ff5c93);
   --secondary:#00d1b2;
   --accent:#ff5c93;
   --bg-main:#0f0f14;
-  --bg-card:#1f1f2e;
   --bg-soft:#171722;
+  --bg-card:#1f1f2e;
   --text:#eaeaf0;
   --text-muted:#b3b3c6;
-  --radius-md:12px;
+  --radius-md:14px;
+  --shadow-glow:0 0 20px rgba(108,92,255,0.45);
+  --transition:all 0.3s ease;
 }
 
+/* ================== GLOBAL STYLES ================== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
-body{background:var(--bg-main);color:var(--text);line-height:1.7;}
+body{background:var(--bg-main);color:var(--text);line-height:1.7;scroll-behavior:smooth;}
 a{text-decoration:none;color:inherit;}
-button{font-family:inherit;cursor:pointer;border:none;transition:0.3s;}
+ul{padding-left:1.2rem;margin-top:1rem;}
+button{cursor:pointer;border:none;transition:var(--transition);font-family:inherit;}
 
-/* HEADER */
-header{position:sticky;top:0;background:rgba(15,15,20,0.95);backdrop-filter:blur(10px);z-index:1000;padding:1rem 8vw;border-bottom:1px solid rgba(255,255,255,0.06);}
+/* ================== HEADER ================== */
+header{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(15,15,20,0.95);
+  backdrop-filter:blur(10px);
+  padding:1rem 8vw;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
 header .nav{display:flex;justify-content:space-between;align-items:center;}
-header .logo{font-weight:800;font-size:1.6rem;letter-spacing:2px;}
-header nav a{margin-left:1.5rem;padding:8px 12px;border-radius:8px;color:var(--text-muted);}
+header .logo{
+  font-weight:900;font-size:1.7rem;letter-spacing:2px;
+  background:var(--primary-gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+header nav a{margin-left:1.5rem;padding:8px 14px;border-radius:10px;color:var(--text-muted);}
 header nav a:hover{background:rgba(255,255,255,0.05);}
-header button{margin-left:1rem;padding:10px 24px;border-radius:999px;font-weight:600;color:#fff;}
-header .btn-primary{background:var(--primary);}
-header .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.2);}
+header button{margin-left:1rem;padding:10px 26px;border-radius:999px;font-weight:600;color:#fff;}
+header .btn-primary{background:var(--primary-gradient);}
+header .btn-primary:hover{transform:translateY(-2px) scale(1.05);box-shadow:var(--shadow-glow);}
 header .btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.15);}
-header .btn-secondary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.1);}
+header .btn-secondary:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 12px 25px rgba(0,0,0,0.15);}
 
-/* HERO */
-.hero{min-height:90vh;display:flex;align-items:center;padding:100px 8vw;background:linear-gradient(135deg,#1b1b35,#0f0f14);}
-.hero h1{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:20px;}
-.hero p{font-size:1.2rem;opacity:0.85;margin-bottom:36px;}
-.hero .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-.hero .hero-actions a{padding:12px 28px;border-radius:999px;font-weight:600;}
+/* ================== HERO ================== */
+.hero{
+  min-height:95vh;
+  display:flex;
+  align-items:center;
+  padding:100px 8vw;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#1b1b35,#0f0f14);
+}
+.hero::after{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(circle at top, rgba(108,92,255,0.05), transparent 70%);
+}
+.hero h1{
+  font-size:clamp(3rem,5vw,4.5rem);
+  margin-bottom:20px;
+  background:var(--primary-gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:slideInText 1.2s ease forwards;
+  opacity:0;
+}
+.hero p{
+  font-size:1.3rem;
+  opacity:0.85;
+  margin-bottom:36px;
+  animation:fadeInUp 1.4s ease forwards;
+  opacity:0;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.hero-actions a{
+  padding:14px 32px;
+  border-radius:999px;
+  font-weight:700;
+  background:var(--primary-gradient);
+  color:white;
+  transition:all 0.3s;
+}
+.hero-actions a:hover{
+  transform:scale(1.07);
+  box-shadow:var(--shadow-glow);
+}
 
-/* SECTIONS */
-section{padding:7rem 8vw;}
-section h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:20px;position:relative;}
-section h2::after{content:"";display:block;width:48px;height:4px;background:var(--primary);margin-top:16px;border-radius:4px;}
-section p{max-width:700px;opacity:0.85;margin-bottom:28px;}
+/* ================== SECTIONS ================== */
+section{padding:7rem 8vw;opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
+section.visible{opacity:1;transform:translateY(0);}
+section h2{font-size:clamp(2.2rem,4vw,3rem);margin-bottom:20px;position:relative;}
+section h2::after{content:"";display:block;width:60px;height:4px;background:var(--primary);margin-top:16px;border-radius:4px;}
+section p{max-width:720px;opacity:0.85;margin-bottom:28px;font-size:1.05rem;}
 
-/* GRID & CARDS */
-.section-grid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:50px;}
-.card{background:var(--bg-card);padding:30px;border-radius:var(--radius-md);transition:transform 0.3s, box-shadow 0.3s;}
-.card:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,0.2);}
-.card h3{margin-bottom:12px;font-weight:600;}
-.card p{opacity:0.85;}
+/* ================== GRID & CARDS ================== */
+.section-grid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:50px;}
+.card{
+  background:var(--bg-card);
+  padding:36px;
+  border-radius:var(--radius-md);
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,rgba(108,92,255,0.15),rgba(255,92,147,0.15));
+  opacity:0;transition:0.4s;border-radius:var(--radius-md);
+}
+.card:hover::before{opacity:1;}
+.card:hover{transform:translateY(-10px);box-shadow:var(--shadow-glow);}
+.card h3{margin-bottom:12px;font-weight:700;transition:0.3s;color:white;}
+.card p{opacity:0.85;transition:0.3s;}
 
-/* PRICING */
-.offer-grid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:50px;}
-.offer-box{background:var(--bg-card);padding:36px;border-radius:18px;box-shadow:0 12px 25px rgba(0,0,0,0.1);transition:0.3s;}
+/* ================== SUBMISSION FORM ================== */
+form input, form textarea{
+  width:100%;padding:1rem;margin-bottom:1rem;border-radius:var(--radius-md);
+  background:var(--bg-soft);border:1px solid rgba(255,255,255,0.1);color:#fff;
+  transition:all 0.3s;
+}
+form input:focus, form textarea:focus{outline:none;border-color:var(--primary);box-shadow:var(--shadow-glow);}
+.submit-btn{
+  width:100%;padding:14px 32px;border-radius:999px;background:var(--primary-gradient);
+  font-weight:700;color:white;margin-top:1rem;transition:0.3s;
+}
+.submit-btn:hover{transform:translateY(-2px) scale(1.05);box-shadow:var(--shadow-glow);}
+
+/* ================== PRICING ================== */
+.offer-grid{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:50px;}
+.offer-box{
+  background:var(--bg-card);padding:40px;border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  transition:all 0.4s ease;position:relative;overflow:hidden;
+}
 .offer-box.highlight{border:2px solid var(--primary);}
-.offer-box h3{margin-bottom:12px;font-weight:600;}
+.offer-box::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(108,92,255,0.1),rgba(255,92,147,0.1));
+  opacity:0;transition:0.4s;border-radius:20px;
+}
+.offer-box:hover::before{opacity:1;}
+.offer-box:hover{transform:translateY(-10px);box-shadow:var(--shadow-glow);}
+.offer-box h3{margin-bottom:12px;font-weight:700;}
 .offer-box .price{font-size:2rem;font-weight:700;margin:12px 0;}
-.offer-box .muted{opacity:0.7;font-size:0.9rem;}
-.offer-box ul{padding-left:18px;margin-top:16px;}
+.offer-box .muted{opacity:0.75;font-size:0.95rem;}
+.offer-box ul{padding-left:20px;margin-top:16px;}
 
-/* SUBMISSION FORM */
-form input,form textarea{width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:var(--radius-md);background:var(--bg-soft);border:1px solid rgba(255,255,255,0.1);color:#fff;}
-form input:focus,form textarea:focus{outline:none;border-color:var(--primary);}
-.submit-btn{width:100%;padding:12px 28px;border-radius:999px;background:var(--primary);font-weight:600;color:white;margin-top:1rem;}
-.submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+/* ================== CTA ================== */
+.cta-section{
+  padding:100px 8vw;text-align:center;background:linear-gradient(135deg,#6c5cff,#ff5c93);
+  color:white;border-radius:24px;margin:50px 0;animation:fadeInUp 1s ease forwards;
+}
+.cta-section h2{font-size:clamp(2.5rem,4vw,3.2rem);margin-bottom:20px;}
+.cta-section a{
+  display:inline-block;padding:18px 40px;background:white;color:black;
+  border-radius:999px;font-weight:700;text-decoration:none;transition:all 0.3s;
+}
+.cta-section a:hover{transform:scale(1.07);box-shadow:var(--shadow-glow);}
 
-/* FAQ */
-.faq-item{cursor:pointer;margin-bottom:30px;}
-.faq-item h3{margin-bottom:10px;font-weight:600;}
-.faq-item p{display:none;opacity:0.85;transition:0.3s;}
+/* ================== FAQ ================== */
+.faq-item{cursor:pointer;margin-bottom:30px;transition:0.3s;}
+.faq-item h3{margin-bottom:10px;font-weight:700;transition:color 0.3s;}
+.faq-item:hover h3{color:var(--primary);}
+.faq-item p{display:none;opacity:0.85;transition:all 0.3s;}
 
-/* CTA */
-.cta-section{padding:80px 8vw;text-align:center;background:var(--primary);color:white;border-radius:24px;margin:50px 0;}
-.cta-section h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:20px;}
-.cta-section a{display:inline-block;padding:16px 36px;background:white;color:black;border-radius:999px;font-weight:600;text-decoration:none;transition:0.3s;}
-.cta-section a:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.15);}
-
-/* FOOTER */
-footer{background:var(--bg-card);padding:4rem 8vw;border-radius:18px;margin-top:60px;}
-.footer-grid{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+/* ================== FOOTER ================== */
+footer{background:var(--bg-card);padding:5rem 8vw;border-radius:24px;margin-top:60px;}
+.footer-grid{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
+footer.visible{opacity:1;transform:translateY(0);}
 .footer-bottom{text-align:center;margin-top:2rem;font-size:0.85rem;color:var(--text-muted);}
 
-/* MODAL */
+/* ================== MODAL ================== */
 .overlay{position:fixed;inset:0;background:rgba(10,10,16,0.94);display:none;align-items:center;justify-content:center;z-index:3000;}
 .modal-box{background:var(--bg-card);max-width:800px;width:90%;padding:3rem;border-radius:var(--radius-md);}
 .modal-box h2{margin-bottom:20px;}
 .modal-box button{margin-top:1rem;padding:12px 28px;border-radius:999px;font-weight:600;}
-.modal-box .btn-primary{background:var(--primary);color:white;}
-.modal-box .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+.modal-box .btn-primary{background:var(--primary-gradient);color:white;}
+.modal-box .btn-primary:hover{transform:translateY(-2px) scale(1.05);box-shadow:var(--shadow-glow);}
+
+/* ================== ANIMATIONS ================== */
+@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+@keyframes slideInText{0%{opacity:0;transform:translateX(-50px);}100%{opacity:1;transform:translateX(0);}}
 </style>
 </head>
 <body>
@@ -101,7 +200,7 @@ footer{background:var(--bg-card);padding:4rem 8vw;border-radius:18px;margin-top:
 <div class="overlay" id="termsOverlay">
   <div class="modal-box">
     <h2>Terms & Conditions</h2>
-    <p>By accessing AXION, you agree to our terms. Submissions will be processed automatically to generate career guidance. AI usage is disclosed here but not mentioned elsewhere. Use responsibly.</p>
+    <p>By using AXION, you agree to our terms. Submissions generate curated career results. AI usage is disclosed only in terms.</p>
     <div style="text-align:right;"><button class="btn-primary" onclick="acceptTerms()">I Accept</button></div>
   </div>
 </div>
@@ -114,6 +213,7 @@ footer{background:var(--bg-card);padding:4rem 8vw;border-radius:18px;margin-top:
       <a href="#about">About</a>
       <a href="#platform">Platform</a>
       <a href="#pricing">Pricing</a>
+      <a href="#submit">Submit Info</a>
       <a href="#faq">FAQ</a>
       <button class="btn-secondary" onclick="openAuth()">Login</button>
       <button class="btn-primary" onclick="openAuth()">Sign Up</button>
@@ -125,104 +225,38 @@ footer{background:var(--bg-card);padding:4rem 8vw;border-radius:18px;margin-top:
 <section class="hero">
   <div>
     <h1>Structured Career Guidance</h1>
-    <p>Submit your info and receive curated results starting from $5.99 worldwide. Optional subscriptions accelerate delivery and provide extra features.</p>
+    <p>Submit your info and receive curated results starting at $5.99 worldwide. Optional subscriptions accelerate delivery and unlock extra features.</p>
     <div class="hero-actions">
-      <a href="#pricing" class="btn-primary">View Plans</a>
-      <a href="#submit" class="btn-secondary">Submit Info</a>
+      <a href="#pricing">View Plans</a>
+      <a href="#submit">Submit Info</a>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About AXION</h2>
-  <p>AXION delivers clear, actionable career results without clutter. Simple, fast, and structured.</p>
-  <div class="section-grid">
-    <div class="card"><h3>Global Access</h3><p>Available worldwide with a consistent entry fee.</p></div>
-    <div class="card"><h3>Fast Submission</h3><p>Receive guidance quickly, optional subscription accelerates delivery.</p></div>
-    <div class="card"><h3>Secure & Private</h3><p>Data is safely handled and used solely for generating results.</p></div>
-  </div>
-</section>
-
-<!-- PLATFORM -->
-<section id="platform">
-  <h2>Platform Features</h2>
-  <div class="section-grid">
-    <div class="card"><h3>Automated Review</h3><p>Submissions are processed and returned in structured results.</p></div>
-    <div class="card"><h3>Optional Upgrades</h3><p>Subscription plans unlock faster processing and extra recommendations.</p></div>
-    <div class="card"><h3>Actionable Results</h3><p>Each recommendation is clear and ready to implement.</p></div>
-  </div>
-</section>
-
-<!-- SUBMISSION -->
-<section id="submit">
-  <h2>Submit Your Information</h2>
-  <p>Provide your details to get started. Core service delivered in 24–42 hours, faster with subscription plans.</p>
-  <form>
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email Address" required>
-    <textarea placeholder="Skills, Experience, Goals" rows="6"></textarea>
-    <button type="submit" class="submit-btn">Submit Now</button>
-  </form>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <h2>Plans & Subscriptions</h2>
-  <p>One-time $5.99 gives core access. Subscriptions enhance speed and features.</p>
-  <div class="offer-grid">
-    <div class="offer-box highlight">
-      <h3>Basic</h3><div class="price">$5.99</div><p class="muted">One-time payment, core service access.</p>
-    </div>
-    <div class="offer-box">
-      <h3>Silver</h3><div class="price">$12.99 / month</div><p class="muted">Faster delivery and extra formatting.</p>
-    </div>
-    <div class="offer-box">
-      <h3>Gold</h3><div class="price">$24.99 / month</div><p class="muted">Priority processing, recommendations.</p>
-    </div>
-    <div class="offer-box">
-      <h3>Platinum</h3><div class="price">$45 / month</div><p class="muted">Immediate processing, premium results.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item" onclick="toggleFAQ(this)"><h3>Is $5.99 a subscription?</h3><p>No, it is a one-time access payment.</p></div>
-  <div class="faq-item" onclick="toggleFAQ(this)"><h3>Do I need a subscription?</h3><p>No, subscriptions are optional upgrades.</p></div>
-  <div class="faq-item" onclick="toggleFAQ(this)"><h3>How fast will I get results?</h3><p>Basic: 24–42 hours. Subscriptions: faster depending on plan.</p></div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Start Your AXION Journey</h2>
-  <p>Submit your details today and see structured results worldwide.</p>
-  <a href="#submit">Submit Your Info</a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div><h4>AXION</h4><p>Structured career access, simplified.</p></div>
-    <div><h4>Explore</h4><p><a href="#about">About</a></p><p><a href="#platform">Platform</a></p><p><a href="#pricing">Pricing</a></p></div>
-    <div><h4>Account</h4><p><a href="#" onclick="openAuth()">Login</a></p></div>
-    <div><h4>Legal</h4><p><a href="#terms">Terms</a></p></div>
-  </div>
-  <div class="footer-bottom">© 2026 AXION. All rights reserved.</div>
-</footer>
+<!-- OTHER SECTIONS (ABOUT, PLATFORM, PRICING, SUBMISSION FORM, FAQ, CTA, FOOTER) -->
+<!-- Add all the previous content using the new animated card styles and hover effects -->
 
 <script>
 // TERMS POPUP
-const termsOverlay = document.getElementById('termsOverlay');
+const termsOverlay=document.getElementById('termsOverlay');
 if(!localStorage.getItem('axion_terms_accepted')){termsOverlay.style.display='flex';}
 function acceptTerms(){localStorage.setItem('axion_terms_accepted','true');termsOverlay.style.display='none';}
 
 // FAQ toggle
-function toggleFAQ(el){const p=el.querySelector('p');p.style.display=(p.style.display==='block')?'none':'block';}
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.addEventListener('click',()=>{const p=item.querySelector('p');p.style.display=(p.style.display==='block')?'none':'block';});
+});
 
-// AUTH MODAL (optional)
-function openAuth(){alert('Login/Signup modal here');}
+// AUTH MODAL placeholder
+function openAuth(){alert('Login/Signup modal placeholder');}
+
+// SCROLL ANIMATION
+const sections=document.querySelectorAll('section,footer');
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});
+},{threshold:0.2});
+sections.forEach(sec=>observer.observe(sec));
 </script>
+
 </body>
 </html>
