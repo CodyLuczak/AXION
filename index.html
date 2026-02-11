@@ -936,3 +936,1198 @@ footer .footer-bottom {
     text-align:center;
 }
 </style>
+<!-- =========================================================
+     PART 6: ADVANCED DASHBOARD & USER PROGRESSION SYSTEM
+========================================================= -->
+
+<section class="section soft" id="dashboard-advanced">
+  <div class="container">
+
+    <h2>User Progress & Control</h2>
+    <p class="lead">
+      AXION is built around intentional progression. Your dashboard evolves as you do —
+      unlocking systems, insights, and controls over time.
+    </p>
+
+    <!-- PROGRESSION BAR -->
+    <div class="progress-wrapper">
+      <div class="progress-header">
+        <span>Account Progress</span>
+        <span class="progress-percent">42%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:42%"></div>
+      </div>
+      <p class="progress-note">
+        Progress increases as you activate features, explore modules, and maintain activity.
+      </p>
+    </div>
+
+    <!-- DASHBOARD GRID -->
+    <div class="dashboard-grid expanded">
+
+      <div class="dashboard-card">
+        <h3>Account Status</h3>
+        <p>Your core AXION access is active.</p>
+        <ul>
+          <li>✔ One-time access unlocked</li>
+          <li>✔ Core systems enabled</li>
+          <li>✔ Community access</li>
+        </ul>
+        <span class="subscription-badge">Active</span>
+      </div>
+
+      <div class="dashboard-card locked">
+        <h3>Automation Layer</h3>
+        <p>Unlock intelligent workflows and background processes.</p>
+        <ul>
+          <li>Scheduled actions</li>
+          <li>Smart triggers</li>
+          <li>Workflow chaining</li>
+        </ul>
+        <button class="btn btn-primary upgrade-btn">Unlock</button>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>System Insights</h3>
+        <p>View how you interact with AXION.</p>
+        <ul>
+          <li>Usage patterns</li>
+          <li>Feature interaction</li>
+          <li>Time-based metrics</li>
+        </ul>
+        <span class="subscription-badge">Included</span>
+      </div>
+
+      <div class="dashboard-card locked">
+        <h3>Advanced Metrics</h3>
+        <p>Deep analytics and historical performance.</p>
+        <ul>
+          <li>Trend analysis</li>
+          <li>Comparative insights</li>
+          <li>Exportable reports</li>
+        </ul>
+        <button class="btn btn-primary upgrade-btn">Upgrade</button>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Customization</h3>
+        <p>Control how AXION looks and behaves.</p>
+        <ul>
+          <li>Dashboard layout</li>
+          <li>Notification rules</li>
+          <li>Display density</li>
+        </ul>
+        <span class="subscription-badge">Included</span>
+      </div>
+
+      <div class="dashboard-card locked">
+        <h3>Experimental Features</h3>
+        <p>Early access to upcoming tools.</p>
+        <ul>
+          <li>Beta systems</li>
+          <li>Prototype tools</li>
+          <li>Feedback influence</li>
+        </ul>
+        <button class="btn btn-primary upgrade-btn">Join Beta</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESSION STYLES -->
+<style>
+.progress-wrapper {
+  max-width: 620px;
+  margin: 3rem 0 5rem;
+}
+.progress-header {
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+  margin-bottom:0.6rem;
+}
+.progress-bar {
+  background:#1a1a28;
+  border-radius:999px;
+  overflow:hidden;
+  height:14px;
+}
+.progress-fill {
+  height:100%;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  border-radius:999px;
+  transition:width 0.6s ease;
+}
+.progress-note {
+  font-size:0.85rem;
+  opacity:0.75;
+  margin-top:0.6rem;
+}
+.dashboard-grid.expanded {
+  margin-top:4rem;
+}
+.dashboard-card ul {
+  padding-left:1.2rem;
+  margin-top:0.6rem;
+}
+.dashboard-card ul li {
+  font-size:0.9rem;
+  margin-bottom:0.3rem;
+}
+</style>
+
+<!-- SYSTEM MODULES -->
+<section class="section alt" id="system-modules">
+  <div class="container">
+    <h2>System Modules</h2>
+    <p class="lead">
+      AXION is modular by design. Each system can operate independently or as part of a larger workflow.
+    </p>
+
+    <div class="section-grid">
+
+      <div class="card hover-scale">
+        <h3>Core Engine</h3>
+        <p>
+          The foundation of AXION. Handles permissions, access logic,
+          and feature availability.
+        </p>
+      </div>
+
+      <div class="card hover-scale">
+        <h3>Progress Engine</h3>
+        <p>
+          Tracks user engagement and unlocks functionality based on interaction,
+          not paywalls.
+        </p>
+      </div>
+
+      <div class="card hover-scale">
+        <h3>Automation Engine</h3>
+        <p>
+          Executes background actions and intelligent workflows for premium users.
+        </p>
+      </div>
+
+      <div class="card hover-scale">
+        <h3>Analytics Engine</h3>
+        <p>
+          Collects anonymized interaction data to provide insights without noise.
+        </p>
+      </div>
+
+      <div class="card hover-scale">
+        <h3>Integration Engine</h3>
+        <p>
+          Bridges AXION with external platforms and services securely.
+        </p>
+      </div>
+
+      <div class="card hover-scale">
+        <h3>Notification Engine</h3>
+        <p>
+          Delivers contextual alerts only when necessary — no spam.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTION SCRIPT -->
+<script>
+document.querySelectorAll('.upgrade-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    alert("Premium features are optional. You can upgrade anytime.");
+  });
+});
+</script>
+<!-- =========================================================
+     PART 7: SUPPORT, FAQ & KNOWLEDGE BASE SYSTEM
+========================================================= -->
+
+<section class="section soft" id="support-center">
+  <div class="container">
+
+    <h2>Support & Knowledge Base</h2>
+    <p class="lead">
+      AXION is designed to be self-explanatory — but help is always available.
+      Explore documentation, common questions, and guided assistance below.
+    </p>
+
+    <!-- SEARCH -->
+    <div class="kb-search">
+      <input type="text" id="kbSearch" placeholder="Search help articles, features, or topics...">
+    </div>
+
+    <!-- KNOWLEDGE GRID -->
+    <div class="kb-grid">
+
+      <div class="kb-card">
+        <h3>Getting Started</h3>
+        <p>Learn how to activate your account and navigate AXION.</p>
+        <ul>
+          <li>Account setup</li>
+          <li>Access levels</li>
+          <li>First steps</li>
+        </ul>
+      </div>
+
+      <div class="kb-card">
+        <h3>Subscriptions</h3>
+        <p>Understand optional subscriptions and upgrades.</p>
+        <ul>
+          <li>One-time access</li>
+          <li>Optional upgrades</li>
+          <li>Billing clarity</li>
+        </ul>
+      </div>
+
+      <div class="kb-card">
+        <h3>Dashboard</h3>
+        <p>Learn how to use your personal workspace.</p>
+        <ul>
+          <li>Progress tracking</li>
+          <li>Feature locks</li>
+          <li>Customization</li>
+        </ul>
+      </div>
+
+      <div class="kb-card">
+        <h3>Advanced Systems</h3>
+        <p>Dive deeper into AXION’s modular design.</p>
+        <ul>
+          <li>Automation</li>
+          <li>Analytics</li>
+          <li>Integrations</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ ACCORDION -->
+<section class="section alt" id="faq-expanded">
+  <div class="container">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-accordion">
+
+      <div class="faq-row">
+        <button class="faq-question">Is AXION a subscription?</button>
+        <div class="faq-answer">
+          <p>
+            No. AXION starts with a one-time $5.99 access fee.
+            Subscriptions are optional and only unlock additional features.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-row">
+        <button class="faq-question">Can I use AXION without upgrading?</button>
+        <div class="faq-answer">
+          <p>
+            Yes. The core platform is fully usable without subscriptions.
+            Upgrades simply extend functionality.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-row">
+        <button class="faq-question">How does progression work?</button>
+        <div class="faq-answer">
+          <p>
+            Progression is based on engagement and feature activation.
+            AXION rewards usage, not just payments.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-row">
+        <button class="faq-question">Is my data private?</button>
+        <div class="faq-answer">
+          <p>
+            Yes. AXION collects only essential interaction data and does not sell
+            or share personal information.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-row">
+        <button class="faq-question">Can I cancel subscriptions anytime?</button>
+        <div class="faq-answer">
+          <p>
+            Absolutely. Subscriptions can be added or removed at any time
+            with no penalty.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT REQUEST -->
+<section class="section soft" id="support-request">
+  <div class="container">
+
+    <h2>Contact Support</h2>
+    <p class="lead">
+      Need help beyond the documentation? Reach out directly.
+    </p>
+
+    <form class="support-form">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Topic</label>
+        <select>
+          <option>General Question</option>
+          <option>Account Issue</option>
+          <option>Billing</option>
+          <option>Feature Request</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>Message</label>
+        <textarea rows="5" placeholder="Describe your issue or question..."></textarea>
+      </div>
+
+      <button type="button" class="btn btn-primary">Submit Request</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- SUPPORT STYLES -->
+<style>
+.kb-search {
+  margin:3rem 0;
+}
+.kb-search input {
+  width:100%;
+  padding:1rem 1.2rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:#12121a;
+  color:#fff;
+}
+.kb-grid {
+  display:grid;
+  gap:2.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+}
+.kb-card {
+  background:var(--bg-card);
+  padding:2.4rem;
+  border-radius:var(--radius-md);
+  transition:transform 0.3s ease;
+}
+.kb-card:hover {
+  transform:translateY(-6px);
+}
+.kb-card ul {
+  margin-top:1rem;
+}
+.faq-accordion {
+  max-width:860px;
+}
+.faq-row {
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.faq-question {
+  width:100%;
+  text-align:left;
+  padding:1.4rem 0;
+  background:none;
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:600;
+}
+.faq-answer {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+.faq-answer p {
+  padding-bottom:1.2rem;
+  opacity:0.85;
+}
+.faq-row.active .faq-answer {
+  max-height:300px;
+}
+.support-form {
+  max-width:720px;
+  display:grid;
+  gap:1.6rem;
+}
+.form-group {
+  display:flex;
+  flex-direction:column;
+}
+.form-group.full {
+  grid-column:1/-1;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding:0.9rem;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:#12121a;
+  color:#fff;
+}
+</style>
+
+<!-- FAQ & SEARCH SCRIPT -->
+<script>
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('active');
+  });
+});
+
+document.getElementById('kbSearch').addEventListener('input', function() {
+  const value = this.value.toLowerCase();
+  document.querySelectorAll('.kb-card').forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(value)
+      ? 'block'
+      : 'none';
+  });
+});
+</script>
+<!-- =========================================================
+     PART 8: ROADMAP, SYSTEM STATUS & CHANGELOG
+========================================================= -->
+
+<section class="section alt" id="roadmap">
+  <div class="container">
+
+    <h2>AXION Roadmap</h2>
+    <p class="lead">
+      AXION evolves in structured phases. Each release improves capability,
+      performance, and user control.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item active">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Phase 1 — Foundation</h3>
+          <span class="timeline-date">Completed</span>
+          <p>
+            Core platform launch, authentication, dashboard, and base systems.
+          </p>
+          <ul>
+            <li>User accounts</li>
+            <li>One-time access model</li>
+            <li>Core dashboard</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item active">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Phase 2 — Expansion</h3>
+          <span class="timeline-date">Live</span>
+          <p>
+            Optional subscriptions, analytics layers, and modular tools.
+          </p>
+          <ul>
+            <li>Subscriptions</li>
+            <li>Usage tracking</li>
+            <li>Custom modules</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Phase 3 — Automation</h3>
+          <span class="timeline-date">In Progress</span>
+          <p>
+            Intelligent automation and smart workflows.
+          </p>
+          <ul>
+            <li>Workflow automation</li>
+            <li>Smart suggestions</li>
+            <li>Advanced analytics</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Phase 4 — Ecosystem</h3>
+          <span class="timeline-date">Planned</span>
+          <p>
+            Integrations, external tools, and platform extensibility.
+          </p>
+          <ul>
+            <li>Third-party integrations</li>
+            <li>API access</li>
+            <li>Developer tools</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM STATUS -->
+<section class="section soft" id="system-status">
+  <div class="container">
+
+    <h2>System Status</h2>
+    <p class="lead">
+      Real-time overview of AXION services and platform health.
+    </p>
+
+    <div class="status-grid">
+
+      <div class="status-card online">
+        <h3>Authentication</h3>
+        <span class="status-indicator">Operational</span>
+        <p>Login, signup, and session services.</p>
+      </div>
+
+      <div class="status-card online">
+        <h3>Dashboard</h3>
+        <span class="status-indicator">Operational</span>
+        <p>User workspace and data rendering.</p>
+      </div>
+
+      <div class="status-card online">
+        <h3>Subscriptions</h3>
+        <span class="status-indicator">Operational</span>
+        <p>Billing and upgrade management.</p>
+      </div>
+
+      <div class="status-card warning">
+        <h3>Automation Engine</h3>
+        <span class="status-indicator">Partial</span>
+        <p>Some automation features are rolling out.</p>
+      </div>
+
+      <div class="status-card offline">
+        <h3>Public API</h3>
+        <span class="status-indicator">Offline</span>
+        <p>API access coming in Phase 4.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHANGELOG -->
+<section class="section alt" id="changelog">
+  <div class="container">
+
+    <h2>Changelog</h2>
+    <p class="lead">
+      Transparent updates — every change documented.
+    </p>
+
+    <div class="changelog-list">
+
+      <div class="changelog-item">
+        <div class="changelog-version">v1.2.0</div>
+        <div class="changelog-details">
+          <span class="changelog-date">Current</span>
+          <ul>
+            <li>Added roadmap timeline</li>
+            <li>Introduced system status dashboard</li>
+            <li>UI refinements across sections</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="changelog-item">
+        <div class="changelog-version">v1.1.0</div>
+        <div class="changelog-details">
+          <span class="changelog-date">Previous</span>
+          <ul>
+            <li>Subscription logic updates</li>
+            <li>Dashboard performance improvements</li>
+            <li>New FAQ system</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="changelog-item">
+        <div class="changelog-version">v1.0.0</div>
+        <div class="changelog-details">
+          <span class="changelog-date">Launch</span>
+          <ul>
+            <li>AXION platform release</li>
+            <li>User accounts & access system</li>
+            <li>Core UI and structure</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PART 8 STYLES -->
+<style>
+.timeline {
+  margin-top:4rem;
+  display:flex;
+  flex-direction:column;
+  gap:3rem;
+}
+.timeline-item {
+  display:flex;
+  gap:2rem;
+  align-items:flex-start;
+}
+.timeline-dot {
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#444;
+  margin-top:0.6rem;
+}
+.timeline-item.active .timeline-dot {
+  background:var(--accent);
+}
+.timeline-content {
+  background:var(--bg-card);
+  padding:2.4rem;
+  border-radius:var(--radius-md);
+  width:100%;
+}
+.timeline-date {
+  font-size:0.85rem;
+  opacity:0.6;
+}
+.status-grid {
+  margin-top:3rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;
+}
+.status-card {
+  padding:2.2rem;
+  border-radius:var(--radius-md);
+  background:var(--bg-card);
+}
+.status-indicator {
+  display:inline-block;
+  margin:0.8rem 0;
+  font-weight:600;
+}
+.status-card.online .status-indicator {
+  color:#5cff9d;
+}
+.status-card.warning .status-indicator {
+  color:#ffd45c;
+}
+.status-card.offline .status-indicator {
+  color:#ff5c5c;
+}
+.changelog-list {
+  margin-top:3rem;
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+}
+.changelog-item {
+  background:var(--bg-card);
+  padding:2.4rem;
+  border-radius:var(--radius-md);
+  display:flex;
+  gap:2rem;
+}
+.changelog-version {
+  font-size:1.4rem;
+  font-weight:700;
+  min-width:90px;
+}
+.changelog-date {
+  font-size:0.85rem;
+  opacity:0.6;
+}
+</style>
+
+<!-- STATUS SCRIPT (SIMULATION) -->
+<script>
+setInterval(() => {
+  document.querySelectorAll('.status-card.warning').forEach(card => {
+    card.classList.toggle('online');
+  });
+}, 8000);
+</script>
+<!-- =========================================================
+     PART 9: FOOTER, LEGAL, TRUST & COOKIE SYSTEM
+========================================================= -->
+
+<section class="section soft" id="trust">
+  <div class="container">
+
+    <h2>Built on Trust</h2>
+    <p class="lead">
+      AXION is designed with transparency, ownership, and long-term reliability in mind.
+    </p>
+
+    <div class="trust-grid">
+
+      <div class="trust-card">
+        <h3>One-Time Access</h3>
+        <p>
+          Pay once ($5.99) to unlock AXION. No forced subscriptions.
+          Optional upgrades only if you want more.
+        </p>
+      </div>
+
+      <div class="trust-card">
+        <h3>Data Ownership</h3>
+        <p>
+          Your data belongs to you. AXION never sells or exploits user information.
+        </p>
+      </div>
+
+      <div class="trust-card">
+        <h3>Secure by Design</h3>
+        <p>
+          Industry-standard encryption and security practices across the platform.
+        </p>
+      </div>
+
+      <div class="trust-card">
+        <h3>Transparent Updates</h3>
+        <p>
+          Every change is logged publicly in the AXION changelog.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL OVERVIEW -->
+<section class="section alt" id="legal">
+  <div class="container">
+
+    <h2>Legal Overview</h2>
+    <p class="lead">
+      Simple, human-readable policies. No hidden clauses.
+    </p>
+
+    <div class="legal-grid">
+
+      <div class="legal-card">
+        <h3>Terms of Service</h3>
+        <p>
+          AXION provides access to tools and systems “as is”.
+          Users retain full control of their usage and decisions.
+        </p>
+        <button class="btn-outline" onclick="openModal('termsModal')">
+          Read Terms
+        </button>
+      </div>
+
+      <div class="legal-card">
+        <h3>Privacy Policy</h3>
+        <p>
+          We collect only what’s necessary to operate the platform.
+          No tracking beyond functionality.
+        </p>
+        <button class="btn-outline" onclick="openModal('privacyModal')">
+          Read Privacy Policy
+        </button>
+      </div>
+
+      <div class="legal-card">
+        <h3>Refund Policy</h3>
+        <p>
+          Due to the low one-time fee, refunds are limited
+          and handled case-by-case.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <h3>AXION</h3>
+      <p>
+        A structured platform built for clarity,
+        control, and sustainable growth.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="#" onclick="openModal('loginModal')">Login</a></li>
+        <li><a href="#" onclick="openModal('signupModal')">Sign Up</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#" onclick="openModal('termsModal')">Terms</a></li>
+        <li><a href="#" onclick="openModal('privacyModal')">Privacy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> AXION. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>
+    AXION uses minimal cookies required for functionality.
+    By continuing, you agree to our use of cookies.
+  </p>
+  <button class="btn-primary" onclick="acceptCookies()">Accept</button>
+</div>
+
+<!-- LEGAL MODALS -->
+<div class="modal" id="termsModal">
+  <div class="modal-content">
+    <h3>Terms of Service</h3>
+    <p>
+      By using AXION, you agree to use the platform responsibly.
+      AXION provides tools only and is not liable for user actions.
+    </p>
+    <button class="btn-outline" onclick="closeModal('termsModal')">Close</button>
+  </div>
+</div>
+
+<div class="modal" id="privacyModal">
+  <div class="modal-content">
+    <h3>Privacy Policy</h3>
+    <p>
+      AXION stores minimal account data required to function.
+      No data is sold or shared with third parties.
+    </p>
+    <button class="btn-outline" onclick="closeModal('privacyModal')">Close</button>
+  </div>
+</div>
+
+<!-- PART 9 STYLES -->
+<style>
+.trust-grid {
+  margin-top:3rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;
+}
+.trust-card {
+  background:var(--bg-card);
+  padding:2.4rem;
+  border-radius:var(--radius-md);
+}
+.legal-grid {
+  margin-top:3rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+.legal-card {
+  background:var(--bg-card);
+  padding:2.6rem;
+  border-radius:var(--radius-md);
+}
+.footer {
+  background:#0b0b0b;
+  padding:4rem 0 2rem;
+}
+.footer-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:3rem;
+}
+.footer-col h3,
+.footer-col h4 {
+  margin-bottom:1rem;
+}
+.footer-col ul {
+  list-style:none;
+  padding:0;
+}
+.footer-col li {
+  margin-bottom:0.6rem;
+}
+.footer-col a {
+  color:#aaa;
+  text-decoration:none;
+}
+.footer-bottom {
+  margin-top:3rem;
+  text-align:center;
+  opacity:0.6;
+}
+.cookie-banner {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#111;
+  padding:1.4rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:999;
+}
+.cookie-banner.hidden {
+  display:none;
+}
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+.modal-content {
+  background:var(--bg-card);
+  padding:3rem;
+  border-radius:var(--radius-md);
+  max-width:520px;
+}
+</style>
+
+<!-- PART 9 SCRIPTS -->
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function acceptCookies() {
+  localStorage.setItem("axionCookies","true");
+  document.getElementById("cookieBanner").classList.add("hidden");
+}
+
+if(localStorage.getItem("axionCookies")) {
+  document.getElementById("cookieBanner").classList.add("hidden");
+}
+
+function openModal(id) {
+  document.getElementById(id).style.display="flex";
+}
+function closeModal(id) {
+  document.getElementById(id).style.display="none";
+}
+</script>
+<!-- =========================================================
+     PART 10: GLOBAL JS, ANIMATIONS, UX POLISH & FINAL CLOSE
+========================================================= -->
+
+<!-- SCROLL PROGRESS BAR -->
+<div id="scrollProgress"></div>
+
+<style>
+/* SCROLL PROGRESS */
+#scrollProgress {
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  width:0%;
+  background:linear-gradient(90deg,var(--accent),#a855f7);
+  z-index:2000;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+.reveal.active {
+  opacity:1;
+  transform:none;
+}
+
+/* BUTTON HOVER ENHANCEMENTS */
+.btn-primary:hover {
+  box-shadow:0 0 30px rgba(168,85,247,0.45);
+  transform:translateY(-2px);
+}
+.btn-outline:hover {
+  background:rgba(168,85,247,0.1);
+}
+
+/* SECTION DIVIDERS */
+.section-divider {
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:6rem 0;
+}
+
+/* LOADING OVERLAY */
+#pageLoader {
+  position:fixed;
+  inset:0;
+  background:#050505;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+  transition:opacity 0.6s ease,visibility 0.6s ease;
+}
+#pageLoader.hidden {
+  opacity:0;
+  visibility:hidden;
+}
+.loader-logo {
+  font-size:2.2rem;
+  letter-spacing:0.4rem;
+  color:var(--accent);
+  animation:pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%{opacity:0.4}
+  50%{opacity:1}
+  100%{opacity:0.4}
+}
+
+/* BACK TO TOP */
+#backToTop {
+  position:fixed;
+  bottom:90px;
+  right:30px;
+  background:var(--accent);
+  color:#000;
+  padding:0.8rem 1rem;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  display:none;
+  z-index:1200;
+}
+</style>
+
+<!-- LOADER -->
+<div id="pageLoader">
+  <div class="loader-logo">AXION</div>
+</div>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="backToTop" onclick="scrollToTop()">↑</button>
+
+<script>
+/* =========================================================
+   GLOBAL INTERACTIONS & UX
+========================================================= */
+
+/* PAGE LOADER */
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("pageLoader").classList.add("hidden");
+  }, 600);
+});
+
+/* SCROLL PROGRESS */
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById("scrollProgress").style.width =
+    (scrollTop / height) * 100 + "%";
+
+  // Back to top toggle
+  document.getElementById("backToTop").style.display =
+    scrollTop > 600 ? "block" : "none";
+});
+
+/* REVEAL ON SCROLL */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("active");
+    }
+  });
+},{ threshold:0.15 });
+
+document.querySelectorAll(".section, .card, .feature, .pricing-card").forEach(el=>{
+  el.classList.add("reveal");
+  revealObserver.observe(el);
+});
+
+/* SMOOTH SCROLL FOR ANCHORS */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e){
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if(target){
+      target.scrollIntoView({ behavior:"smooth" });
+    }
+  });
+});
+
+/* BACK TO TOP */
+function scrollToTop(){
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+/* FAKE DASHBOARD LOCK STATE */
+document.querySelectorAll(".locked").forEach(card=>{
+  card.addEventListener("click", ()=>{
+    alert("Unlock AXION to access this feature.");
+  });
+});
+
+/* ACCESS CONFIRMATION */
+function purchaseAxion(){
+  alert("AXION unlocked. One-time access granted.");
+}
+
+/* SUBSCRIPTION TOGGLE */
+document.querySelectorAll(".subscription-toggle").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    btn.classList.toggle("active");
+  });
+});
+
+/* PERFORMANCE SAFETY */
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden){
+    console.log("AXION paused");
+  } else {
+    console.log("AXION active");
+  }
+});
+</script>
+
+<!-- FINAL SAFETY CLOSE -->
+</body>
+</html>
