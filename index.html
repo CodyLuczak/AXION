@@ -1,2327 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AXION</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXION — AI-Powered Resume Platform</title>
+<meta name="description" content="AXION is a global AI-powered platform that generates resumes and job suggestions. One-off access $5.99, optional subscriptions available.">
 
-  <meta name="description" content="AXION provides structured career outcomes through a simple access model. One submission. One result. Clear direction.">
+<style>
+/* ------------------------------
+   ROOT & COLORS
+--------------------------------*/
+:root {
+    --primary: #6c5cff;
+    --secondary: #00d1b2;
+    --accent: #ff5c93;
+    --bg-main: #0f0f14;
+    --bg-soft: #171722;
+    --bg-card: #1f1f2e;
+    --bg-deep: #0b0b10;
+    --text-main: #eaeaf0;
+    --text-muted: #b3b3c6;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 26px;
+    --transition: 0.3s ease;
+}
 
-  <style>
-    :root {
-      --bg: #0b0b12;
-      --panel: #141420;
-      --text: #f4f4f7;
-      --muted: #a1a1b3;
-      --accent: #7c6cff;
-      --radius: 14px;
-    }
+/* ------------------------------
+   GLOBAL
+--------------------------------*/
+html { scroll-behavior: smooth; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.7;
+    margin:0;
+}
+a { color: inherit; text-decoration: none; }
+ul { padding-left: 1.2rem; }
+li { margin-bottom: 0.5rem; }
+button { font-family:inherit; cursor:pointer; border:none; }
+input, textarea { font-family:inherit; background: #12121a; border:1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); color:#fff; padding:0.8rem; width:100%; margin-bottom:1rem; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+/* ------------------------------
+   HEADER / NAV
+--------------------------------*/
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(15,15,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav { display:flex; justify-content:space-between; align-items:center; height:80px; padding:0 8vw; }
+.logo { font-size:1.8rem; font-weight:800; letter-spacing:2px; }
+.nav-links { display:flex; gap:1.8rem; align-items:center; }
+.nav-links a { font-size:0.95rem; color:var(--text-muted); transition: color var(--transition); }
+.nav-links a:hover { color: var(--primary); }
+.btn-primary { padding: 12px 24px; border-radius:999px; font-weight:600; background:var(--primary); color:white; transition:0.2s ease; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
+.btn-secondary { padding: 12px 24px; border-radius:999px; font-weight:600; background:transparent; border:1px solid rgba(255,255,255,0.15); color:white; transition:0.2s ease; }
+.btn-secondary:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+/* ------------------------------
+   HERO
+--------------------------------*/
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #1b1b35, #0f0f14 65%);
+    text-align: center;
+    padding: 0 8vw;
+}
+.hero h1 { font-size: clamp(2.5rem,5vw,4rem); margin-bottom: 20px; font-weight:700; line-height:1.1; }
+.hero p { font-size:1.2rem; opacity:0.85; margin-bottom:36px; }
+.hero-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+/* ------------------------------
+   SECTIONS & CARDS
+--------------------------------*/
+section { padding: 7rem 8vw; }
+.section h2 { font-size: clamp(2rem,4vw,2.8rem); font-weight:600; margin-bottom:20px; position:relative; }
+.section h2::after { content:""; display:block; width:48px; height:4px; background:var(--primary); margin-top:16px; border-radius:4px; }
+.section p { max-width:720px; font-size:1rem; opacity:0.85; margin-bottom:28px; }
+.section-grid { display:grid; gap:40px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:60px; }
+.card { background: var(--bg-card); padding:32px; border-radius:16px; transition: transform var(--transition); }
+.card:hover { transform:translateY(-6px); }
+.card h3 { margin-bottom:12px; font-weight:600; }
+.card p { font-size:0.95rem; line-height:1.55; }
 
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 72px;
-      background: rgba(11,11,18,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      z-index: 1000;
-    }
+/* ------------------------------
+   SUBSCRIPTION PLANS
+--------------------------------*/
+.plan-grid { display:grid; gap:30px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:40px; }
+.plan-card { background: var(--bg-card); padding:32px; border-radius: var(--radius-md); box-shadow:0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); }
+.plan-card:hover { transform: translateY(-5px); }
+.plan-card.highlight { border:2px solid var(--primary); }
+.plan-card h3 { margin-bottom:12px; font-weight:700; font-size:1.3rem; }
+.plan-card .price { font-size:2rem; font-weight:700; margin:10px 0 20px; color:var(--primary); }
+.plan-card ul { padding-left:18px; opacity:0.85; }
+.plan-card button { width:100%; margin-top:1rem; }
 
-    .nav {
-      max-width: 1200px;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+/* ------------------------------
+   AI SUBMISSION
+--------------------------------*/
+.submit-section { background: var(--bg-soft); padding:80px 8vw; border-radius: var(--radius-lg); margin:60px auto; max-width:900px; }
+.submit-section h2 { margin-bottom:24px; }
+.submit-section p { margin-bottom:24px; opacity:0.85; }
+.submit-section form { display:grid; gap:16px; }
+.submit-section button { width:50%; margin-top:1rem; }
 
-    .logo {
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      font-size: 1.1rem;
-    }
+/* ------------------------------
+   CTA
+--------------------------------*/
+.cta-section { padding:100px 8vw; text-align:center; background:var(--primary); color:white; border-radius: var(--radius-lg); margin:60px auto; max-width:900px; }
+.cta-section h2 { font-size:clamp(2.2rem,4vw,3rem); margin-bottom:20px; }
+.cta-section p { max-width:720px; margin:0 auto 40px; opacity:0.9; }
+.cta-section a { display:inline-block; padding:16px 36px; background:white; color:black; border-radius:999px; font-weight:600; text-decoration:none; transition:0.2s ease; }
+.cta-section a:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
 
-    .nav-actions {
-      display: flex;
-      gap: 1.2rem;
-      align-items: center;
-    }
+/* ------------------------------
+   FAQ
+--------------------------------*/
+.faq { padding:80px 8vw; }
+.faq-item { max-width:800px; margin-bottom:40px; }
+.faq-item h3 { margin-bottom:10px; font-weight:600; }
+.faq-item p { opacity:0.85; }
 
-    .btn {
-      padding: 0.55rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      border: none;
-    }
+/* ------------------------------
+   FOOTER
+--------------------------------*/
+footer { background: var(--bg-deep); padding:4rem 8vw 2rem; }
+.footer-grid { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+.footer-grid h4 { margin-bottom:12px; }
+.footer-bottom { margin-top:2rem; text-align:center; font-size:0.85rem; color:var(--text-muted); }
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--text);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0b0b12;
-      font-weight: 600;
-    }
-
-    main {
-      padding-top: 72px;
-    }
-
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 2rem;
-    }
-
-    .hero-inner {
-      max-width: 720px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-bottom: 2.4rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  </style>
+/* ------------------------------
+   MODALS
+--------------------------------*/
+.terms-overlay, .auth-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10,10,16,0.95);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 3000;
+}
+.terms-box, .auth-box {
+    background: var(--bg-card);
+    max-width: 820px;
+    width: 90%;
+    padding:3rem;
+    border-radius: var(--radius-lg);
+    overflow-y: auto;
+}
+.auth-box { max-width:420px; }
+.auth-box input { width:100%; }
+</style>
 </head>
-
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">AXION</div>
-    <div class="nav-actions">
-      <button class="btn btn-outline">Login</button>
-      <button class="btn btn-primary">Get Access</button>
-    </div>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Clear direction.<br>One submission.</h1>
-      <p>
-        AXION delivers personalised career outcomes through a simple,
-        structured process designed to reduce noise and save time.
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-primary">Get started for $5.99</button>
-        <button class="btn btn-outline">How it works</button>
-      </div>
-    </div>
-  </section>
-  <!-- =====================================================
-       PART 2: HOW AXION WORKS
-       Simple. Calm. No technical language.
-  ====================================================== -->
-
-  <section style="padding:6rem 2rem;">
-    <div style="max-width:1100px;margin:0 auto;">
-
-      <div style="max-width:640px;margin-bottom:4rem;">
-        <h2 style="
-          font-size:clamp(1.8rem,4vw,2.6rem);
-          font-weight:600;
-          margin-bottom:1rem;
-        ">
-          How AXION works
-        </h2>
-
-        <p style="
-          color:var(--muted);
-          font-size:1rem;
-        ">
-          A structured process designed to remove guesswork
-          and deliver clear outcomes.
-        </p>
-      </div>
-
-      <div style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-        gap:2.5rem;
-      ">
-
-        <!-- STEP 1 -->
-        <div style="
-          background:var(--panel);
-          border-radius:var(--radius);
-          padding:2.4rem;
-          border:1px solid rgba(255,255,255,0.06);
-        ">
-          <div style="
-            font-size:0.75rem;
-            letter-spacing:0.2em;
-            color:var(--accent);
-            margin-bottom:0.8rem;
-          ">
-            STEP 01
-          </div>
-
-          <h3 style="
-            font-size:1.2rem;
-            font-weight:600;
-            margin-bottom:0.6rem;
-          ">
-            Get access
-          </h3>
-
-          <p style="color:var(--muted);font-size:0.95rem;">
-            A one-time payment of $5.99 gives you access to the AXION platform
-            and submission system.
-          </p>
+<!-- TERMS & CONDITIONS POPUP -->
+<div class="terms-overlay" id="termsOverlay">
+    <div class="terms-box">
+        <h2>Terms and Conditions</h2>
+        <p>By accessing AXION, you agree to comply with these Terms and Conditions. AXION provides structured, AI-assisted resume creation and job suggestions. Features, availability, and access levels may evolve as the platform grows.</p>
+        <p>Accounts are personal and may not be shared. Subscription access does not grant ownership of any platform assets.</p>
+        <p>AXION reserves the right to modify, suspend, or discontinue any aspect of the platform when necessary.</p>
+        <div style="margin-top:2rem;text-align:right;">
+            <button class="btn btn-primary" onclick="acceptTerms()">I Accept</button>
         </div>
-
-        <!-- STEP 2 -->
-        <div style="
-          background:var(--panel);
-          border-radius:var(--radius);
-          padding:2.4rem;
-          border:1px solid rgba(255,255,255,0.06);
-        ">
-          <div style="
-            font-size:0.75rem;
-            letter-spacing:0.2em;
-            color:var(--accent);
-            margin-bottom:0.8rem;
-          ">
-            STEP 02
-          </div>
-
-          <h3 style="
-            font-size:1.2rem;
-            font-weight:600;
-            margin-bottom:0.6rem;
-          ">
-            Submit your details
-          </h3>
-
-          <p style="color:var(--muted);font-size:0.95rem;">
-            You provide information about your background,
-            experience, and direction.
-          </p>
-        </div>
-
-        <!-- STEP 3 -->
-        <div style="
-          background:var(--panel);
-          border-radius:var(--radius);
-          padding:2.4rem;
-          border:1px solid rgba(255,255,255,0.06);
-        ">
-          <div style="
-            font-size:0.75rem;
-            letter-spacing:0.2em;
-            color:var(--accent);
-            margin-bottom:0.8rem;
-          ">
-            STEP 03
-          </div>
-
-          <h3 style="
-            font-size:1.2rem;
-            font-weight:600;
-            margin-bottom:0.6rem;
-          ">
-            Receive your outcome
-          </h3>
-
-          <p style="color:var(--muted);font-size:0.95rem;">
-            You receive a personalised email with
-            resume guidance and job direction.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SOFT DIVIDER -->
-  <div style="
-    height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    opacity:0.35;
-    margin:4rem 0;
-  "></div>
-  <!-- =====================================================
-       PART 3: ONE-TIME ACCESS
-       The core offer. Clear, calm, confident.
-  ====================================================== -->
-
-  <section style="
-    padding:7rem 2rem;
-    background:linear-gradient(180deg,#0b0b12 0%, #10101a 100%);
-  ">
-    <div style="
-      max-width:1200px;
-      margin:0 auto;
-    ">
-
-      <!-- SECTION INTRO -->
-      <div style="
-        max-width:680px;
-        margin-bottom:4.5rem;
-      ">
-        <h2 style="
-          font-size:clamp(2rem,4vw,2.8rem);
-          font-weight:600;
-          margin-bottom:1.2rem;
-          letter-spacing:-0.02em;
-        ">
-          One-time access
-        </h2>
-
-        <p style="
-          color:var(--muted);
-          font-size:1.05rem;
-          line-height:1.6;
-        ">
-          AXION is designed to be accessible without commitment.
-          One payment gives you everything required to receive
-          a meaningful outcome.
-        </p>
-      </div>
-
-      <!-- ACCESS GRID -->
-      <div style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-        gap:3rem;
-        align-items:stretch;
-      ">
-
-        <!-- ACCESS CARD -->
-        <div style="
-          background:var(--panel);
-          border-radius:var(--radius);
-          padding:3rem;
-          border:1px solid rgba(255,255,255,0.08);
-          position:relative;
-          overflow:hidden;
-        ">
-
-          <!-- ACCENT STRIP -->
-          <div style="
-            position:absolute;
-            top:0;
-            left:0;
-            right:0;
-            height:4px;
-            background:linear-gradient(90deg,var(--accent),#9a8cff);
-          "></div>
-
-          <div style="
-            font-size:0.8rem;
-            letter-spacing:0.25em;
-            color:var(--accent);
-            margin-bottom:1rem;
-          ">
-            CORE ACCESS
-          </div>
-
-          <h3 style="
-            font-size:2.6rem;
-            font-weight:600;
-            margin-bottom:0.4rem;
-          ">
-            $5.99
-          </h3>
-
-          <p style="
-            font-size:0.9rem;
-            color:var(--muted);
-            margin-bottom:2.2rem;
-          ">
-            One-time payment · No subscription
-          </p>
-
-          <ul style="
-            list-style:none;
-            display:flex;
-            flex-direction:column;
-            gap:0.9rem;
-            margin-bottom:2.8rem;
-          ">
-            <li style="display:flex;gap:0.6rem;align-items:flex-start;">
-              <span style="color:var(--accent);">•</span>
-              <span>Access to the AXION submission system</span>
-            </li>
-            <li style="display:flex;gap:0.6rem;align-items:flex-start;">
-              <span style="color:var(--accent);">•</span>
-              <span>One personalised career outcome</span>
-            </li>
-            <li style="display:flex;gap:0.6rem;align-items:flex-start;">
-              <span style="color:var(--accent);">•</span>
-              <span>Resume guidance and job direction</span>
-            </li>
-            <li style="display:flex;gap:0.6rem;align-items:flex-start;">
-              <span style="color:var(--accent);">•</span>
-              <span>Email delivery within 24–48 hours</span>
-            </li>
-          </ul>
-
-          <button style="
-            width:100%;
-            padding:0.9rem 1.2rem;
-            border-radius:999px;
-            border:none;
-            font-weight:600;
-            background:var(--accent);
-            color:#0b0b12;
-            cursor:pointer;
-          ">
-            Get access for $5.99
-          </button>
-
-        </div>
-
-        <!-- EXPLANATION COLUMN -->
-        <div style="
-          display:flex;
-          flex-direction:column;
-          justify-content:center;
-          gap:2rem;
-          padding:1rem;
-        ">
-
-          <div>
-            <h4 style="
-              font-size:1.2rem;
-              font-weight:600;
-              margin-bottom:0.6rem;
-            ">
-              No commitment
-            </h4>
-
-            <p style="
-              color:var(--muted);
-              font-size:0.95rem;
-              max-width:420px;
-            ">
-              The one-time access fee exists to remove barriers.
-              You pay once, submit once, and receive a complete outcome.
-            </p>
-          </div>
-
-          <div>
-            <h4 style="
-              font-size:1.2rem;
-              font-weight:600;
-              margin-bottom:0.6rem;
-            ">
-              Designed for clarity
-            </h4>
-
-            <p style="
-              color:var(--muted);
-              font-size:0.95rem;
-              max-width:420px;
-            ">
-              AXION avoids unnecessary steps, dashboards,
-              or ongoing obligations. The focus is on delivery.
-            </p>
-          </div>
-
-          <div>
-            <h4 style="
-              font-size:1.2rem;
-              font-weight:600;
-              margin-bottom:0.6rem;
-            ">
-              Global access
-            </h4>
-
-            <p style="
-              color:var(--muted);
-              font-size:0.95rem;
-              max-width:420px;
-            ">
-              The $5.99 access fee applies worldwide,
-              allowing anyone to use AXION regardless of location.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION SPACER -->
-  <div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 4: SUBSCRIPTION PLANS
-     Optional upgrades for faster delivery & more features
-====================================================== -->
-
-<section style="
-  padding:7rem 2rem;
-  background:linear-gradient(180deg,#0f0f14 0%,#161622 100%);
-">
-  <div style="max-width:1300px; margin:0 auto;">
-
-    <!-- SECTION HEADER -->
-    <div style="max-width:700px; margin-bottom:4rem;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,2.8rem);
-        font-weight:600;
-        margin-bottom:1rem;
-        letter-spacing:-0.02em;
-      ">
-        Subscription Plans
-      </h2>
-      <p style="
-        color:var(--muted);
-        font-size:1.05rem;
-        line-height:1.6;
-      ">
-        Choose a subscription to unlock faster delivery times and extra features. All optional; $5.99 core access remains fully functional.
-      </p>
-    </div>
-
-    <!-- SUBSCRIPTION GRID -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:3rem;
-      align-items:stretch;
-    ">
-
-      <!-- PLAN 1 -->
-      <div style="
-        background:var(--panel);
-        padding:3rem;
-        border-radius:var(--radius);
-        border:1px solid rgba(255,255,255,0.08);
-        position:relative;
-        overflow:hidden;
-      ">
-        <div style="
-          position:absolute;
-          top:0;
-          left:0;
-          right:0;
-          height:4px;
-          background:linear-gradient(90deg,#6c5cff,#00d1b2);
-        "></div>
-        <div style="margin-bottom:1rem; font-weight:600; letter-spacing:0.1em; color:var(--primary);">
-          SPEED ACCESS
-        </div>
-        <h3 style="font-size:2.4rem; font-weight:600; margin-bottom:0.5rem;">$12.99 / mo</h3>
-        <p style="color:var(--muted); margin-bottom:2rem; font-size:0.95rem;">Faster delivery and core extras</p>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem; margin-bottom:2rem;">
-          <li>Resume & job suggestions within 12–24 hours</li>
-          <li>Priority handling of submissions</li>
-          <li>Optional guidance on application improvements</li>
-        </ul>
-        <button style="
-          width:100%;
-          padding:0.9rem 1.2rem;
-          border-radius:999px;
-          border:none;
-          font-weight:600;
-          background:var(--primary);
-          color:#fff;
-          cursor:pointer;
-        ">Subscribe $12.99</button>
-      </div>
-
-      <!-- PLAN 2 -->
-      <div style="
-        background:var(--panel);
-        padding:3rem;
-        border-radius:var(--radius);
-        border:2px solid var(--accent);
-        position:relative;
-        overflow:hidden;
-      ">
-        <div style="
-          position:absolute;
-          top:0;
-          left:0;
-          right:0;
-          height:4px;
-          background:linear-gradient(90deg,#ff5c93,#9a8cff);
-        "></div>
-        <div style="margin-bottom:1rem; font-weight:600; letter-spacing:0.1em; color:var(--accent);">
-          PREMIUM
-        </div>
-        <h3 style="font-size:2.4rem; font-weight:600; margin-bottom:0.5rem;">$24.99 / mo</h3>
-        <p style="color:var(--muted); margin-bottom:2rem; font-size:0.95rem;">Faster delivery + enhanced features</p>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem; margin-bottom:2rem;">
-          <li>Resume & job suggestions within 6–12 hours</li>
-          <li>Detailed role recommendations and priority processing</li>
-          <li>Email guidance includes suggested improvements</li>
-          <li>Access to sample interview questions</li>
-        </ul>
-        <button style="
-          width:100%;
-          padding:0.9rem 1.2rem;
-          border-radius:999px;
-          border:none;
-          font-weight:600;
-          background:var(--accent);
-          color:#fff;
-          cursor:pointer;
-        ">Subscribe $24.99</button>
-      </div>
-
-      <!-- PLAN 3 -->
-      <div style="
-        background:var(--panel);
-        padding:3rem;
-        border-radius:var(--radius);
-        border:1px solid rgba(255,255,255,0.08);
-        position:relative;
-        overflow:hidden;
-      ">
-        <div style="
-          position:absolute;
-          top:0;
-          left:0;
-          right:0;
-          height:4px;
-          background:linear-gradient(90deg,#00d1b2,#6c5cff);
-        "></div>
-        <div style="margin-bottom:1rem; font-weight:600; letter-spacing:0.1em; color:var(--secondary);">
-          ELITE
-        </div>
-        <h3 style="font-size:2.4rem; font-weight:600; margin-bottom:0.5rem;">$45.00 / mo</h3>
-        <p style="color:var(--muted); margin-bottom:2rem; font-size:0.95rem;">Immediate delivery & complete extras</p>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem; margin-bottom:2rem;">
-          <li>Resume & job suggestions within 2–6 hours</li>
-          <li>Full personalised guidance on role & application</li>
-          <li>Email includes interview tips & actionable suggestions</li>
-          <li>Access to additional premium resources</li>
-        </ul>
-        <button style="
-          width:100%;
-          padding:0.9rem 1.2rem;
-          border-radius:999px;
-          border:none;
-          font-weight:600;
-          background:var(--secondary);
-          color:#0b0b12;
-          cursor:pointer;
-        ">Subscribe $45.00</button>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 5: USER SUBMISSION FORM
-     Collect user details for AI resume & job suggestions
-====================================================== -->
-
-<section style="
-  padding:7rem 2rem;
-  background:var(--bg-soft);
-">
-  <div style="max-width:1100px; margin:0 auto;">
-
-    <!-- SECTION HEADER -->
-    <div style="max-width:700px; margin-bottom:3rem; text-align:center;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,2.8rem);
-        font-weight:600;
-        margin-bottom:0.5rem;
-      ">
-        Submit Your Details
-      </h2>
-      <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.6;">
-        Enter your information below and our system will send tailored job suggestions and resume guidance within 24–42 hours for basic users, or faster for subscribers.
-      </p>
-    </div>
-
-    <!-- FORM -->
-    <form id="submissionForm" style="
-      display:flex;
-      flex-direction:column;
-      gap:1.5rem;
-      background:var(--bg-card);
-      padding:2.5rem;
-      border-radius:var(--radius-md);
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    ">
-
-      <input type="text" name="fullName" placeholder="Full Name" required style="
-        width:100%;
-        padding:0.9rem 1rem;
-        border-radius:var(--radius-sm);
-        border:1px solid rgba(255,255,255,0.1);
-        background:#12121a;
-        color:#fff;
-        font-size:1rem;
-      ">
-
-      <input type="email" name="email" placeholder="Email Address" required style="
-        width:100%;
-        padding:0.9rem 1rem;
-        border-radius:var(--radius-sm);
-        border:1px solid rgba(255,255,255,0.1);
-        background:#12121a;
-        color:#fff;
-        font-size:1rem;
-      ">
-
-      <input type="text" name="currentRole" placeholder="Current Role / Job Title" style="
-        width:100%;
-        padding:0.9rem 1rem;
-        border-radius:var(--radius-sm);
-        border:1px solid rgba(255,255,255,0.1);
-        background:#12121a;
-        color:#fff;
-        font-size:1rem;
-      ">
-
-      <textarea name="experience" placeholder="Brief Experience / Skills" rows="5" style="
-        width:100%;
-        padding:0.9rem 1rem;
-        border-radius:var(--radius-sm);
-        border:1px solid rgba(255,255,255,0.1);
-        background:#12121a;
-        color:#fff;
-        font-size:1rem;
-        resize:none;
-      "></textarea>
-
-      <select name="plan" required style="
-        width:100%;
-        padding:0.9rem 1rem;
-        border-radius:var(--radius-sm);
-        border:1px solid rgba(255,255,255,0.1);
-        background:#12121a;
-        color:#fff;
-        font-size:1rem;
-      ">
-        <option value="">Choose Access Level</option>
-        <option value="basic">Basic - $5.99</option>
-        <option value="speed">Speed - $12.99/mo</option>
-        <option value="premium">Premium - $24.99/mo</option>
-        <option value="elite">Elite - $45.00/mo</option>
-      </select>
-
-      <button type="submit" style="
-        padding:1rem 2rem;
-        border-radius:999px;
-        border:none;
-        background:var(--primary);
-        color:#fff;
-        font-weight:600;
-        cursor:pointer;
-        transition:0.2s ease;
-      " onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
-        Submit Details
-      </button>
-
-      <p id="submissionNotice" style="color:var(--text-muted); font-size:0.9rem; margin-top:0.5rem;"></p>
-    </form>
-
-  </div>
-</section>
-
-<!-- FORM FUNCTIONALITY SCRIPT -->
-<script>
-const form = document.getElementById('submissionForm');
-const notice = document.getElementById('submissionNotice');
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  // Collect data
-  const data = {
-    name: form.fullName.value,
-    email: form.email.value,
-    role: form.currentRole.value,
-    experience: form.experience.value,
-    plan: form.plan.value
-  };
-
-  // Placeholder for actual backend / AI submission
-  console.log('User Submission:', data);
-
-  // Display confirmation
-  notice.textContent = "Thank you! Your details have been submitted. Our system will send your recommendations within 24–42 hours for Basic, faster for subscribers.";
-
-  // Clear form (optional)
-  form.reset();
-});
-</script>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 6: SUBSCRIPTION PLAN COMPARISON
-====================================================== -->
-
-<section style="
-  padding:7rem 2rem;
-  background:var(--bg-main);
-">
-  <div style="max-width:1200px; margin:0 auto; text-align:center;">
-
-    <!-- SECTION HEADER -->
-    <div style="margin-bottom:4rem;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,3rem);
-        font-weight:600;
-        color:#fff;
-        margin-bottom:0.5rem;
-      ">
-        Choose Your Plan
-      </h2>
-      <p style="color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto;">
-        Pick the plan that fits your needs. Start with Basic for $5.99, or unlock faster responses and extra features with subscriptions.
-      </p>
-    </div>
-
-    <!-- PLAN CARDS -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:2rem;
-    ">
-
-      <!-- BASIC PLAN -->
-      <div style="
-        background:var(--bg-card);
-        padding:2.5rem 2rem;
-        border-radius:var(--radius-md);
-        border:2px solid rgba(255,255,255,0.05);
-        transition:transform 0.3s ease;
-      " onmouseover="this.style.transform='translateY(-6px)';" onmouseout="this.style.transform='translateY(0)';">
-        <h3 style="font-weight:600; margin-bottom:1rem;">Basic</h3>
-        <div style="font-size:2rem; font-weight:700; margin-bottom:1rem;">$5.99</div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">One-time access. Standard processing 24–42 hours.</p>
-        <ul style="list-style-type:none; padding-left:0; text-align:left; color:#fff;">
-          <li>✔ Submit your details</li>
-          <li>✔ Resume & job suggestions</li>
-          <li>✔ 24–42 hour response</li>
-          <li>✔ Full access to basic features</li>
-        </ul>
-        <button style="
-          margin-top:2rem;
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          border:none;
-          background:var(--primary);
-          color:#fff;
-          font-weight:600;
-          cursor:pointer;
-        ">Select Basic</button>
-      </div>
-
-      <!-- SPEED PLAN -->
-      <div style="
-        background:var(--bg-card);
-        padding:2.5rem 2rem;
-        border-radius:var(--radius-md);
-        border:2px solid var(--primary);
-        transition:transform 0.3s ease;
-      " onmouseover="this.style.transform='translateY(-6px)';" onmouseout="this.style.transform='translateY(0)';">
-        <h3 style="font-weight:600; margin-bottom:1rem;">Speed</h3>
-        <div style="font-size:2rem; font-weight:700; margin-bottom:1rem;">$12.99/mo</div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">Faster AI response within hours, plus additional features.</p>
-        <ul style="list-style-type:none; padding-left:0; text-align:left; color:#fff;">
-          <li>✔ Everything in Basic</li>
-          <li>✔ Response within 6–12 hours</li>
-          <li>✔ Priority processing</li>
-          <li>✔ Early access to new tools</li>
-        </ul>
-        <button style="
-          margin-top:2rem;
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          border:none;
-          background:var(--primary);
-          color:#fff;
-          font-weight:600;
-          cursor:pointer;
-        ">Select Speed</button>
-      </div>
-
-      <!-- PREMIUM PLAN -->
-      <div style="
-        background:var(--bg-card);
-        padding:2.5rem 2rem;
-        border-radius:var(--radius-md);
-        border:2px solid var(--secondary);
-        transition:transform 0.3s ease;
-      " onmouseover="this.style.transform='translateY(-6px)';" onmouseout="this.style.transform='translateY(0)';">
-        <h3 style="font-weight:600; margin-bottom:1rem;">Premium</h3>
-        <div style="font-size:2rem; font-weight:700; margin-bottom:1rem;">$24.99/mo</div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">Full AI support with immediate feedback and advanced insights.</p>
-        <ul style="list-style-type:none; padding-left:0; text-align:left; color:#fff;">
-          <li>✔ Everything in Speed</li>
-          <li>✔ Immediate responses</li>
-          <li>✔ Detailed resume optimization</li>
-          <li>✔ Job match recommendations</li>
-        </ul>
-        <button style="
-          margin-top:2rem;
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          border:none;
-          background:var(--secondary);
-          color:#fff;
-          font-weight:600;
-          cursor:pointer;
-        ">Select Premium</button>
-      </div>
-
-      <!-- ELITE PLAN -->
-      <div style="
-        background:var(--bg-card);
-        padding:2.5rem 2rem;
-        border-radius:var(--radius-md);
-        border:2px solid var(--accent);
-        transition:transform 0.3s ease;
-      " onmouseover="this.style.transform='translateY(-6px)';" onmouseout="this.style.transform='translateY(0)';">
-        <h3 style="font-weight:600; margin-bottom:1rem;">Elite</h3>
-        <div style="font-size:2rem; font-weight:700; margin-bottom:1rem;">$45.00/mo</div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">All features unlocked with highest priority AI response and exclusive tools.</p>
-        <ul style="list-style-type:none; padding-left:0; text-align:left; color:#fff;">
-          <li>✔ Everything in Premium</li>
-          <li>✔ Real-time AI guidance</li>
-          <li>✔ Exclusive premium tools</li>
-          <li>✔ Custom alerts & recommendations</li>
-        </ul>
-        <button style="
-          margin-top:2rem;
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          border:none;
-          background:var(--accent);
-          color:#fff;
-          font-weight:600;
-          cursor:pointer;
-        ">Select Elite</button>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 7: TESTIMONIALS / USER SUCCESS STORIES
-====================================================== -->
-
-<section style="padding:7rem 2rem; background:var(--bg-soft);">
-  <div style="max-width:1200px; margin:0 auto; text-align:center;">
-
-    <!-- SECTION HEADER -->
-    <div style="margin-bottom:4rem;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,3rem);
-        font-weight:600;
-        color:#fff;
-        margin-bottom:0.5rem;
-      ">
-        Hear From Our Users
-      </h2>
-      <p style="color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto;">
-        Users from all over the world have found jobs faster and smarter using AXION. See what they have to say.
-      </p>
-    </div>
-
-    <!-- TESTIMONIAL CARDS -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:2rem;
-    ">
-
-      <!-- TESTIMONIAL 1 -->
-      <div style="
-        background:var(--bg-card);
-        padding:2rem;
-        border-radius:var(--radius-md);
-        border-left:4px solid var(--primary);
-      ">
-        <p style="color:#fff; font-style:italic; line-height:1.6;">
-          "AXION made the job search effortless. Submitted my details and got matched with opportunities in just 24 hours!"
-        </p>
-        <div style="margin-top:1.5rem; text-align:right; color:var(--text-muted); font-weight:600;">
-          — Jordan M.
-        </div>
-      </div>
-
-      <!-- TESTIMONIAL 2 -->
-      <div style="
-        background:var(--bg-card);
-        padding:2rem;
-        border-radius:var(--radius-md);
-        border-left:4px solid var(--secondary);
-      ">
-        <p style="color:#fff; font-style:italic; line-height:1.6;">
-          "The premium subscription is worth every penny. Immediate feedback on my resume helped me land interviews faster than ever."
-        </p>
-        <div style="margin-top:1.5rem; text-align:right; color:var(--text-muted); font-weight:600;">
-          — Priya K.
-        </div>
-      </div>
-
-      <!-- TESTIMONIAL 3 -->
-      <div style="
-        background:var(--bg-card);
-        padding:2rem;
-        border-radius:var(--radius-md);
-        border-left:4px solid var(--accent);
-      ">
-        <p style="color:#fff; font-style:italic; line-height:1.6;">
-          "AXION’s AI suggestions were accurate and professional. I feel confident applying to jobs I’d never considered."
-        </p>
-        <div style="margin-top:1.5rem; text-align:right; color:var(--text-muted); font-weight:600;">
-          — Miguel S.
-        </div>
-      </div>
-
-      <!-- TESTIMONIAL 4 -->
-      <div style="
-        background:var(--bg-card);
-        padding:2rem;
-        border-radius:var(--radius-md);
-        border-left:4px solid var(--primary);
-      ">
-        <p style="color:#fff; font-style:italic; line-height:1.6;">
-          "I started with the basic plan and quickly upgraded. The speed and precision of AXION is unmatched."
-        </p>
-        <div style="margin-top:1.5rem; text-align:right; color:var(--text-muted); font-weight:600;">
-          — Samantha L.
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 8: FAQ & SUPPORT
-====================================================== -->
-
-<section style="padding:7rem 2rem; background:var(--bg-main);">
-  <div style="max-width:1100px; margin:0 auto;">
-
-    <!-- SECTION HEADER -->
-    <div style="text-align:center; margin-bottom:4rem;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,3rem);
-        font-weight:600;
-        color:#fff;
-        margin-bottom:0.5rem;
-      ">
-        Frequently Asked Questions
-      </h2>
-      <p style="color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto;">
-        Answers to common questions about AXION, subscriptions, and how our platform works.
-      </p>
-    </div>
-
-    <!-- FAQ ACCORDION -->
-    <div style="display:grid; gap:1.5rem; max-width:800px; margin:0 auto;">
-
-      <!-- FAQ ITEM 1 -->
-      <div style="
-        background:var(--bg-card);
-        padding:1.8rem;
-        border-radius:var(--radius-md);
-        cursor:pointer;
-      " onclick="toggleFAQ(this)">
-        <h3 style="color:#fff; margin:0;">Is the $5.99 payment a subscription?</h3>
-        <p style="color:var(--text-muted); margin-top:0.8rem; display:none;">
-          No. The $5.99 fee is a one-time payment giving access to the core platform features. Subscriptions are optional for additional benefits.
-        </p>
-      </div>
-
-      <!-- FAQ ITEM 2 -->
-      <div style="
-        background:var(--bg-card);
-        padding:1.8rem;
-        border-radius:var(--radius-md);
-        cursor:pointer;
-      " onclick="toggleFAQ(this)">
-        <h3 style="color:#fff; margin:0;">How soon will I receive results from my submission?</h3>
-        <p style="color:var(--text-muted); margin-top:0.8rem; display:none;">
-          Users on the $5.99 plan typically receive results within 24-42 hours. Subscription plans offer faster delivery depending on the plan tier.
-        </p>
-      </div>
-
-      <!-- FAQ ITEM 3 -->
-      <div style="
-        background:var(--bg-card);
-        padding:1.8rem;
-        border-radius:var(--radius-md);
-        cursor:pointer;
-      " onclick="toggleFAQ(this)">
-        <h3 style="color:#fff; margin:0;">What features come with subscription plans?</h3>
-        <p style="color:var(--text-muted); margin-top:0.8rem; display:none;">
-          Each subscription tier provides faster response times, additional suggestions, premium resume guidance, and advanced matching options.
-        </p>
-      </div>
-
-      <!-- FAQ ITEM 4 -->
-      <div style="
-        background:var(--bg-card);
-        padding:1.8rem;
-        border-radius:var(--radius-md);
-        cursor:pointer;
-      " onclick="toggleFAQ(this)">
-        <h3 style="color:#fff; margin:0;">Can I cancel a subscription anytime?</h3>
-        <p style="color:var(--text-muted); margin-top:0.8rem; display:none;">
-          Yes. Subscriptions are fully flexible and can be canceled or upgraded at any time. One-time access users are never charged recurring fees.
-        </p>
-      </div>
-
-      <!-- FAQ ITEM 5 -->
-      <div style="
-        background:var(--bg-card);
-        padding:1.8rem;
-        border-radius:var(--radius-md);
-        cursor:pointer;
-      " onclick="toggleFAQ(this)">
-        <h3 style="color:#fff; margin:0;">Is AXION AI-generated?</h3>
-        <p style="color:var(--text-muted); margin-top:0.8rem; display:none;">
-          The results are generated using our advanced AI system, which analyzes your submitted details and returns professional suggestions. This is disclosed in our Terms and Conditions.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FAQ TOGGLE SCRIPT -->
-<script>
-function toggleFAQ(faqItem) {
-    const answer = faqItem.querySelector('p');
-    const isVisible = answer.style.display === 'block';
-    answer.style.display = isVisible ? 'none' : 'block';
-    faqItem.style.borderLeft = isVisible ? '4px solid transparent' : '4px solid var(--primary)';
-}
-</script>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 9: SUBSCRIPTION PLANS & FEATURES
-====================================================== -->
-
-<section style="padding:7rem 2rem; background:var(--bg-soft);">
-  <div style="max-width:1200px; margin:0 auto; text-align:center;">
-
-    <!-- SECTION HEADER -->
-    <div style="margin-bottom:4rem;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,3rem);
-        font-weight:600;
-        color:#fff;
-        margin-bottom:0.5rem;
-      ">
-        Subscription Plans
-      </h2>
-      <p style="color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto;">
-        Choose a plan that fits your needs. Higher tiers give faster responses and additional advanced features.
-      </p>
-    </div>
-
-    <!-- SUBSCRIPTION GRID -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:2.5rem;
-      margin-top:3rem;
-    ">
-
-      <!-- PLAN 1: BASIC -->
-      <div style="
-        background:var(--bg-card);
-        border-radius:var(--radius-lg);
-        padding:2.5rem 2rem;
-        position:relative;
-        transition:0.3s ease;
-      ">
-        <h3 style="color:#fff; margin-bottom:1rem;">Basic Plan</h3>
-        <div style="font-size:2rem; font-weight:700; color:var(--primary); margin-bottom:1rem;">
-          $12.99 / month
-        </div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">
-          Fast access to your submissions within 12-24 hours. Ideal for occasional users.
-        </p>
-        <ul style="color:var(--text-muted); text-align:left; padding-left:1.2rem; margin-bottom:2rem;">
-          <li>AI resume feedback within 12-24 hours</li>
-          <li>Access to core suggestions & job matches</li>
-          <li>1 submission per day</li>
-        </ul>
-        <a href="#signup" class="btn-primary" style="width:100%; text-align:center; display:inline-block; padding:1rem 0; border-radius:999px;">Select Plan</a>
-      </div>
-
-      <!-- PLAN 2: PRO -->
-      <div style="
-        background:var(--bg-card);
-        border-radius:var(--radius-lg);
-        padding:2.5rem 2rem;
-        position:relative;
-        transition:0.3s ease;
-        border:2px solid var(--primary);
-      ">
-        <h3 style="color:#fff; margin-bottom:1rem;">Pro Plan</h3>
-        <div style="font-size:2rem; font-weight:700; color:var(--primary); margin-bottom:1rem;">
-          $24.99 / month
-        </div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">
-          Accelerated results within 4-6 hours and advanced resume analysis.
-        </p>
-        <ul style="color:var(--text-muted); text-align:left; padding-left:1.2rem; margin-bottom:2rem;">
-          <li>AI resume feedback within 4-6 hours</li>
-          <li>Priority job matching</li>
-          <li>Up to 3 submissions per day</li>
-          <li>Advanced suggestions & optimizations</li>
-        </ul>
-        <a href="#signup" class="btn-primary" style="width:100%; text-align:center; display:inline-block; padding:1rem 0; border-radius:999px;">Select Plan</a>
-      </div>
-
-      <!-- PLAN 3: PREMIUM -->
-      <div style="
-        background:var(--bg-card);
-        border-radius:var(--radius-lg);
-        padding:2.5rem 2rem;
-        position:relative;
-        transition:0.3s ease;
-      ">
-        <h3 style="color:#fff; margin-bottom:1rem;">Premium Plan</h3>
-        <div style="font-size:2rem; font-weight:700; color:var(--primary); margin-bottom:1rem;">
-          $45.00 / month
-        </div>
-        <p style="color:var(--text-muted); margin-bottom:1.5rem;">
-          Immediate AI feedback (hours after submission) with unlimited submissions and premium tools.
-        </p>
-        <ul style="color:var(--text-muted); text-align:left; padding-left:1.2rem; margin-bottom:2rem;">
-          <li>AI resume feedback within hours</li>
-          <li>Unlimited submissions per day</li>
-          <li>Premium job matching</li>
-          <li>Advanced suggestions, tools & automation</li>
-          <li>Email notifications & priority support</li>
-        </ul>
-        <a href="#signup" class="btn-primary" style="width:100%; text-align:center; display:inline-block; padding:1rem 0; border-radius:999px;">Select Plan</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 10: USER SUBMISSION & AI INTERACTION FORM
-====================================================== -->
-
-<section id="submission" style="padding:7rem 2rem; background:var(--bg-main);">
-  <div style="max-width:1000px; margin:0 auto; text-align:center;">
-
-    <!-- SECTION HEADER -->
-    <div style="margin-bottom:4rem;">
-      <h2 style="
-        font-size:clamp(2rem,4vw,3rem);
-        font-weight:600;
-        color:#fff;
-        margin-bottom:0.5rem;
-      ">
-        Submit Your Details
-      </h2>
-      <p style="color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto;">
-        Fill out the form below and receive tailored resume suggestions & job matches. Your results will arrive via email after processing.
-      </p>
-    </div>
-
-    <!-- FORM -->
-    <form id="userSubmissionForm" style="
-      display:flex;
-      flex-direction:column;
-      gap:1.5rem;
-      background:var(--bg-card);
-      padding:2rem;
-      border-radius:var(--radius-lg);
-      color:#fff;
-      text-align:left;
-    ">
-
-      <label>
-        Full Name
-        <input type="text" name="fullName" placeholder="John Doe" required style="
-          width:100%;
-          padding:0.8rem;
-          border-radius:var(--radius-sm);
-          border:1px solid rgba(255,255,255,0.1);
-          background:#12121a;
-          color:#fff;
-        ">
-      </label>
-
-      <label>
-        Email Address
-        <input type="email" name="email" placeholder="you@example.com" required style="
-          width:100%;
-          padding:0.8rem;
-          border-radius:var(--radius-sm);
-          border:1px solid rgba(255,255,255,0.1);
-          background:#12121a;
-          color:#fff;
-        ">
-      </label>
-
-      <label>
-        Upload Resume (PDF)
-        <input type="file" name="resume" accept=".pdf" required style="
-          width:100%;
-          padding:0.6rem;
-          border-radius:var(--radius-sm);
-          border:1px solid rgba(255,255,255,0.1);
-          background:#12121a;
-          color:#fff;
-        ">
-      </label>
-
-      <label>
-        Additional Details / Notes
-        <textarea name="details" placeholder="Optional information about your career, preferences, or job interests" style="
-          width:100%;
-          padding:0.8rem;
-          border-radius:var(--radius-sm);
-          border:1px solid rgba(255,255,255,0.1);
-          background:#12121a;
-          color:#fff;
-          min-height:120px;
-        "></textarea>
-      </label>
-
-      <button type="submit" class="btn-primary" style="padding:1rem 0; border-radius:999px;">Submit Details</button>
-
-      <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.5rem;">
-        By submitting, you agree to AXION’s Terms & Conditions. Processing times vary based on plan level.
-      </p>
-    </form>
-  </div>
-</section>
-
-<!-- FORM SCRIPT -->
-<script>
-document.getElementById('userSubmissionForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Basic form validation (can expand later)
-    const fullName = this.fullName.value.trim();
-    const email = this.email.value.trim();
-    const resume = this.resume.files[0];
-    const details = this.details.value.trim();
-
-    if(!fullName || !email || !resume){
-        alert('Please fill all required fields.');
-        return;
-    }
-
-    // Simulate submission processing
-    alert('Thank you! Your submission has been received. You will receive an email with your results based on your plan.');
-    
-    // Reset form
-    this.reset();
-});
-</script>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 11: SUBSCRIPTION DASHBOARD & PLAN FEATURES
-====================================================== -->
-
-<section id="dashboard" style="padding:7rem 2rem; background:var(--bg-soft); color:#fff;">
-  <div style="max-width:1200px; margin:0 auto;">
-
-    <!-- SECTION HEADER -->
-    <div style="text-align:center; margin-bottom:5rem;">
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:600; margin-bottom:0.5rem;">Your Dashboard</h2>
-      <p style="max-width:800px; margin:0 auto; color:var(--text-muted); font-size:1.1rem;">
-        View your subscription plan, manage submissions, and track AI processing timelines.
-      </p>
-    </div>
-
-    <!-- PLAN SELECTION CARDS -->
-    <div style="
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:2rem;
-      margin-bottom:5rem;
-    ">
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md); text-align:center; transition:0.3s; border:2px solid rgba(255,255,255,0.05);">
-        <h3 style="margin-bottom:1rem;">One-Time Access</h3>
-        <p style="font-size:1.8rem; font-weight:700; margin-bottom:1rem;">$5.99</p>
-        <ul style="text-align:left; padding-left:1rem; opacity:0.85; margin-bottom:1rem;">
-          <li>Email results in 24-42 hours</li>
-          <li>Basic resume & job matches</li>
-          <li>No subscription required</li>
-        </ul>
-        <button style="
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          background:var(--primary);
-          color:#fff;
-          font-weight:600;
-          border:none;
-          cursor:pointer;
-        ">Current Plan</button>
-      </div>
-
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md); text-align:center; transition:0.3s; border:2px solid rgba(255,255,255,0.05);">
-        <h3 style="margin-bottom:1rem;">Premium Plan</h3>
-        <p style="font-size:1.8rem; font-weight:700; margin-bottom:1rem;">$12.99 / month</p>
-        <ul style="text-align:left; padding-left:1rem; opacity:0.85; margin-bottom:1rem;">
-          <li>Email results within 12 hours</li>
-          <li>Priority processing</li>
-          <li>Resume tips & suggestions</li>
-        </ul>
-        <button style="
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          background:var(--secondary);
-          color:#fff;
-          font-weight:600;
-          border:none;
-          cursor:pointer;
-        ">Upgrade</button>
-      </div>
-
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md); text-align:center; transition:0.3s; border:2px solid rgba(255,255,255,0.05);">
-        <h3 style="margin-bottom:1rem;">Pro Plan</h3>
-        <p style="font-size:1.8rem; font-weight:700; margin-bottom:1rem;">$24.99 / month</p>
-        <ul style="text-align:left; padding-left:1rem; opacity:0.85; margin-bottom:1rem;">
-          <li>Email results within 6 hours</li>
-          <li>Priority processing & support</li>
-          <li>Resume optimization</li>
-          <li>Job matching insights</li>
-        </ul>
-        <button style="
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          background:var(--accent);
-          color:#fff;
-          font-weight:600;
-          border:none;
-          cursor:pointer;
-        ">Upgrade</button>
-      </div>
-
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md); text-align:center; transition:0.3s; border:2px solid rgba(255,255,255,0.05);">
-        <h3 style="margin-bottom:1rem;">Elite Plan</h3>
-        <p style="font-size:1.8rem; font-weight:700; margin-bottom:1rem;">$45.00 / month</p>
-        <ul style="text-align:left; padding-left:1rem; opacity:0.85; margin-bottom:1rem;">
-          <li>Email results within 2 hours</li>
-          <li>Full resume & cover letter creation</li>
-          <li>Job matching intelligence & insights</li>
-          <li>Exclusive career guidance</li>
-        </ul>
-        <button style="
-          padding:0.8rem 2rem;
-          border-radius:999px;
-          background:var(--primary);
-          color:#fff;
-          font-weight:600;
-          border:none;
-          cursor:pointer;
-        ">Upgrade</button>
-      </div>
-    </div>
-
-    <!-- USER SUBMISSION HISTORY -->
-    <div style="margin-bottom:5rem;">
-      <h3 style="margin-bottom:2rem;">Your Submissions</h3>
-      <table style="
-        width:100%;
-        border-collapse:collapse;
-        background:var(--bg-card);
-        border-radius:var(--radius-md);
-        overflow:hidden;
-      ">
-        <thead style="background:rgba(255,255,255,0.05);">
-          <tr>
-            <th style="padding:1rem; text-align:left;">Date</th>
-            <th style="padding:1rem; text-align:left;">Status</th>
-            <th style="padding:1rem; text-align:left;">Plan</th>
-            <th style="padding:1rem; text-align:left;">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:1rem;">Feb 11, 2026</td>
-            <td style="padding:1rem;">Processing</td>
-            <td style="padding:1rem;">One-Time Access</td>
-            <td style="padding:1rem;"><button style="padding:0.5rem 1rem; border-radius:6px; background:var(--primary); color:#fff; border:none;">View</button></td>
-          </tr>
-          <tr>
-            <td style="padding:1rem;">Feb 10, 2026</td>
-            <td style="padding:1rem;">Completed</td>
-            <td style="padding:1rem;">Premium Plan</td>
-            <td style="padding:1rem;"><button style="padding:0.5rem 1rem; border-radius:6px; background:var(--secondary); color:#fff; border:none;">View</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- DASHBOARD CTA -->
-    <div style="text-align:center;">
-      <h3 style="margin-bottom:1rem;">Want faster results?</h3>
-      <p style="color:var(--text-muted); max-width:700px; margin:0 auto 2rem;">
-        Upgrade your subscription and reduce processing time, unlock more AI features, and gain advanced job matching insights.
-      </p>
-      <button style="
-        padding:1rem 3rem;
-        border-radius:999px;
-        background:var(--accent);
-        color:#fff;
-        font-weight:600;
-        border:none;
-        cursor:pointer;
-        font-size:1.1rem;
-      ">Upgrade Plan</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- DASHBOARD SCRIPT -->
-<script>
-// Simulated dashboard interactivity
-const upgradeButtons = document.querySelectorAll('#dashboard button');
-upgradeButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    alert('Subscription upgrade functionality coming soon! This will integrate payment & plan selection.');
-  });
-});
-</script>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 12: DASHBOARD ANALYTICS & DYNAMIC FEATURES
-====================================================== -->
-
-<section id="dashboard-analytics" style="padding:7rem 2rem; background:var(--bg-main); color:#fff;">
-  <div style="max-width:1200px; margin:0 auto;">
-
-    <!-- SECTION HEADER -->
-    <div style="text-align:center; margin-bottom:5rem;">
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:600; margin-bottom:0.5rem;">Dashboard Analytics</h2>
-      <p style="max-width:800px; margin:0 auto; color:var(--text-muted); font-size:1.1rem;">
-        Track your submissions, see AI processing progress, and monitor your subscription benefits.
-      </p>
-    </div>
-
-    <!-- PROGRESS & STATS CARDS -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; margin-bottom:5rem;">
-      
-      <!-- Submission Progress -->
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md);">
-        <h3 style="margin-bottom:1rem;">Submission Progress</h3>
-        <div style="background:rgba(255,255,255,0.1); border-radius:999px; overflow:hidden; height:20px; margin-bottom:1rem;">
-          <div id="submissionProgress" style="width:45%; background:var(--primary); height:100%; transition:0.5s;"></div>
-        </div>
-        <p style="color:var(--text-muted);">45% of your current submissions processed.</p>
-      </div>
-
-      <!-- Plan Usage -->
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md);">
-        <h3 style="margin-bottom:1rem;">Plan Usage</h3>
-        <p style="opacity:0.85;">You have submitted <strong>8 resumes</strong> this month.</p>
-        <p style="opacity:0.85;">You have <strong>4 AI processed emails remaining</strong> under your plan.</p>
-        <div style="background:rgba(255,255,255,0.1); border-radius:999px; overflow:hidden; height:20px;">
-          <div id="planUsageProgress" style="width:66%; background:var(--secondary); height:100%; transition:0.5s;"></div>
-        </div>
-      </div>
-
-      <!-- Subscription Benefits -->
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-md);">
-        <h3 style="margin-bottom:1rem;">Subscription Benefits</h3>
-        <ul style="padding-left:1rem; opacity:0.85; line-height:1.6;">
-          <li>Faster AI processing times</li>
-          <li>Advanced resume recommendations</li>
-          <li>Enhanced job matching insights</li>
-          <li>Priority support & guidance</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- DYNAMIC CHART -->
-    <div style="margin-bottom:5rem;">
-      <h3 style="margin-bottom:2rem; text-align:center;">Submissions Overview</h3>
-      <canvas id="submissionsChart" style="background:var(--bg-card); border-radius:var(--radius-md); padding:2rem;"></canvas>
-    </div>
-
-    <!-- RECENT NOTIFICATIONS -->
-    <div style="margin-bottom:5rem;">
-      <h3 style="margin-bottom:2rem;">Recent Notifications</h3>
-      <ul style="list-style:none; padding:0;">
-        <li style="background:var(--bg-card); padding:1rem; border-radius:var(--radius-sm); margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-          <span>Email sent for submission Feb 10, 2026</span>
-          <span style="color:var(--secondary); font-weight:600;">Processed</span>
-        </li>
-        <li style="background:var(--bg-card); padding:1rem; border-radius:var(--radius-sm); margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-          <span>New job matches available for Premium Plan</span>
-          <span style="color:var(--primary); font-weight:600;">New</span>
-        </li>
-        <li style="background:var(--bg-card); padding:1rem; border-radius:var(--radius-sm); margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-          <span>Your subscription renews Feb 15, 2026</span>
-          <span style="color:var(--accent); font-weight:600;">Reminder</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- CTA TO UPGRADE -->
-    <div style="text-align:center; margin-bottom:5rem;">
-      <h3 style="margin-bottom:1rem;">Upgrade to Unlock Full AI Features</h3>
-      <p style="color:var(--text-muted); max-width:700px; margin:0 auto 2rem;">
-        Get your submissions processed faster, gain advanced analytics, and access premium career tools.
-      </p>
-      <button style="
-        padding:1rem 3rem;
-        border-radius:999px;
-        background:var(--secondary);
-        color:#fff;
-        font-weight:600;
-        border:none;
-        cursor:pointer;
-        font-size:1.1rem;
-      ">Upgrade Plan</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ANALYTICS & CHARTS SCRIPT -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-// Submissions chart
-const ctx = document.getElementById('submissionsChart').getContext('2d');
-const submissionsChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Feb 5', 'Feb 6', 'Feb 7', 'Feb 8', 'Feb 9', 'Feb 10', 'Feb 11'],
-    datasets: [{
-      label: 'Submissions',
-      data: [2, 3, 1, 4, 3, 5, 2],
-      backgroundColor: 'rgba(108,92,255,0.8)',
-      borderRadius: 6
-    }]
-  },
-  options: {
-    responsive:true,
-    plugins: {
-      legend:{ display:false },
-      tooltip:{ mode:'index', intersect:false }
-    },
-    scales: {
-      x:{ grid:{ display:false } },
-      y:{ beginAtZero:true, grid:{ color:'rgba(255,255,255,0.1)' } }
-    }
-  }
-});
-
-// Simulate dynamic progress updates
-function updateProgress() {
-  const submissionProgress = document.getElementById('submissionProgress');
-  const planUsageProgress = document.getElementById('planUsageProgress');
-
-  let submissionPercent = Math.min(100, Math.floor(Math.random()*100));
-  let planUsagePercent = Math.min(100, Math.floor(Math.random()*100));
-
-  submissionProgress.style.width = submissionPercent + '%';
-  planUsageProgress.style.width = planUsagePercent + '%';
-}
-setInterval(updateProgress, 5000);
-</script>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- =====================================================
-     PART 13: AI SUBMISSION FORMS & USER INPUTS
-====================================================== -->
-
-<section id="submission-form" style="padding:7rem 2rem; background:var(--bg-soft); color:#fff;">
-  <div style="max-width:1100px; margin:0 auto;">
-
-    <!-- SECTION HEADER -->
-    <div style="text-align:center; margin-bottom:5rem;">
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:600; margin-bottom:0.5rem;">Submit Your Profile</h2>
-      <p style="max-width:800px; margin:0 auto; color:var(--text-muted); font-size:1.1rem;">
-        Fill in your details and let our AI provide curated job matches and resume insights directly to your email.
-      </p>
-    </div>
-
-    <!-- FORM -->
-    <form id="aiSubmissionForm" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-      
-      <!-- Personal Info -->
-      <div style="grid-column:span 2;">
-        <h3 style="margin-bottom:1rem;">Personal Information</h3>
-      </div>
-      <input type="text" placeholder="Full Name" required style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-      <input type="email" placeholder="Email Address" required style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-      <input type="text" placeholder="Phone Number" style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-      <input type="text" placeholder="City / Country" style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-
-      <!-- Professional Info -->
-      <div style="grid-column:span 2; margin-top:2rem;">
-        <h3 style="margin-bottom:1rem;">Professional Information</h3>
-      </div>
-      <input type="text" placeholder="Current Position / Title" style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-      <input type="text" placeholder="Years of Experience" style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-      <input type="text" placeholder="Key Skills (comma-separated)" style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-      <input type="text" placeholder="Desired Roles / Industries" style="padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff;">
-
-      <!-- Resume Upload -->
-      <div style="grid-column:span 2; margin-top:2rem;">
-        <h3 style="margin-bottom:1rem;">Resume / CV</h3>
-        <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx" style="padding:0.8rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff; width:100%;">
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.5rem;">Optional: Upload your resume to receive enhanced AI insights.</p>
-      </div>
-
-      <!-- Additional Notes -->
-      <div style="grid-column:span 2; margin-top:2rem;">
-        <h3 style="margin-bottom:1rem;">Additional Notes</h3>
-        <textarea placeholder="Any extra information you want AI to consider..." style="width:100%; padding:1rem; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.1); background:var(--bg-card); color:#fff; min-height:120px;"></textarea>
-      </div>
-
-      <!-- Submit Button -->
-      <div style="grid-column:span 2; text-align:center; margin-top:3rem;">
-        <button type="submit" style="padding:1rem 3rem; border-radius:999px; background:var(--primary); color:#fff; font-weight:600; font-size:1.1rem; border:none; cursor:pointer;">Submit Profile</button>
-      </div>
-    </form>
-
-    <!-- Submission Confirmation -->
-    <div id="submissionMessage" style="display:none; margin-top:3rem; text-align:center; font-size:1.1rem; color:var(--secondary); font-weight:600;">
-      ✅ Your profile has been submitted! Check your email for AI recommendations.
-    </div>
-
-  </div>
-</section>
-
-<!-- FORM SCRIPT -->
-<script>
-const aiForm = document.getElementById('aiSubmissionForm');
-const submissionMessage = document.getElementById('submissionMessage');
-
-aiForm.addEventListener('submit', function(e){
-  e.preventDefault();
-
-  // Simulate form submission delay
-  setTimeout(() => {
-    aiForm.reset();
-    submissionMessage.style.display = 'block';
-    setTimeout(() => { submissionMessage.style.display = 'none'; }, 7000);
-  }, 1500);
-});
-</script>
-
-<!-- SECTION SPACER -->
-<div style="height:6rem;"></div>
-<!-- SUBMIT INFO SECTION -->
-<section class="submit-info-section soft">
-    <div class="container">
-        <h2>Submit Your Information</h2>
-        <p>Provide your details and let AXION’s system analyze your profile. Receive personalized suggestions and opportunities tailored just for you.</p>
-        <div class="submit-actions">
-            <button class="btn-primary" onclick="openSubmitModal()">Submit Your Info</button>
-        </div>
-    </div>
-</section>
-
-<!-- SUBMIT INFO MODAL -->
-<div class="auth-overlay" id="submitOverlay">
-    <div class="auth-box">
-        <h3>Submit Your Information</h3>
-        <input type="text" placeholder="Full Name" id="fullName">
-        <input type="email" placeholder="Email Address" id="email">
-        <input type="text" placeholder="Your Skills / Experience" id="skills">
-        <textarea placeholder="Optional: Additional Notes" id="notes" rows="4" style="margin-bottom:1rem;background:#12121a;border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);color:#fff;padding:0.8rem;width:100%;"></textarea>
-        <button class="btn-primary" style="width:100%;margin-top:0.5rem;" onclick="submitInfo()">Submit</button>
-        <button class="btn-secondary" style="width:100%;margin-top:1rem;" onclick="closeSubmitModal()">Close</button>
     </div>
 </div>
 
-<script>
-const submitOverlay = document.getElementById('submitOverlay');
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="authOverlay">
+    <div class="auth-box">
+        <h3>Account Access</h3>
+        <input type="email" placeholder="Email address">
+        <input type="password" placeholder="Password">
+        <button class="btn btn-primary">Continue</button>
+        <button class="btn btn-secondary" onclick="closeAuth()">Close</button>
+    </div>
+</div>
 
-function openSubmitModal() { submitOverlay.style.display = 'flex'; }
-function closeSubmitModal() { submitOverlay.style.display = 'none'; }
+<!-- HEADER -->
+<header>
+    <div class="nav">
+        <div class="logo">AXION</div>
+        <nav class="nav-links">
+            <a href="#platform">Platform</a>
+            <a href="#subscriptions">Subscriptions</a>
+            <a href="#submit">Create Resume</a>
+            <a href="#faq">FAQ</a>
+            <button class="btn btn-secondary" onclick="openAuth()">Login</button>
+            <button class="btn btn-primary" onclick="openAuth()">Sign Up</button>
+        </nav>
+    </div>
+</header>
 
-function submitInfo() {
-    const name = document.getElementById('fullName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const skills = document.getElementById('skills').value.trim();
-    const notes = document.getElementById('notes').value.trim();
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>AI-Powered Resumes & Job Matches</h1>
+        <p>Get your professionally structured resume generated and job suggestions delivered — all through AXION.</p>
+        <div class="hero-actions">
+            <a href="#submit" class="btn-primary">Start for $5.99</a>
+            <a href="#subscriptions" class="btn-secondary">See Subscription Plans</a>
+        </div>
+    </div>
+</section>
 
-    if (!name || !email || !skills) {
-        alert('Please fill out all required fields.');
-        return;
-    }
+<!-- PLATFORM FEATURES -->
+<section id="platform" class="section">
+    <h2>Platform Features</h2>
+    <p>Everything is structured to deliver clarity, speed, and actionable results.</p>
+    <div class="section-grid">
+        <div class="card">
+            <h3>AI Resume Generation</h3>
+            <p>Input your details and receive a polished resume tailored for your field.</p>
+        </div>
+        <div class="card">
+            <h3>Job Suggestions</h3>
+            <p>Based on your profile, get matched to potential roles worldwide.</p>
+        </div>
+        <div class="card">
+            <h3>Global Access</h3>
+            <p>Use AXION anywhere in the world for a one-time fee or optional subscriptions.</p>
+        </div>
+    </div>
+</section>
 
-    // Simulate submission (in real life, connect to backend/API)
-    alert(`Thank you, ${name}! Your information has been received. You will get a response within 24-42 hours.`);
-    closeSubmitModal();
-
-    // Clear form
-    document.getElementById('fullName').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('skills').value = '';
-    document.getElementById('notes').value = '';
-}
-</script>
-
-<style>
-.submit-info-section {
-    padding: 7.5rem 8vw;
-    text-align: center;
-}
-.submit-info-section h2 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    position: relative;
-}
-.submit-info-section h2::after {
-    content:"";
-    display:block;
-    width:48px;
-    height:4px;
-    background:var(--primary);
-    margin:16px auto 0;
-    border-radius:4px;
-}
-.submit-info-section p {
-    max-width:720px;
-    margin:0 auto 2rem;
-    font-size:1rem;
-    opacity:0.85;
-}
-.submit-actions { margin-top:2rem; }
-.submit-actions .btn-primary { padding:14px 32px; font-weight:600; border-radius:999px; }
-</style>
 <!-- SUBSCRIPTION PLANS -->
-<section id="subscriptions" class="offer soft">
-  <h2>Upgrade Your Access</h2>
-  <p class="lead">Choose a subscription plan to unlock faster responses and exclusive features. All plans are optional — the $5.99 one-time access still gives you basic functionality.</p>
-  <div class="offer-grid">
-    <!-- BASIC SUBSCRIPTION -->
-    <div class="offer-box highlight">
-      <h3>Basic Plan</h3>
-      <div class="price">$12.99 / month</div>
-      <p class="muted">Faster access than standard $5.99 plan</p>
-      <ul>
-        <li>Email response within 12-24 hours</li>
-        <li>Basic AI-generated suggestions</li>
-        <li>Access to platform dashboard</li>
-      </ul>
-      <button class="btn-primary" onclick="subscribe('Basic')">Subscribe</button>
+<section id="subscriptions" class="section soft">
+    <h2>Optional Subscription Plans</h2>
+    <p>Enhance your experience with faster resume delivery and additional features.</p>
+    <div class="plan-grid">
+        <div class="plan-card highlight">
+            <h3>Basic Plus</h3>
+            <div class="price">$12.99 / month</div>
+            <ul>
+                <li>Resume delivered within 12-24 hours</li>
+                <li>Basic job suggestions</li>
+                <li>Email support</li>
+            </ul>
+            <button class="btn-primary">Subscribe</button>
+        </div>
+        <div class="plan-card">
+            <h3>Pro</h3>
+            <div class="price">$24.99 / month</div>
+            <ul>
+                <li>Resume delivered within 6-12 hours</li>
+                <li>Enhanced job suggestions</li>
+                <li>Priority support</li>
+            </ul>
+            <button class="btn-primary">Subscribe</button>
+        </div>
+        <div class="plan-card">
+            <h3>Elite</h3>
+            <div class="price">$45.00 / month</div>
+            <ul>
+                <li>Resume delivered within 2-6 hours</li>
+                <li>Premium job suggestions</li>
+                <li>1-on-1 consultation</li>
+            </ul>
+            <button class="btn-primary">Subscribe</button>
+        </div>
     </div>
-
-    <!-- STANDARD SUBSCRIPTION -->
-    <div class="offer-box">
-      <h3>Standard Plan</h3>
-      <div class="price">$24.99 / month</div>
-      <p class="muted">Enhanced AI recommendations and faster service</p>
-      <ul>
-        <li>Email response within 6-12 hours</li>
-        <li>AI-assisted resume and job suggestions</li>
-        <li>Access to premium tools & templates</li>
-        <li>Priority support</li>
-      </ul>
-      <button class="btn-primary" onclick="subscribe('Standard')">Subscribe</button>
-    </div>
-
-    <!-- PREMIUM SUBSCRIPTION -->
-    <div class="offer-box">
-      <h3>Premium Plan</h3>
-      <div class="price">$45.00 / month</div>
-      <p class="muted">Fastest access, full AI features, and dedicated support</p>
-      <ul>
-        <li>Email response within 2-6 hours</li>
-        <li>Full AI resume optimization & job matching</li>
-        <li>Exclusive tools, templates, and automation</li>
-        <li>Priority support & consultation</li>
-      </ul>
-      <button class="btn-primary" onclick="subscribe('Premium')">Subscribe</button>
-    </div>
-  </div>
 </section>
 
-<script>
-function subscribe(plan) {
-    alert(`You selected the ${plan} plan. Subscription process will start shortly.`);
-    // Integration with payment API or backend would go here
-}
-</script>
-
-<style>
-#subscriptions {
-    padding: 7.5rem 8vw;
-    text-align: center;
-}
-#subscriptions h2 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    position: relative;
-}
-#subscriptions h2::after {
-    content:"";
-    display:block;
-    width:48px;
-    height:4px;
-    background:var(--primary);
-    margin:16px auto 0;
-    border-radius:4px;
-}
-#subscriptions .lead {
-    max-width:720px;
-    margin:0 auto 3rem;
-    opacity:0.85;
-}
-#subscriptions .offer-grid {
-    display:grid;
-    gap:40px;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    margin-top:2rem;
-}
-#subscriptions .offer-box button {
-    margin-top:1.2rem;
-    width:100%;
-    padding:14px 28px;
-    border-radius:999px;
-    font-weight:600;
-    background:var(--primary);
-    color:#fff;
-    transition:0.2s ease;
-}
-#subscriptions .offer-box button:hover {
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.15);
-}
-</style>
-<!-- DASHBOARD PREVIEW -->
-<section id="dashboard" class="soft">
-  <h2>Your AXION Dashboard</h2>
-  <p class="lead">See what your experience will look like. Features are unlocked based on your subscription tier. The more advanced your plan, the faster and richer your access.</p>
-
-  <div class="dashboard-grid">
-    <!-- Core Access Card -->
-    <div class="dashboard-card">
-      <h3>Submit Information</h3>
-      <p>Send your resume, skills, and preferences. Our AI will analyze and prepare tailored job suggestions.</p>
-      <button class="btn-primary">Submit Info</button>
-    </div>
-
-    <!-- Basic Plan Card -->
-    <div class="dashboard-card locked">
-      <h3>Basic Plan</h3>
-      <p>Receive AI recommendations within 12-24 hours.</p>
-      <span class="subscription-badge">Locked</span>
-      <button class="btn-secondary upgrade-btn">Upgrade</button>
-    </div>
-
-    <!-- Standard Plan Card -->
-    <div class="dashboard-card locked">
-      <h3>Standard Plan</h3>
-      <p>Enhanced AI suggestions, templates, and priority notifications within 6-12 hours.</p>
-      <span class="subscription-badge">Locked</span>
-      <button class="btn-secondary upgrade-btn">Upgrade</button>
-    </div>
-
-    <!-- Premium Plan Card -->
-    <div class="dashboard-card locked">
-      <h3>Premium Plan</h3>
-      <p>Full AI optimization, exclusive templates, and responses in 2-6 hours.</p>
-      <span class="subscription-badge">Locked</span>
-      <button class="btn-secondary upgrade-btn">Upgrade</button>
-    </div>
-  </div>
-</section>
-
-<style>
-#dashboard {
-    padding:7.5rem 8vw;
-    text-align:center;
-}
-#dashboard h2 {
-    font-size:clamp(2rem,4vw,2.8rem);
-    font-weight:600;
-    margin-bottom:1rem;
-    position:relative;
-}
-#dashboard h2::after {
-    content:"";
-    display:block;
-    width:48px;
-    height:4px;
-    background:var(--primary);
-    margin:16px auto 0;
-    border-radius:4px;
-}
-#dashboard .lead {
-    max-width:720px;
-    margin:0 auto 3rem;
-    opacity:0.85;
-}
-.dashboard-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:2rem;
-    margin-top:2rem;
-}
-.dashboard-card {
-    background:var(--bg-card);
-    padding:2rem;
-    border-radius:var(--radius-md);
-    transition:transform 0.3s ease;
-}
-.dashboard-card:hover {
-    transform:translateY(-4px);
-}
-.dashboard-card.locked {
-    opacity:0.6;
-    position:relative;
-}
-.dashboard-card.locked .subscription-badge {
-    display:block;
-    color:var(--secondary);
-    font-weight:500;
-    margin-top:0.5rem;
-}
-.dashboard-card button {
-    margin-top:1rem;
-    width:100%;
-    padding:14px 28px;
-    border-radius:999px;
-    font-weight:600;
-    transition:0.2s ease;
-}
-.dashboard-card button.btn-primary {
-    background:var(--primary);
-    color:#fff;
-    border:none;
-}
-.dashboard-card button.btn-primary:hover {
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.15);
-}
-.dashboard-card button.btn-secondary {
-    background:transparent;
-    color:#fff;
-    border:1px solid rgba(255,255,255,0.2);
-}
-.dashboard-card button.btn-secondary:hover {
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.15);
-}
-</style>
-
-<script>
-const upgradeButtons = document.querySelectorAll('.upgrade-btn');
-upgradeButtons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-        alert('Upgrade your plan to unlock this feature.');
-    });
-});
-</script>
-<!-- HOW IT WORKS -->
-<section id="how-it-works" class="section alt">
-  <h2>How AXION Works</h2>
-  <p>AXION helps you craft your professional profile and job opportunities — without needing to make your own resume. Just provide your details, and our system takes care of the rest.</p>
-  <div class="section-grid">
-    <div class="card">
-      <h3>Step 1: Share Your Details</h3>
-      <p>Tell us about your experience, skills, and career goals. The more accurate, the better the result.</p>
-    </div>
-    <div class="card">
-      <h3>Step 2: AI Creates Your Profile</h3>
-      <p>Our system builds a professional resume and suggests suitable job options tailored just for you.</p>
-    </div>
-    <div class="card">
-      <h3>Step 3: Receive Your Results</h3>
-      <p>Access your resume and job suggestions directly in your inbox within 24-42 hours for the basic plan, or faster with subscriptions.</p>
-    </div>
-  </div>
-  <div style="margin-top:3rem; text-align:center;">
-    <a href="#submit-details" class="btn-primary">Get Started Now</a>
-  </div>
-</section>
-
-<!-- SUBMIT DETAILS SECTION -->
-<section id="submit-details" class="section soft">
-  <h2>Submit Your Details</h2>
-  <p>Fill out the form below so AXION can craft a personalized professional profile and job recommendations for you.</p>
-  <form style="max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:1rem;">
-    <input type="text" placeholder="Full Name" required style="padding:0.8rem; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#12121a; color:#fff;">
-    <input type="email" placeholder="Email Address" required style="padding:0.8rem; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#12121a; color:#fff;">
-    <input type="text" placeholder="Your Skills / Experience" style="padding:0.8rem; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#12121a; color:#fff;">
-    <textarea placeholder="Career Goals / Additional Info" style="padding:0.8rem; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:#12121a; color:#fff;" rows="5"></textarea>
-    <button type="submit" class="btn-primary" style="margin-top:1rem;">Generate My Profile</button>
-  </form>
-</section>
-
-<!-- SMOOTH SCROLL SCRIPT -->
-<script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if(target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-</script>
-
-<!-- CARD HOVER STYLING -->
-<style>
-  #how-it-works .card {
-    background: var(--bg-card);
-    padding:2.5rem;
-    border-radius: var(--radius-md);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  #how-it-works .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 30px rgba(0,0,0,0.15);
-  }
-  #submit-details input, #submit-details textarea {
-    font-size:1rem;
-  }
-</style>
-<!-- ===========================
-   PART 20: FOOTER, TERMS, CONTACT, FINAL CTA
-=========================== -->
-
-<!-- FINAL CALL TO ACTION -->
-<section class="cta-section" style="padding:120px 8vw;background:linear-gradient(135deg,#6c5cff,#ff5c93);color:white;text-align:center;">
-  <h2 style="font-size:clamp(2.5rem,5vw,3rem);margin-bottom:24px;font-weight:700;">Get Your Resume & Job Options Today</h2>
-  <p style="max-width:760px;margin:0 auto 40px;opacity:0.9;font-size:1.1rem;">
-    Start with our $5.99 one-off access and let AXION help you craft your resume and receive curated job opportunities. Optional subscription plans give faster delivery and enhanced features.
-  </p>
-  <a href="#submitInfo" class="cta-button" style="padding:18px 42px;font-weight:700;font-size:1.1rem;border-radius:999px;">Submit Your Information</a>
-</section>
-
-<!-- SUBMISSION / CONTACT SECTION -->
-<section id="submitInfo" style="padding:100px 8vw;background:#171722;color:white;">
-  <div style="max-width:920px;margin:0 auto;text-align:center;">
-    <h2 style="font-size:clamp(2rem,4vw,2.6rem);margin-bottom:20px;">Submit Your Details</h2>
-    <p style="opacity:0.85;margin-bottom:40px;">Provide your information and let our system guide you to the next career step.</p>
-    <form style="display:grid;gap:20px;text-align:left;">
-      <input type="text" placeholder="Full Name" style="padding:0.8rem;border-radius:6px;border:none;width:100%;background:#1f1f2e;color:white;">
-      <input type="email" placeholder="Email Address" style="padding:0.8rem;border-radius:6px;border:none;width:100%;background:#1f1f2e;color:white;">
-      <input type="text" placeholder="Current Role / Industry" style="padding:0.8rem;border-radius:6px;border:none;width:100%;background:#1f1f2e;color:white;">
-      <textarea placeholder="Your Career Goals / Notes" style="padding:0.8rem;border-radius:6px;border:none;width:100%;background:#1f1f2e;color:white;height:120px;"></textarea>
-      <button type="submit" class="btn btn-primary" style="width:100%;padding:16px 0;font-weight:600;">Submit & Start $5.99 Access</button>
+<!-- AI RESUME SUBMISSION -->
+<section id="submit" class="submit-section">
+    <h2>Submit Your Info</h2>
+    <p>Fill out your details and let AXION craft a professional resume for you.</p>
+    <form>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email Address">
+        <input type="text" placeholder="Current Job Title / Skills">
+        <textarea placeholder="Additional Information / Experience" rows="4"></textarea>
+        <button class="btn-primary">Submit for Resume</button>
     </form>
-  </div>
 </section>
 
-<!-- SUBSCRIPTION SUMMARY -->
-<section class="offer" style="padding:120px 8vw;background:#0f0f14;">
-  <h2 style="margin-bottom:24px;">Optional Subscriptions</h2>
-  <p style="max-width:720px;opacity:0.85;margin-bottom:60px;">Upgrade for faster responses, extra features, and enhanced support. Start any plan after your $5.99 one-off access.</p>
-  <div class="offer-grid" style="display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
-    <div class="offer-box" style="background:#1f1f2e;padding:36px;border-radius:18px;text-align:center;">
-      <h3>Starter Plan</h3>
-      <div class="price" style="font-size:2rem;font-weight:700;margin:12px 0;">$12.99 / month</div>
-      <ul style="list-style:disc;padding-left:18px;text-align:left;margin-top:16px;">
-        <li>Resume delivered within 12-18 hours</li>
-        <li>Email support for clarifications</li>
-        <li>Basic optimization tips</li>
-      </ul>
-    </div>
-    <div class="offer-box highlight" style="border:2px solid #6c5cff;">
-      <h3>Pro Plan</h3>
-      <div class="price" style="font-size:2rem;font-weight:700;margin:12px 0;">$24.99 / month</div>
-      <ul style="list-style:disc;padding-left:18px;text-align:left;margin-top:16px;">
-        <li>Resume & cover letter within 6-12 hours</li>
-        <li>Job opportunity suggestions curated daily</li>
-        <li>Priority email support</li>
-      </ul>
-    </div>
-    <div class="offer-box" style="background:#1f1f2e;padding:36px;border-radius:18px;text-align:center;">
-      <h3>Premium Plan</h3>
-      <div class="price" style="font-size:2rem;font-weight:700;margin:12px 0;">$45.00 / month</div>
-      <ul style="list-style:disc;padding-left:18px;text-align:left;margin-top:16px;">
-        <li>Resume, cover letter, and LinkedIn optimization within 2-6 hours</li>
-        <li>Daily AI-generated job matches & career insights</li>
-        <li>Dedicated support & consultation</li>
-      </ul>
-    </div>
-  </div>
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Get Started Today</h2>
+    <p>One payment of $5.99 gives access to your resume and job suggestions. Optional subscriptions available for advanced features.</p>
+    <a href="#submit">Start Now</a>
 </section>
 
-<!-- FAQ / HELP SECTION -->
-<section class="faq" style="padding:100px 8vw;background:#171722;color:white;">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <h3>Is the $5.99 fee a subscription?</h3>
-    <p>No. $5.99 is a one-time payment giving access to submit your information and receive results. Subscriptions are optional upgrades.</p>
-  </div>
-  <div class="faq-item">
-    <h3>What do subscriptions offer?</h3>
-    <p>They provide faster delivery, extra resume optimization, career insights, and more frequent job matches.</p>
-  </div>
-  <div class="faq-item">
-    <h3>How soon will I get my results?</h3>
-    <p>Basic plan: 24-42 hours. Starter: 12-18 hours. Pro: 6-12 hours. Premium: 2-6 hours.</p>
-  </div>
+<!-- FAQ -->
+<section id="faq" class="faq section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+        <h3>Is the $5.99 a subscription?</h3>
+        <p>No. This is a one-time payment to access your AI-generated resume and basic job suggestions.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Do I need a subscription to use AXION?</h3>
+        <p>No. Subscriptions are optional upgrades for faster delivery and additional features.</p>
+    </div>
+    <div class="faq-item">
+        <h3>How soon will I receive my resume?</h3>
+        <p>Basic access resumes are delivered within 24-42 hours. Subscriptions shorten this timeframe.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Can I upgrade later?</h3>
+        <p>Yes. You can subscribe at any time to access faster delivery and more features.</p>
+    </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#0b0b10;color:white;padding:4.5rem 8vw 2rem;">
-  <div style="max-width:1200px;margin:0 auto;display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-    <div>
-      <h4>AXION</h4>
-      <p>Structured resume & career guidance platform.</p>
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h4>AXION</h4>
+            <p>AI-powered resume creation & job suggestions globally.</p>
+        </div>
+        <div>
+            <h4>Explore</h4>
+            <p><a href="#platform">Platform</a></p>
+            <p><a href="#subscriptions">Subscriptions</a></p>
+            <p><a href="#submit">Create Resume</a></p>
+        </div>
+        <div>
+            <h4>Account</h4>
+            <p><a href="#" onclick="openAuth()">Login</a></p>
+        </div>
     </div>
-    <div>
-      <h4>Explore</h4>
-      <p><a href="#about" style="color:white;">About</a></p>
-      <p><a href="#submitInfo" style="color:white;">Submit Info</a></p>
-      <p><a href="#pricing" style="color:white;">Pricing</a></p>
-    </div>
-    <div>
-      <h4>Account</h4>
-      <p><a href="#" onclick="openAuth()" style="color:white;">Login</a></p>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p>Email: support@axion.com</p>
-      <p>Phone: +1 (800) 123-4567</p>
-    </div>
-  </div>
-  <div style="margin-top:3rem;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.6);">
-    © 2026 AXION. All rights reserved. All submissions are subject to Terms and Conditions.
-  </div>
+    <div class="footer-bottom">© 2026 AXION. All rights reserved.</div>
 </footer>
 
-<!-- TERMS & CONDITIONS -->
-<div class="terms-overlay" id="termsOverlay" style="position:fixed;inset:0;background:rgba(10,10,16,0.95);display:none;align-items:center;justify-content:center;z-index:3000;">
-  <div class="terms-box" style="background:#1f1f2e;padding:3rem;border-radius:26px;max-width:820px;width:100%;overflow-y:auto;color:white;">
-    <h2>Terms and Conditions</h2>
-    <p>By submitting your information to AXION, you agree that all data provided will be processed by our system to generate resumes, cover letters, and job suggestions. AI is used to create outputs; results may vary and delivery times depend on your plan.</p>
-    <p>Accounts are personal. Subscriptions provide additional speed and features. AXION reserves the right to modify, suspend, or discontinue features when necessary.</p>
-    <div style="margin-top:2.5rem;text-align:right;">
-      <button class="btn btn-primary" onclick="acceptTerms()" style="padding:12px 28px;">I Accept</button>
-    </div>
-  </div>
-</div>
-
 <script>
-const authOverlay = document.getElementById('authOverlay');
 const termsOverlay = document.getElementById('termsOverlay');
+const authOverlay = document.getElementById('authOverlay');
 
-function openAuth(){ authOverlay.style.display='flex'; }
-function closeAuth(){ authOverlay.style.display='none'; }
-function acceptTerms(){ 
+function acceptTerms() {
     localStorage.setItem('axion_terms_accepted','true');
     termsOverlay.style.display='none';
 }
+function openAuth() { 
+    authOverlay.style.display='flex'; 
+    if(!localStorage.getItem('axion_terms_accepted')){
+        termsOverlay.style.display='flex';
+    }
+}
+function closeAuth() { authOverlay.style.display='none'; }
 
 window.addEventListener('load',()=>{
-  if(!localStorage.getItem('axion_terms_accepted')){
-    termsOverlay.style.display='flex';
-  }
+    if(!localStorage.getItem('axion_terms_accepted')){
+        termsOverlay.style.display='flex';
+    }
 });
 </script>
-<!-- TERMS & CONDITIONS POPUP (Login Only) -->
-<div id="loginTermsOverlay" style="position:fixed;inset:0;background:rgba(10,10,16,0.95);display:none;align-items:center;justify-content:center;z-index:4000;">
-  <div style="background:#1f1f2e;padding:3rem;border-radius:26px;max-width:820px;width:90%;color:white;text-align:left;overflow-y:auto;">
-    <h2 style="margin-bottom:16px;">Terms & Conditions</h2>
-    <p>Welcome to AXION. By logging in, you agree that your information will be processed to generate resumes, cover letters, and job suggestions. AI is used to create outputs; delivery times vary depending on your plan.</p>
-    <p>Accounts are personal. Subscriptions provide additional speed and features. AXION may update or suspend features when necessary. Your continued use constitutes acceptance of these terms.</p>
-    <div style="margin-top:2rem;text-align:right;">
-      <button onclick="acceptLoginTerms()" style="padding:12px 28px;background:#6c5cff;color:white;border:none;border-radius:999px;font-weight:600;cursor:pointer;">I Accept</button>
-    </div>
-  </div>
-</div>
-<script>
-const loginTermsOverlay = document.getElementById('loginTermsOverlay');
 
-// Show popup only if not already accepted
-function showLoginTerms() {
-  if(!localStorage.getItem('axion_login_terms_accepted')) {
-    loginTermsOverlay.style.display = 'flex';
-  }
-}
-
-// Mark terms as accepted and hide popup
-function acceptLoginTerms() {
-  localStorage.setItem('axion_login_terms_accepted', 'true');
-  loginTermsOverlay.style.display = 'none';
-}
-
-// Trigger popup when user logs in
-function loginUser() {
-  // 1. Put your normal login logic here
-  // Example: validate credentials or open dashboard
-
-  // 2. Show the terms popup after login
-  showLoginTerms();
-}
-
-// Attach this to your login buttons
-document.querySelectorAll('.btn-login, .btn-primary').forEach(btn => {
-  btn.addEventListener('click', loginUser);
-});
-</script>
+</body>
+</html>
